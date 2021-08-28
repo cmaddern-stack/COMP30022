@@ -5,11 +5,11 @@ export default function Nav() {
     return (
         <nav>
             <NavLink exact to="/">
-                Home
+                Groups
             </NavLink>
             &nbsp;|&nbsp;
-            <NavLink exact to="/next">
-                Next Page
+            <NavLink exact to="/people">
+                People
             </NavLink>
         </nav>
     )

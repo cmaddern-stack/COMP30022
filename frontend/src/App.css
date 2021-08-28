@@ -1,26 +1,30 @@
+.body {
+  background-color: #EEF2FA;
+  position:absolute;
+  height: 100%;
+  width: 100%;
+}
+
+header .icon {
+  width: 10%;
+}
+
+header .content {
+  width: 80%;
+  padding-left: 40px;
+}
+
 header {
-  /* : fixed; */
   height: 60px;
-  left: 0;
   top: 0;
-  width: 100%;
-  background-color: rgb(0, 217, 255);
-  color: white;
-  text-align: center;
+  width: 97%;
+  background-color: white;
   padding-top: 20px;
+  border-radius: 90px;
+  margin: 20px;
 }
 
 nav {
-  position: fixed;
-  left: 0;
-  top: 200;
-  width: 100%;
-  text-align: center;
-  padding-top: 20px;
-}
-
-nav {
-  position: fixed;
   left: 0;
   top: 200;
   width: 100%;
@@ -30,11 +34,23 @@ nav {
 
 footer {
   position: fixed;
-  height: 60px;
+  height: 30px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: rgb(0, 217, 255);
-  color: white;
+  background-color: white;
   text-align: center;
+  padding-top: 5px;
 }
+
+/* Person page styling */
+.person {
+  background-color: white;
+  width: 97%;
+  padding: 1em 2em;
+  border-radius: 90px;
+  margin: 10px 20px;
+}
+.name { width: 20%; }
+.email { width: 20%; }
+.phone { width: 20%; }

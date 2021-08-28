@@ -3,6 +3,8 @@ import './App.css';
 
 import { Switch, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import logo from './logo.svg';
 import Header from './components/Header';
@@ -17,13 +19,14 @@ To run the app on your local browser - from your terminal run:
 
 function App() {
   return (
-    
-    <div>
-      <Header/> 
-      <NavBar />
-      {/* <img src={logo} width="100px" /> */}
-      <Footer/>
-    </div>
+    <section class="body">
+      <div>
+        <Header/> 
+        <NavBar />
+        {/* <img src={logo} width="100px" /> */}
+        <Footer/>
+      </div>
+    </section>
   );
 }
 
