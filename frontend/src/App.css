@@ -1,0 +1,40 @@
+header {
+  /* : fixed; */
+  height: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: rgb(0, 217, 255);
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 200;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 200;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+footer {
+  position: fixed;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 217, 255);
+  color: white;
+  text-align: center;
+}
