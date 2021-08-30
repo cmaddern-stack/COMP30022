@@ -1,0 +1,58 @@
+.topContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.rcorners {
+    border-radius: 5px;
+    background: #fff;
+    padding: 20px;
+    width: 425px;
+    height: 80px;
+    margin: 10px 20px;
+  }
+
+  .dot {
+    height: 30px;
+    width: 30px;
+    background-color: #c3d3fa;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+.padded {
+    margin-left: 20px;
+}
+
+.top {
+    margin-top: -10px;
+}
+
+.space {
+    margin-top: 5px;
+}
+
+.centeredInDot {
+    margin-left: 5px;
+    margin-top: 2.5px;
+    color: #7879f1;
+}
+
+.padded2 {
+    margin-left: 60px;
+}
+
+.padded3 {
+    margin-left: 50px;
+    color: #7879f1;
+}
+
+.subText {
+    background: #f8f9fc;
+}
+
+.title {
+    color: #222529;
+    font-weight: bold;
+    font-size: 26pt;
+}
