@@ -19,7 +19,7 @@ class Contact(models.Model):
     role = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=10, validators=[RegexValidator(r'^\d{1,10}$')], blank=True, null=True)
     notes = models.TextField(max_length=500, blank=True, null=True)
-    whenAdded = models.DateTimeField(_(""), auto_now=False, auto_now_add=True)
+    whenAdded = models.DateTimeField(_("When Added"), auto_now=False, auto_now_add=True)
     starred = models.BooleanField(_("Star"), default=False)
     contactOwner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     
