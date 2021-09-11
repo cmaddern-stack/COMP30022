@@ -93,9 +93,16 @@ input::placeholder {
   color: var(--light-grey-100);
 }
 
+.input-error {
+  color: red;
+  font-size: 14px;
+  margin: 10px 5px;
+}
+
 label {
   font-size: 14px;
   color: var(--dark-grey-40);
+  padding-left: 5px;
 }
 
 .auth-form {
