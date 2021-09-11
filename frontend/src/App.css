@@ -11,6 +11,9 @@
   --light-grey-100: #CFD4D9;
 
   --dark-grey-40: #6E757C;
+
+  --iris-60: #A5A6F6;
+  --iris-80: #7879F1;
 }
 
 .body {
@@ -100,5 +103,34 @@ label {
   max-width: 535px; 
   padding: 0;
   display: block;
-  margin: 80px auto;
+  margin: 0px auto;
+}
+
+.auth-form form {
+  margin: 80px 0;
+}
+
+.primary-button{
+  background-color: var(--iris-60);
+  padding: 12px 0px;
+  width: 175px;
+  font-size: 14px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+button.primary-button:hover {
+  background-color: var(--iris-80);
+}
+
+button.primary-button:disabled {
+  background-color: var(--light-grey-100);
+  box-shadow: none;
+}
+
+.button-row {
+  width: 100%;
+  text-align: right;
 }

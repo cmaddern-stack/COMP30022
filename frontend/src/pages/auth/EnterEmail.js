@@ -15,7 +15,7 @@ class EnterEmail extends React.Component {
     render() {
         return (
             <div className="auth-form">
-                <form>
+                <form class>
                     <div className="label">
                         <label for="email">Email Address</label>
                     </div>
@@ -26,6 +26,11 @@ class EnterEmail extends React.Component {
                         onChange={this.changeHandler}
                     />
                 </form>
+                <div className="button-row">
+                    <button className="primary-button" type="button" name="next">
+                        NEXT
+                    </button>
+                </div>
             </div>
         );
     }
