@@ -9,7 +9,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import NavBar from './components/NavBar';
+import DefaultContainer from './components/DefaultContainer';
+import Groups from './pages/Groups';
+import People from './pages/People';
+import Nav from './components/Nav';
+import EnterEmail from './pages/auth/EnterEmail';
 
 /*
 To run the app on your local browser - from your terminal run:
@@ -21,10 +25,13 @@ function App() {
   return (
     <section class="body">
       <div>
-        <Header/> 
-        <NavBar />
-        {/* <img src={logo} width="100px" /> */}
-        <Footer/>
+        <Router>
+          <Switch>
+            <Route exact path="/auth/email" component={EnterEmail}></Route>
+            <DefaultContainer/>
+          </Switch>
+        </Router>
+        {/* <Footer /> */}
       </div>
     </section>
   );

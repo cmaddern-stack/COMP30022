@@ -6,18 +6,16 @@ import Nav from './Nav'
 
 import Groups from '../pages/Groups';
 import People from '../pages/People';
+import Header from './Header';
 
 
-export default function NavBar() {
+export default function DefaultContainer() {
     return (
-      <Router>
+      <div>
+        <Header />
         <Nav />
-        <Switch>
-          <Route exact path="/" component={Groups}></Route>
-          <Route exact path="/people" component={People}></Route>
-        </Switch>
-      </Router>
-    
-
+        <Route exact path="/" component={Groups}></Route>
+        <Route exact path="/people" component={People}></Route>
+      </div>
     );
 };
