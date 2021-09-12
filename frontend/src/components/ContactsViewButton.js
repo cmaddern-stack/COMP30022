@@ -4,6 +4,13 @@ import "./TwoSelectButton.css";
 import {FontAwesome} from "react-icons/fa";
 import {FaTable, FaAddressBook} from "react-icons/fa";
 
+/*
+    Contacts View Button
+    refers to the toggle button that allows users to select 
+    Group View or Contacts View 
+    |  Group  | Contacts |
+ */
+
 class ContactsViewButton extends React.Component {
     constructor(props) {
         super(props);

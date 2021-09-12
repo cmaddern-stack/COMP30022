@@ -27,6 +27,7 @@
 
 .selected {
     background-color: white;
+    cursor: default;
 }
 
 .deselected {
