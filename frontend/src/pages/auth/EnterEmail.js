@@ -1,5 +1,7 @@
 import React from "react";
 import validator from "validator";
+import InputField from "../../components/InputField";
+import AuthController from "../../controllers/AuthController";
 
 class EnterEmail extends React.Component {
     constructor(props) {
@@ -7,51 +9,44 @@ class EnterEmail extends React.Component {
         this.state = {
             email: "",
             emailError: "",
-            proceed: false,
+            emailValid: false,
         };
     }
 
-    changeHandler = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-
-        if (!validator.isEmail(this.state.email)) {
-            this.setState({
-                emailError: "Enter valid email!",
-                proceed: false,
-            });
-        } else {
-            this.setState({
-                emailError: "",
-                proceed: true,
-            });
-        }
+    changeHandler = async (event) => {
+        await this.setState({ [event.target.name]: event.target.value });
+        let result = await AuthController.emailChangeHandler(this.state.email);
+        this.setState({
+            emailError: result.error,
+            emailValid: result.valid
+        });
     };
 
     nextHandler = (event) => {
-        this.props.history.push("/");
+        // redirect to login or sign up pages
+        let emailLookupAPI = "";
+        this.props.history.push("/auth/signup");
     };
 
     render() {
         return (
             <div className="auth-form">
-                <form class>
-                    <div className="label">
-                        <label for="email">Email Address</label>
-                    </div>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="e.g. jane.doe@email.com"
-                        onChange={this.changeHandler}
-                    />
-                    <span className="input-error">{this.state.emailError}</span>
-                </form>
+                <InputField
+                    name="email"
+                    value={this.state.email}
+                    label="Email Address"
+                    placeholder="e.g. jane.doe@gmail.com"
+                    type="email"
+                    onChange={this.changeHandler}
+                    disabled="false"
+                    error={this.state.emailError}
+                />
                 <div className="button-row">
                     <button
                         className="primary-button"
                         type="button"
                         name="next"
-                        disabled={!this.state.proceed}
+                        disabled={!this.state.emailValid}
                         onClick={this.nextHandler}
                     >
                         NEXT

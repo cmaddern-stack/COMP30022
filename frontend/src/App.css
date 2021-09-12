@@ -79,6 +79,10 @@ input, label {
   display: block;
 }
 
+.input-field {
+  margin: 25px 0px;
+}
+
 input {
   width: 100%;
   padding: 10px 16px; 
@@ -95,8 +99,8 @@ input::placeholder {
 
 .input-error {
   color: red;
-  font-size: 14px;
-  margin: 10px 5px;
+  font-size: 12px;
+  margin: 5px 5px;
 }
 
 label {
@@ -110,11 +114,7 @@ label {
   max-width: 535px; 
   padding: 0;
   display: block;
-  margin: 0px auto;
-}
-
-.auth-form form {
-  margin: 80px 0;
+  margin: 80px auto;
 }
 
 .primary-button{
