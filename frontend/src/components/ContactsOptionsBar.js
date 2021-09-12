@@ -1,7 +1,7 @@
 import React from 'react';
 import './ContactsOptionsBar.css'
 import ContactsViewButton from "./ContactsViewButton";
-// import { NavLink } from 'react-router-dom'
+import SearchBar from "./SearchBar";
 
 class ContactsOptionsBar extends React.Component {
     render() {
@@ -11,26 +11,13 @@ class ContactsOptionsBar extends React.Component {
                     <ContactsViewButton/>
                 </div>
                 <div className="right-items">
+                    <SearchBar/>
                     <button className="primary-button">ADD CONTACT</button>
                 </div>
             </div>
         );
     }
 }
-
-// export default function Nav() {
-//     return (
-//         <nav>
-//             <NavLink exact to="/">
-//                 Groups
-//             </NavLink>
-//             &nbsp;|&nbsp;
-//             <NavLink exact to="/contacts">
-//                 Contacts
-//             </NavLink>
-//         </nav>
-//     )
-// };
 
 export default ContactsOptionsBar;
 

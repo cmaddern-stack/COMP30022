@@ -86,6 +86,7 @@ input {
 
 input::placeholder {
   color: var(--light-grey-100);
+  font-style: italic;
 }
 
 .input-error {
