@@ -18,14 +18,16 @@ class EnterEmail extends React.Component {
         let result = await AuthController.emailChangeHandler(this.state.email);
         this.setState({
             emailError: result.error,
-            emailValid: result.valid
+            emailValid: result.valid,
         });
     };
 
-    nextHandler = (event) => {
+    nextHandler = async (event) => {
+        let data = {email: this.state.email};
         // redirect to login or sign up pages
         let emailLookupAPI = "";
-        this.props.history.push("/auth/signup");
+        // this.props.history.push("/auth/login");
+        this.props.history.push({pathname: "/auth/signup", state: data});
     };
 
     render() {
@@ -42,6 +44,15 @@ class EnterEmail extends React.Component {
                     error={this.state.emailError}
                 />
                 <div className="button-row">
+                    <button
+                        className="invisible-button"
+                        type="button"
+                        name="next"
+                        disabled={!this.state.emailValid}
+                        onClick={this.nextHandler}
+                    >
+                        NEXT
+                    </button>
                     <button
                         className="primary-button"
                         type="button"

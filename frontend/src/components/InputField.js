@@ -16,6 +16,7 @@ class InputField extends React.Component {
                     name={this.props.name}
                     placeholder={this.props.placeholder}
                     onChange={this.onChange}
+                    value={this.props.value}
                 />
                 <div className="input-error">{this.props.error}</div>
             </div>

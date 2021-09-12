@@ -4,7 +4,7 @@
   --light-blue-40: #F8F9FC;
   --light-blue-60: #EEF2FA;
   --light-blue-80: #D9E3FA;
-  --light-blue-100: #D9E3FA;
+  --light-blue-100: #C3D3FA;
 
   --light-shadow: #F1F1F1;
 
@@ -117,27 +117,50 @@ label {
   margin: 80px auto;
 }
 
+.invisible-button {
+  visibility: hidden;
+}
+
+button {
+  padding: 12px 0px;
+  width: 40%;
+  max-width: 175px;
+  border: none;
+}
+
 .primary-button{
   background-color: var(--iris-60);
-  padding: 12px 0px;
-  width: 175px;
   font-size: 14px;
   color: white;
   border-radius: 5px;
-  border: none;
   box-shadow: 5px 5px 25px var(--light-shadow);
 }
 
-button.primary-button:hover {
+.primary-button:hover:enabled {
   background-color: var(--iris-80);
 }
 
-button.primary-button:disabled {
+button:disabled {
   background-color: var(--light-grey-100);
   box-shadow: none;
 }
 
+.secondary-button {
+  background-color: var(--light-blue-80);
+  font-size: 14px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+.secondary-button:hover:enabled {
+  background-color: var(--light-blue-100);
+}
+
 .button-row {
+  margin-top: 60px;
   width: 100%;
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
