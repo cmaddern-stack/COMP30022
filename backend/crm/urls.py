@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'userprofiles', views.UserProfileViewSet)
 router.register(r'useraccounts', views.UserAccountViewSet)
 router.register(r'permission', views.PermissionViewSet)
-router.register(r'contacts', views.ContactViewSet, 'contacts')
+router.register(r'contacts', views.ContactViewSet) # changing base name fucks it up somehow, NOTE: investiogate further
 router.register(r'groups', views.GroupViewSet, 'groups')
 
 

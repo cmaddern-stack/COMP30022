@@ -6,7 +6,7 @@ from rest_framework import permissions
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from .models import CustomAnswer, CustomQuestion, Contact, Event, UserProfile, Group
-from .serialisers import ContactSerializer, UserProfileSerializer, UserAccountSerializer, PermissionSerializer
+from .serialisers import ContactSerializer, UserProfileSerializer, UserAccountSerializer, PermissionSerializer, GroupSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
@@ -49,17 +49,17 @@ class ContactViewSet(viewsets.ModelViewSet):
     
     
     ## NOTE: Overwritten these functions currently, investigate what needs to be edited for our purposes
-    def create(self, request):
-        pass
+    # def create(self, request):
+    #     pass
     
-    def update(self, request, pk=None):
-        pass
+    # def update(self, request, pk=None):
+    #     pass
 
-    def partial_update(self, request, pk=None):
-        pass
+    # def partial_update(self, request, pk=None):
+    #     pass
 
-    def destroy(self, request, pk=None):
-        pass
+    # def destroy(self, request, pk=None):
+    #     pass
     
    
 ## TODO: Make the following edpoints dynamic based on which user has logged in    
