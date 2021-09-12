@@ -1,5 +1,4 @@
 import React from "react";
-import validator from "validator";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
 
@@ -22,11 +21,13 @@ class EnterEmail extends React.Component {
         });
     };
 
+    // TODO: CHECK IF EMAIL IS ASSOCIATED WITH AN EXISTING ACCOUNT
+    // IF YES, PUSH LOGIN PAGE, ELSE PUSH SIGNUP PAGE 
     nextHandler = async (event) => {
         let data = {email: this.state.email};
         // redirect to login or sign up pages
         let emailLookupAPI = "";
-        // this.props.history.push("/auth/login");
+        // this.props.history.push({pathname: "/auth/login", state: data});
         this.props.history.push({pathname: "/auth/signup", state: data});
     };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import validator from "validator";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
 
@@ -90,6 +89,7 @@ class SignUp extends React.Component {
         this.props.history.goBack();
     };
 
+    // TODO: CONNECT SIGNUP API
     nextHandler = async (event) => {
         // redirect to home page
         let signupAPI = "";
@@ -167,7 +167,7 @@ class SignUp extends React.Component {
                         disabled={!this.proceed()}
                         onClick={this.nextHandler}
                     >
-                        NEXT
+                        SIGN UP
                     </button>
                 </div>
             </div>

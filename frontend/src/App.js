@@ -14,6 +14,7 @@ import People from "./pages/People";
 import Nav from "./components/Nav";
 import EnterEmail from "./pages/auth/EnterEmail";
 import SignUp from "./pages/auth/SignUp";
+import Login from "./pages/auth/Login";
 
 /*
 To run the app on your local browser - from your terminal run:
@@ -36,6 +37,11 @@ function App() {
                             exact
                             path="/auth/signup"
                             component={SignUp}
+                        ></Route>
+                        <Route
+                            exact
+                            path="/auth/login"
+                            component={Login}
                         ></Route>
                         <DefaultContainer />
                     </Switch>
