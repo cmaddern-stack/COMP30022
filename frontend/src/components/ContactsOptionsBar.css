@@ -1,0 +1,5 @@
+.options-bar {
+    padding: 19px 20px;
+    display: flex;
+    justify-content: space-between;
+}

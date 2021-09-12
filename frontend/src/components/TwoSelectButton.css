@@ -1,0 +1,39 @@
+.two-select-button {
+    display: flex;
+    width: 240px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid var(--light-grey-80);
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+.two-select-button a {
+    text-decoration: none;
+    color: var(--dark-grey-100);
+}
+
+.left {
+    padding: 10px 0px;
+    width: 50%;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.right {
+    padding: 10px 0px;
+    width: 50%;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.selected {
+    background-color: white;
+}
+
+.deselected {
+    background-color: var(--light-grey-60);
+}
+
+.deselected:hover {
+    background-color: var(--light-grey-80);
+    cursor: pointer;
+}

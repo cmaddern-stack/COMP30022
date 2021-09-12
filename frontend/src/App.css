@@ -9,7 +9,10 @@
   --light-shadow: #F1F1F1;
 
   --light-grey-100: #CFD4D9;
+  --light-grey-80: #DFE2E6;
+  --light-grey-60: #EAECEF;
 
+  --dark-grey-100: #222529;
   --dark-grey-40: #6E757C;
 
   --iris-60: #A5A6F6;
@@ -111,8 +114,7 @@ label {
 
 button {
   padding: 12px 0px;
-  width: 40%;
-  max-width: 175px;
+  width: 175px;
   border: none;
 }
 
