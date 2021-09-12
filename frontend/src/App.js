@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import DefaultContainer from "./components/DefaultContainer";
 import Groups from "./pages/Groups";
-import People from "./pages/People";
 import Nav from "./components/Nav";
 import EnterEmail from "./pages/auth/EnterEmail";
 import SignUp from "./pages/auth/SignUp";

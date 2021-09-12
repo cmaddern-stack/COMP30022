@@ -63,18 +63,6 @@ footer {
   padding-top: 5px;
 }
 
-/* Person page styling */
-.person {
-  background-color: white;
-  width: 97%;
-  padding: 1em 2em;
-  border-radius: 90px;
-  margin: 10px 20px;
-}
-.name { width: 20%; }
-.email { width: 20%; }
-.phone { width: 20%; }
-
 input, label {
   display: block;
 }

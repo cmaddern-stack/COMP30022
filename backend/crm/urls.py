@@ -4,7 +4,12 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'contacts', views.ContactViewSet)
+router.register(r'userprofiles', views.UserProfileViewSet)
+router.register(r'useraccounts', views.UserAccountViewSet)
+router.register(r'permission', views.PermissionViewSet)
+router.register(r'contacts', views.ContactViewSet) # changing base name fucks it up somehow, NOTE: investiogate further
+router.register(r'groups', views.GroupViewSet, 'groups')
+
 
 urlpatterns = [
     path('', include(router.urls)),
