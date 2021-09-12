@@ -31,7 +31,7 @@ class Contact(models.Model):
     notes = models.TextField(max_length=500, blank=True, null=True)
     whenAdded = models.DateTimeField(_("When Added"), auto_now=False, auto_now_add=True)
     starred = models.BooleanField(_("Star"), default=False)
-    contactOwner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    contactOwner = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True)
     
 class Group(models.Model):
     name = models.CharField(max_length=50)

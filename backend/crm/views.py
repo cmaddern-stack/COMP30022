@@ -48,10 +48,13 @@ class ContactViewSet(viewsets.ModelViewSet):
     #     return Response(serializer.data)
     
     
-    ## NOTE: Overwritten these functions currently, investigate what needs to be edited for our purposes
-    # def create(self, request):
-    #     pass
+    """
+    Creates a new contact, owned by the current user.
+    """
+    def perform_create(self, serializer):
+        serializer.save(contactOwner = self.request.user.userprofile)
     
+    ## NOTE: Overwritten these functions currently, investigate what needs to be edited for our purposes
     # def update(self, request, pk=None):
     #     pass
 
@@ -93,3 +96,26 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+    
+    @action(detail=True,    methods = ['post'], url_path='add_contact/(?P<contact_pk>[^/.]+)')
+    def add_contact(self, request, contact_pk, pk):
+        group = self.get_object()
+        contact = Contact.objects.get(id = contact_pk)
+        group.contacts.add(contact)
+        group.save()
+        return Response() # TODO: fix redirect
+    
+    
+
+"""
+Home page user gets redirected to after login. Currently only displays information about the current user
+"""
+class HomeViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer 
+    permission_classes = [permissions.IsAuthenticated]  
+    
+    def list(self, request):
+        user = self.request.user.userprofile
+        serializer = UserProfileSerializer(user,  context={'request': request})
+        return Response(serializer.data)
