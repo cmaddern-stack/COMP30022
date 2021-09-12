@@ -5,19 +5,17 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './Nav'
 
 import Groups from '../pages/Groups';
+import Header from './Header';
 import Contacts from '../pages/Contacts';
 
 
-export default function NavBar() {
+export default function DefaultContainer() {
     return (
-      <Router>
+      <div>
+        <Header />
         <Nav />
-        <Switch>
-          <Route exact path="/" component={Groups}></Route>
-          <Route exact path="/contacts" component={Contacts}></Route>
-        </Switch>
-      </Router>
-    
-
+        <Route exact path="/" component={Groups}></Route>
+        <Route exact path="/contacts" component={Contacts}></Route>
+      </div>
     );
 };
