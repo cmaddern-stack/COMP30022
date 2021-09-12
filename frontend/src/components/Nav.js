@@ -8,8 +8,8 @@ export default function Nav() {
                 Groups
             </NavLink>
             &nbsp;|&nbsp;
-            <NavLink exact to="/people">
-                People
+            <NavLink exact to="/contacts">
+                Contacts
             </NavLink>
         </nav>
     )

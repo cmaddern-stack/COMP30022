@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Nav from './Nav'
 
 import Groups from '../pages/Groups';
-import People from '../pages/People';
+import Contacts from '../pages/Contacts';
 
 
 export default function NavBar() {
@@ -14,7 +14,7 @@ export default function NavBar() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Groups}></Route>
-          <Route exact path="/people" component={People}></Route>
+          <Route exact path="/contacts" component={Contacts}></Route>
         </Switch>
       </Router>
     

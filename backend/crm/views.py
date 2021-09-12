@@ -10,6 +10,7 @@ from .serialisers import ContactSerializer, UserProfileSerializer, UserAccountSe
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
+
 # Create your views here.
 
 def index(request):
@@ -88,3 +89,7 @@ class PermissionViewSet(viewsets.ModelViewSet):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
