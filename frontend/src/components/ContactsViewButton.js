@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import "./TwoSelectButton.css";
-import {FontAwesome} from "react-icons/fa";
-import {FaTable, FaAddressBook} from "react-icons/fa";
+import { FontAwesome } from "react-icons/fa";
+import { FaTable, FaAddressBook } from "react-icons/fa";
 
 /*
     Contacts View Button
@@ -15,18 +15,40 @@ class ContactsViewButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            leftButtonState: "selected",
-            rightButtonState: "deselected",
+            leftButtonState: "",
+            rightButtonState: "",
+            leftLink: "/",
+            rightLink: "/contacts",
         };
     }
 
-    onClick = (event) => {
-        if (this.props.location.pathname === "/contacts") {
+    componentDidMount() {
+        if (this.props.history.location.pathname === this.state.rightLink) {
+            this.setState({
+                leftButtonState: "deselected",
+                rightButtonState: "selected",
+            });
+        } else {
             this.setState({
                 leftButtonState: "selected",
                 rightButtonState: "deselected",
             });
-        } else {
+        }
+    }
+
+    leftOnClick = async () => {
+        if (this.props.history.location.pathname !== this.state.leftLink) {
+            this.props.history.push(this.state.leftLink);
+            this.setState({
+                leftButtonState: "selected",
+                rightButtonState: "deselected",
+            });
+        }
+    };
+
+    rightOnClick = async () => {
+        if (this.props.history.location.pathname !== this.state.rightLink) {
+            this.props.history.push(this.state.rightLink);
             this.setState({
                 leftButtonState: "deselected",
                 rightButtonState: "selected",
@@ -36,21 +58,19 @@ class ContactsViewButton extends React.Component {
 
     render() {
         return (
-            <div className="two-select-button" onClick={this.onClick}>
-                <NavLink
+            <div className="two-select-button">
+                <div
                     className={"left " + this.state.leftButtonState}
-                    exact
-                    to="/"
+                    onClick={this.leftOnClick}
                 >
-                    <FaAddressBook/> Groups
-                </NavLink>
-                <NavLink
+                    <FaAddressBook /> Groups
+                </div>
+                <div
                     className={"right " + this.state.rightButtonState}
-                    exact
-                    to="/contacts"
+                    onClick={this.rightOnClick}
                 >
-                    <FaTable/> Contacts
-                </NavLink>
+                    <FaTable /> Contacts
+                </div>
             </div>
         );
     }
