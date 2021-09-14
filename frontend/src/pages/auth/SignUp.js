@@ -93,7 +93,7 @@ class SignUp extends React.Component {
     nextHandler = async (event) => {
         // redirect to home page
         let signupAPI = "";
-        this.props.history.push("/");
+        this.props.history.push("/groups");
     };
 
     render() {

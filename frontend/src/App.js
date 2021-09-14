@@ -1,14 +1,8 @@
 import React from "react";
 import "./App.css";
 
-import { Switch, Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import logo from "./logo.svg";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import DefaultContainer from "./components/DefaultContainer";
+import AppRouter from "./components/Routes";
 
 /*
 To run the app on your local browser - from your terminal run:
@@ -20,12 +14,7 @@ function App() {
     return (
         <section class="body">
             <div>
-                <Router>
-                    <Switch>
-                        <DefaultContainer/>
-                    </Switch>
-                </Router>
-                {/* <Footer /> */}
+                <AppRouter/>
             </div>
         </section>
     );

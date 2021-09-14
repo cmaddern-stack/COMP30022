@@ -17,7 +17,7 @@ class ContactsViewButton extends React.Component {
         this.state = {
             leftButtonState: "",
             rightButtonState: "",
-            leftLink: "/",
+            leftLink: "/groups",
             rightLink: "/contacts",
         };
     }
