@@ -43,7 +43,10 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "password-validator": "^5.1.1",
+    "react-icons": "^4.2.0",
     "validator": "^13.6.0"
   }
 }
