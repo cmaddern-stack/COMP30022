@@ -47,11 +47,32 @@ header {
 .icon:hover {
     cursor: pointer;
     color: var(--iris-80);
+    animation: textColorChange 1s;
 }
+
+@keyframes textColorChange {
+    from {
+        color: var(--iris-60);
+    }
+    to {
+        color: var(--iris-80);
+    }
+}
+
 
 .profile-icon:hover {
     cursor: pointer;
     border: 2px solid var(--iris-80);
+    animation: borderColorChange 1s;
+}
+
+@keyframes borderColorChange {
+    from {
+        border: 2px solid var(--iris-60);
+    }
+    to {
+        border: 2px solid var(--iris-80);
+    }
 }
 
 .profile-dropdown {
@@ -68,6 +89,20 @@ header {
     margin: 10px -180px;
     z-index: 1;
     box-shadow: 0px 0px 10px var(--menu-shadow);
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+        transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
 }
 
 .dropdown a {
@@ -95,4 +130,56 @@ li:hover {
     cursor: pointer;
     background-color: var(--light-blue-40);
     color: var(--iris-80);
+}
+
+.popularity {
+    background: var(--light-blue-100);
+    width: 96px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 30px;
+    color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+.popularity:hover {
+    animation: colorChange 1s;
+    background-color: var(--iris-80);
+}
+
+.popularity:hover + .tool-tip {
+    display: block;
+}
+
+@keyframes colorChange {
+    from {
+        background-color: var(--iris-60);
+    }
+    to {
+        background-color: var(--iris-80);
+    }
+}
+
+.tool-tip {
+    display: none;
+    font-size: 12px;
+    width: 200px;
+    text-align: left;
+    background-color: var(--light-blue-40);
+    padding: 5px 10px;
+    color: var(--dark-grey-40);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--menu-shadow);
+    border: 1px solid var(--light-grey-80);
+    position: relative;
+    z-index: 1;
+}
+
+.popularity-dropdown {
+    text-align: right;
+    width: 96px;
+    margin-right: 30px;
 }

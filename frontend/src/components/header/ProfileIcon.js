@@ -16,12 +16,6 @@ class ProfileIcon extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.setState({
-            dropdown: "inactive",
-        });
-    }
-
     toggleMenu = () => {
         if (this.state.dropdown === "inactive") {
             this.setState({
@@ -33,7 +27,7 @@ class ProfileIcon extends React.Component {
             });
         }
     };
-
+T
     render() {
         return (
             <div class="profile-dropdown">
