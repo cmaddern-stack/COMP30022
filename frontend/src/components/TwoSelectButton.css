@@ -1,6 +1,6 @@
 .two-select-button {
     display: flex;
-    width: 240px;
+    width: 220px;
     text-align: center;
     font-size: 14px;
     border: 1px solid var(--light-grey-80);

@@ -2,6 +2,8 @@ import React from 'react';
 import './ContactsOptionsBar.css'
 import ContactsViewButton from "./ContactsViewButton";
 import SearchBar from "./SearchBar";
+import { FontAwesome } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 /*
     Contacts Options Bar 
@@ -17,11 +19,24 @@ class ContactsOptionsBar extends React.Component {
         return (
             <div className="options-bar">
                 <div className="left-items">
-                    <ContactsViewButton/>
+                    <ContactsViewButton />
                 </div>
                 <div className="right-items">
-                    <SearchBar/>
-                    <button className="primary-button">ADD CONTACT</button>
+                    <SearchBar />
+                    <button
+                        className="primary-button"
+                        id="add-contact-button"
+                        onClick={this.newContactOnclick}
+                    >
+                        NEW CONTACT
+                    </button>
+                    <button
+                        className="primary-button"
+                        id="add-contact-button-small"
+                        onClick={this.newContactOnclick}
+                    >
+                        <FaPlus />
+                    </button>
                 </div>
             </div>
         );
