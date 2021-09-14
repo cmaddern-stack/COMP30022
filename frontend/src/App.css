@@ -113,6 +113,16 @@ button {
 
 .primary-button:hover:enabled {
     background-color: var(--iris-80);
+    animation: primaryButtonHover 1s;
+}
+
+@keyframes primaryButtonHover {
+    from {
+        background-color: var(--iris-60);
+    }
+    to {
+        background-color: var(--iris-80);
+    }
 }
 
 button:disabled {
@@ -130,6 +140,16 @@ button:disabled {
 
 .secondary-button:hover:enabled {
     background-color: var(--light-blue-100);
+    animation: secondaryButtonHover 0.5s;
+}
+
+@keyframes secondaryButtonHover {
+    from {
+        background-color: var(--light-blue-80);
+    }
+    to {
+        background-color: var(--light-blue-100);
+    }
 }
 
 .button-row {
