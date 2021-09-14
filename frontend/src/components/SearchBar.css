@@ -25,4 +25,5 @@
 .search-button:hover {
     cursor: pointer;
     background-color: var(--light-blue-100);
+    animation: secondaryButtonHover 0.5s;
 }

@@ -37,6 +37,10 @@ header {
     margin-right: 30px;
 }
 
+.icon.on {
+    color: var(--iris-80);
+}
+
 .profile-icon {
     width: 30px;
     height: 30px;
@@ -50,6 +54,10 @@ header {
     animation: textColorChange 1s;
 }
 
+.profile-icon.on {
+    border: 2px solid var(--iris-80);
+}
+
 @keyframes textColorChange {
     from {
         color: var(--iris-60);
@@ -58,7 +66,6 @@ header {
         color: var(--iris-80);
     }
 }
-
 
 .profile-icon:hover {
     cursor: pointer;

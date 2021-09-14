@@ -4,6 +4,7 @@ import "./Header.css";
 import { FontAwesome } from "react-icons/fa";
 import { FaMoon, FaBell } from "react-icons/fa";
 import PopularityCounter from "./PopularityCounter";
+import DarkModeToggle from "./DarkModeToggle";
 
 /**
  * Header
@@ -24,9 +25,7 @@ class Header extends React.Component {
                     </div>
                     <div className="right-header">
                         <PopularityCounter/>
-                        <div className="icon">
-                            <FaMoon />
-                        </div>
+                        <DarkModeToggle/>
                         <div className="icon">
                             <FaBell />
                         </div>
