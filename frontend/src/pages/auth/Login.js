@@ -49,7 +49,7 @@ class Login extends React.Component {
     nextHandler = async (event) => {
         // redirect to home page
         let loginAPI = "";
-        this.props.history.push("/");
+        this.props.history.push("/groups");
     };
 
     render() {
