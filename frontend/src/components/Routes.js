@@ -23,9 +23,16 @@ export default function AppRouter() {
                 <Route exact path="/auth/login" component={Login}></Route>
                 <div>
                     <Header />
-                    <ContactsOptionsBar />
-                    <Route exact path="/groups" component={Groups}></Route>
-                    <Route exact path="/contacts" component={Contacts}></Route>
+                    {/* <Route exact path="/profile" component={}></Route> */}
+                    <div>
+                        <ContactsOptionsBar />
+                        <Route exact path="/groups" component={Groups}></Route>
+                        <Route
+                            exact
+                            path="/contacts"
+                            component={Contacts}
+                        ></Route>
+                    </div>
                 </div>
             </Switch>
         </Router>

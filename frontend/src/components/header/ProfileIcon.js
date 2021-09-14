@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 /**
@@ -15,6 +14,12 @@ class ProfileIcon extends React.Component {
             url: "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
             dropdown: "inactive",
         };
+    }
+
+    componentDidMount() {
+        this.setState({
+            dropdown: "inactive",
+        });
     }
 
     toggleMenu = () => {
@@ -40,15 +45,15 @@ class ProfileIcon extends React.Component {
                 ></img>
                 <div className={"dropdown " + this.state.dropdown}>
                     <ul>
-                        <NavLink to="/profile">
+                        <a href="/profile">
                             <li>Profile & Account</li>
-                        </NavLink>
-                        <NavLink to="/contacts">
+                        </a>
+                        <a href="/events">
                             <li>Events</li>
-                        </NavLink>
-                        <NavLink to="/auth/logout">
+                        </a>
+                        <a href="/auth/logout">
                             <li>Logout</li>
-                        </NavLink>
+                        </a>
                     </ul>
                 </div>
             </div>
