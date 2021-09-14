@@ -1,4 +1,4 @@
-.topContainer{
+.topContainer {
     display: flex;
     flex-direction: row;
 }
@@ -10,15 +10,16 @@
     width: 425px;
     height: 80px;
     margin: 10px 20px;
-  }
+    box-shadow: 5px 5px 25px var(--light-shadow);
+}
 
-  .dot {
+.dot {
     height: 30px;
     width: 30px;
     background-color: #c3d3fa;
     border-radius: 50%;
     display: inline-block;
-  }
+}
 
 .padded {
     margin-left: 20px;
@@ -48,7 +49,7 @@
 }
 
 .subText {
-    background: #f8f9fc;
+    background: var(--light-blue-40);
 }
 
 .title {

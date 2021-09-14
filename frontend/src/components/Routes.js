@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Groups from "../pages/Groups";
-import Header from "./Header";
+import Header from "./header/Header";
 import Contacts from "../pages/Contacts";
 import EnterEmail from "../pages/auth/EnterEmail";
 import SignUp from "../pages/auth/SignUp";

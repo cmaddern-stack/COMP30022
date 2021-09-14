@@ -1,157 +1,140 @@
-@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
 
 :root {
-  --light-blue-40: #F8F9FC;
-  --light-blue-60: #EEF2FA;
-  --light-blue-80: #D9E3FA;
-  --light-blue-100: #C3D3FA;
+    --light-blue-40: #f8f9fc;
+    --light-blue-60: #eef2fa;
+    --light-blue-80: #d9e3fa;
+    --light-blue-100: #c3d3fa;
 
-  --light-shadow: #F1F1F1;
+    --light-shadow: #f1f1f1;
+    --menu-shadow: #b3b1b160;
 
-  --light-grey-100: #CFD4D9;
-  --light-grey-80: #DFE2E6;
-  --light-grey-60: #EAECEF;
+    --light-grey-100: #cfd4d9;
+    --light-grey-80: #dfe2e6;
+    --light-grey-60: #eaecef;
 
-  --dark-grey-100: #222529;
-  --dark-grey-40: #6E757C;
+    --dark-grey-100: #222529;
+    --dark-grey-40: #6e757c;
 
-  --iris-60: #A5A6F6;
-  --iris-80: #7879F1;
+    --iris-60: #a5a6f6;
+    --iris-80: #7879f1;
 }
 
 .body {
-  background-color: var(--light-blue-60);
-  position:absolute;
-  height: 100%;
-  width: 100%;
-  font-family: 'proxima-nova', sans-serif;
-  font-size: 16px;
-}
-
-header .icon {
-  width: 10%;
-}
-
-header .content {
-  width: 80%;
-  padding-left: 40px;
-}
-
-header {
-  height: 60px;
-  top: 0;
-  width: 97%;
-  background-color: white;
-  padding-top: 20px;
-  border-radius: 90px;
-  margin: 20px;
+    background-color: var(--light-blue-60);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    font-family: "proxima-nova", sans-serif;
+    font-size: 16px;
 }
 
 nav {
-  left: 0;
-  top: 200;
-  width: 100%;
-  text-align: center;
-  padding-top: 20px;
+    left: 0;
+    top: 200;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
 }
 
 footer {
-  position: fixed;
-  height: 30px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  text-align: center;
-  padding-top: 5px;
+    position: fixed;
+    height: 30px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding-top: 5px;
 }
 
-input, label {
-  display: block;
+input,
+label {
+    display: block;
 }
 
 .input-field {
-  margin: 25px 0px;
+    margin: 25px 0px;
 }
 
 input {
-  width: 100%;
-  padding: 10px 16px; 
-  margin: 5px 0;
-  border: 1px solid var(--light-blue-60);
-  border-radius: 5px;
-  box-shadow: 5px 5px 25px var(--light-shadow);
-  outline: none;
+    width: 100%;
+    padding: 10px 16px;
+    margin: 5px 0;
+    border: 1px solid var(--light-blue-60);
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
+    outline: none;
 }
 
 input::placeholder {
-  color: var(--light-grey-100);
-  font-style: italic;
+    color: var(--light-grey-100);
+    font-style: italic;
 }
 
 .input-error {
-  color: red;
-  font-size: 12px;
-  margin: 5px 5px;
+    color: red;
+    font-size: 12px;
+    margin: 5px 5px;
 }
 
 label {
-  font-size: 14px;
-  color: var(--dark-grey-40);
-  padding-left: 5px;
+    font-size: 14px;
+    color: var(--dark-grey-40);
+    padding-left: 5px;
 }
 
 .auth-form {
-  width: 80%;
-  max-width: 535px; 
-  padding: 0;
-  display: block;
-  margin: 80px auto;
+    width: 80%;
+    max-width: 535px;
+    padding: 0;
+    display: block;
+    margin: 80px auto;
 }
 
 .invisible-button {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 button {
-  padding: 12px 0px;
-  width: 150px;
-  border: none;
+    padding: 12px 0px;
+    width: 150px;
+    border: none;
 }
 
-.primary-button{
-  background-color: var(--iris-60);
-  font-size: 14px;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 5px 5px 25px var(--light-shadow);
+.primary-button {
+    background-color: var(--iris-60);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
 }
 
 .primary-button:hover:enabled {
-  background-color: var(--iris-80);
+    background-color: var(--iris-80);
 }
 
 button:disabled {
-  background-color: var(--light-grey-100);
-  box-shadow: none;
+    background-color: var(--light-grey-100);
+    box-shadow: none;
 }
 
 .secondary-button {
-  background-color: var(--light-blue-80);
-  font-size: 14px;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 5px 5px 25px var(--light-shadow);
+    background-color: var(--light-blue-80);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
 }
 
 .secondary-button:hover:enabled {
-  background-color: var(--light-blue-100);
+    background-color: var(--light-blue-100);
 }
 
 .button-row {
-  margin-top: 60px;
-  width: 100%;
-  text-align: right;
-  display: flex;
-  justify-content: space-between;
+    margin-top: 60px;
+    width: 100%;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
 }
