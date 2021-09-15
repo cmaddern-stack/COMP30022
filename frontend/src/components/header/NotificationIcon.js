@@ -51,7 +51,7 @@ class NotificationIcon extends React.Component {
     render() {
         return (
             <div className="notification-dropdown">
-                <div className="icon" onClick={this.toggleMenu}>
+                <div className={"icon " + this.state.mode} onClick={this.toggleMenu}>
                     <FaBell />
                 </div>
                 <div className={"dropdown " + this.state.dropdown}>
