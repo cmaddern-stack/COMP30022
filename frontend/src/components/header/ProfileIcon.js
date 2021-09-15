@@ -30,7 +30,7 @@ class ProfileIcon extends React.Component {
             });
         }
     };
-    T;
+
     render() {
         return (
             <div class="profile-dropdown">

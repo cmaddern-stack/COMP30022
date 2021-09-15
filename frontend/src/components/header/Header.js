@@ -1,8 +1,7 @@
 import React from "react";
 import ProfileIcon from "./ProfileIcon";
 import "./Header.css";
-import { FontAwesome } from "react-icons/fa";
-import { FaMoon, FaBell } from "react-icons/fa";
+import NotificationIcon from "./NotificationIcon";
 import PopularityCounter from "./PopularityCounter";
 import DarkModeToggle from "./DarkModeToggle";
 
@@ -15,7 +14,6 @@ import DarkModeToggle from "./DarkModeToggle";
  * - Profile picture, when clicked shows dropdown navigation menu
  */
 class Header extends React.Component {
-
     render() {
         return (
             <header>
@@ -24,11 +22,9 @@ class Header extends React.Component {
                         <a href="/">Logo and App Name</a>
                     </div>
                     <div className="right-header">
-                        <PopularityCounter/>
-                        <DarkModeToggle/>
-                        <div className="icon">
-                            <FaBell />
-                        </div>
+                        <PopularityCounter />
+                        <DarkModeToggle />
+                        <NotificationIcon />
                         <ProfileIcon />
                     </div>
                 </div>
