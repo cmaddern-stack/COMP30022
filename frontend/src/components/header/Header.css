@@ -54,6 +54,18 @@ header {
     animation: textColorChange 1s;
 }
 
+.icon.off:active, .icon.on:active {
+    transition: opacity 0.3s, transform 0.3s;
+    transform: rotate(-180deg) scale(0.5);
+    opacity: 0;
+}
+
+.off:after, .on:after {
+    transition: opacity 0.3s, transform 0.3s;
+    transform: scale(0.5) rotate(-180deg) scale(1);
+    opacity: 1;
+}
+
 .profile-icon.on {
     border: 2px solid var(--iris-80);
 }
