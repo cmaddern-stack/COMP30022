@@ -1,10 +1,19 @@
 .profile-content {
     padding: 35px 15px;
-    display: flex;
 }
 
 .form {
+    display: flex;
+}
+
+.col {
     width: 535px;
+}
+
+@media (max-width: 840px) {
+    .form {
+        display: block;
+    }
 }
 
 .form button {

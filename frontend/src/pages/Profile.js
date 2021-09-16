@@ -1,5 +1,6 @@
 import React from "react";
 import InputField from "../components/InputField";
+import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "./Profile.css";
 
@@ -61,74 +62,81 @@ class Profile extends React.Component {
     render() {
         return (
             <div className="profile-content">
+                <h3>Public Contact Details</h3>
+                <ProfilePhoto
+                    src={this.state.photoURL}
+                    alt="User Profile Photo"
+                />
                 <div className="form">
-                    <h3>Public Contact Details</h3>
-                    <div className="profile-photo-row">
-                        <img
-                            className="profile-photo"
-                            src={this.state.photoURL}
-                        ></img>
+                    <div className="col left-col">
+                        <InputField
+                            type="text"
+                            name="firstName"
+                            label="First Name"
+                            placeholder="e.g. Jane"
+                            onChange={this.changeHandler}
+                            value={this.state.firstName}
+                        />
+                        <InputField
+                            type="text"
+                            name="lastName"
+                            label="Last Name"
+                            placeholder="e.g. Doe"
+                            onChange={this.changeHandler}
+                            value={this.state.lastName}
+                        />
+                        <InputField
+                            type="email"
+                            name="email"
+                            label="Email Address"
+                            placeholder="e.g. jane.doe@email.com"
+                            onChange={this.emailChangeHandler}
+                            value={this.state.email}
+                        />
+                        <InputField
+                            type="text"
+                            name="organisation"
+                            label="Organisation"
+                            placeholder="e.g. Hogwarts"
+                            onChange={this.changeHandler}
+                            value={this.state.organisation}
+                        />
                     </div>
-                    <InputField
-                        type="text"
-                        name="firstName"
-                        label="First Name"
-                        placeholder="e.g. Jane"
-                        onChange={this.changeHandler}
-                        value={this.state.firstName}
-                    />
-                    <InputField
-                        type="text"
-                        name="lastName"
-                        label="Last Name"
-                        placeholder="e.g. Doe"
-                        onChange={this.changeHandler}
-                        value={this.state.lastName}
-                    />
-                    <InputField
-                        type="email"
-                        name="email"
-                        label="Email Address"
-                        placeholder="e.g. jane.doe@email.com"
-                        onChange={this.emailChangeHandler}
-                        value={this.state.email}
-                    />
-                    <InputField
-                        type="text"
-                        name="organisation"
-                        label="Organisation"
-                        placeholder="e.g. Hogwarts"
-                        onChange={this.changeHandler}
-                        value={this.state.organisation}
-                    />
-                    <InputField
-                        type="text"
-                        name="role"
-                        label="Role"
-                        placeholder="e.g. Wizard"
-                        onChange={this.changeHandler}
-                        value={this.state.role}
-                    />
-                    <InputField
-                        type="text"
-                        name="phone"
-                        label="Phone Number"
-                        placeholder="e.g. +61 302 203 392"
-                        onChange={this.changeHandler}
-                        value={this.state.phone}
-                    />
-                    <InputField
-                        type="url"
-                        name="link"
-                        label="LinkedIn URL"
-                        placeholder="e.g. linkedin.com/in/jane-doe"
-                        onChange={this.changeHandler}
-                        value={this.state.phone}
-                    />
-                    <div className="button-row">
-                        <button className="invisible-button" />
-                        <button className="primary-button" disabled={this.state.buttonDisabled}>SAVE</button>
+                    <div className="col right-col">
+                        <InputField
+                            type="text"
+                            name="role"
+                            label="Role"
+                            placeholder="e.g. Wizard"
+                            onChange={this.changeHandler}
+                            value={this.state.role}
+                        />
+                        <InputField
+                            type="text"
+                            name="phone"
+                            label="Phone Number"
+                            placeholder="e.g. +61 302 203 392"
+                            onChange={this.changeHandler}
+                            value={this.state.phone}
+                        />
+                        <InputField
+                            type="url"
+                            name="link"
+                            label="LinkedIn URL"
+                            placeholder="e.g. linkedin.com/in/jane-doe"
+                            onChange={this.changeHandler}
+                            value={this.state.phone}
+                        />
                     </div>
+                </div>
+                <div className="button-row">
+                    <button className="invisible-button" />
+                    <button
+                        className="primary-button"
+                        disabled={this.state.buttonDisabled}
+                    >
+                        SAVE
+                    </button>
                 </div>
             </div>
         );
