@@ -14,10 +14,14 @@
     .form {
         display: block;
     }
+
+    .col {
+        width: 100%;
+    }
 }
 
 .form button {
-    position: relative; 
+    position: relative;
     right: 0;
 }
 
@@ -27,7 +31,41 @@
     border-radius: 85px;
 }
 
+.profile-photo:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
+img:hover {
+    opacity: 0.7;
+}
+
+img {
+    width: 170px;
+    height: 170px;
+    border-radius: 85px;
+    border: 2px solid var(--light-blue-100);
+}
+
 .profile-photo-row {
     width: 100%;
     text-align: center;
+    padding: 15px 0px;
+    justify-content: center;
+    display: flex;
+}
+
+.overlay-icon {
+    display: none;
+    color: white;
+    opacity: 0.8;
+    font-size: 50px;
+    position: relative;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img:hover + .overlay-icon {
+    display: block;
 }
