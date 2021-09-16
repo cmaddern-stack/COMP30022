@@ -6,6 +6,7 @@
     border: 1px solid var(--light-blue-60);
     width: 400px;
     margin-right: 25px;
+    z-index: 0;
 }
 
 .search-bar input{
@@ -24,4 +25,5 @@
 .search-button:hover {
     cursor: pointer;
     background-color: var(--light-blue-100);
+    animation: secondaryButtonHover 0.5s;
 }
