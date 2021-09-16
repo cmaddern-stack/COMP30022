@@ -7,6 +7,7 @@ import Contacts from "../pages/Contacts";
 import EnterEmail from "../pages/auth/EnterEmail";
 import SignUp from "../pages/auth/SignUp";
 import Login from "../pages/auth/Login";
+import Profile from "../pages/Profile"
 import ContactsOptionsBar from "./ContactsOptionsBar";
 
 /**
@@ -23,9 +24,9 @@ export default function AppRouter() {
                 <Route exact path="/auth/login" component={Login}></Route>
                 <div>
                     <Header />
-                    {/* <Route exact path="/profile" component={}></Route> */}
+                    <Route exact path="/profile" component={Profile}></Route>
                     <div>
-                        <ContactsOptionsBar />
+                        {/* <ContactsOptionsBar /> */}
                         <Route exact path="/groups" component={Groups}></Route>
                         <Route
                             exact
