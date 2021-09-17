@@ -2,6 +2,17 @@ import React from "react";
 import "./InputField.css";
 import { FaMinusCircle, FontAwesome } from "react-icons/fa";
 
+/**
+ * Custom Input Field
+ * Input field with a customisable label with props:
+ * - onChange: callback function for when input field value is changed
+ * - onLabelChange: callback function for when input field label is changed
+ * - onDeleteChange: callback function for when delete button is clicked 
+ * - name: input label name (usually index)
+ * - label: current label 
+ * - value: current value
+ * - placeholder: value placeholder
+ */
 class CustomInputField extends React.Component {
     onChange = (event) => {
         this.props.onChange(event);
@@ -35,7 +46,7 @@ class CustomInputField extends React.Component {
                     />
                 </div>
                 <input
-                    type={this.props.type}
+                    type="text"
                     name={this.props.name}
                     placeholder={this.props.placeholder}
                     onChange={this.onChange}
