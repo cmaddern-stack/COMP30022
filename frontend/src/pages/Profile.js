@@ -180,7 +180,7 @@ class Profile extends React.Component {
                     listId={id}
                     label={item.label}
                     type="text"
-                    placeholder="Enter custom value"
+                    placeholder="Enter field value"
                     value={item.value}
                     name={id}
                     onChange={this.customChangeHandler}
@@ -196,7 +196,7 @@ class Profile extends React.Component {
         var newCustomInputs = this.state.customInput;
         newCustomInputs.push({
             label: "Label",
-            value: "Value",
+            value: "",
         });
         this.setState({
             customInput: newCustomInputs,
