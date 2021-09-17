@@ -1,4 +1,5 @@
 import React from "react";
+import "./InputField.css";
 
 class InputField extends React.Component {
     onChange = (event) => {

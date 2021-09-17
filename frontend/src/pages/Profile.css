@@ -108,3 +108,12 @@ img {
 img:hover + .overlay-icon {
     display: block;
 }
+
+.new-field-button {
+    color: var(--dark-grey-40);
+}
+
+.new-field-button:hover {
+    cursor: pointer;
+    color: var(--dark-grey-80);
+}

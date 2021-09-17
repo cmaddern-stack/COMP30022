@@ -1,5 +1,6 @@
 import React from "react";
 import InputField from "../components/InputField";
+import CustomInputField from "../components/CustomInputField";
 import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "./Profile.css";
@@ -8,6 +9,7 @@ import "./Profile.css";
  * Profile Page
  * - Shows user their account information
  * - Allows user to modify their account information
+ * - Allows user to add custom input fields in the form [{label: "Label 1", value: "Value 1"}, {label: "Label 2", value: "Value 2"}]
  */
 class Profile extends React.Component {
     constructor(props) {
@@ -24,6 +26,7 @@ class Profile extends React.Component {
             link: "",
             emailError: "",
             emailValid: true,
+            customInput: [],
         };
     }
 
@@ -48,6 +51,32 @@ class Profile extends React.Component {
         });
     };
 
+    customChangeHandler = async (event) => {
+        const newCustomInput = this.state.customInput;
+        const id = parseInt(event.target.name);
+        newCustomInput[id] = {
+            label: this.state.customInput[id].label,
+            value: event.target.value,
+        };
+        this.setState({
+            customInput: newCustomInput,
+            buttonDisabled: false,
+        });
+    };
+
+    customLabelChangeHandler = async (event) => {
+        const newCustomInput = this.state.customInput;
+        const id = parseInt(event.target.name);
+        newCustomInput[id] = {
+            label: event.target.value,
+            value: this.state.customInput[id].value,
+        };
+        this.setState({
+            customInput: newCustomInput,
+            buttonDisabled: false,
+        });
+    };
+
     emailChangeHandler = async (event) => {
         await this.setState({
             [event.target.name]: event.target.value,
@@ -65,6 +94,45 @@ class Profile extends React.Component {
         const selected = URL.createObjectURL(event.target.files[0]);
         this.setState({
             photoURL: selected,
+            buttonDisabled: false,
+        });
+    };
+
+    getCustomFields = () => {
+        return this.state.customInput.map((item, id) => (
+            <CustomInputField
+                key={id}
+                listId={id}
+                label={item.label}
+                type="text"
+                placeholder="Enter custom value"
+                value={item.value}
+                name={id}
+                onChange={this.customChangeHandler}
+                onLabelChange={this.customLabelChangeHandler}
+                onDeleteChange={this.deleteCustomField}
+            />
+        ));
+    };
+
+    addCustomField = () => {
+        var newCustomInputs = this.state.customInput;
+        const id = this.state.customInput.length;
+        newCustomInputs.push({
+            label: "Label",
+            value: "Value",
+        });
+        this.setState({
+            customInput: newCustomInputs,
+            buttonDisabled: false,
+        });
+    };
+
+    deleteCustomField = (id) => {
+        var newCustomInputs = this.state.customInput;
+        newCustomInputs.splice(id, 1);
+        this.setState({
+            customInput: newCustomInputs,
             buttonDisabled: false,
         });
     };
@@ -151,7 +219,13 @@ class Profile extends React.Component {
                             onChange={this.changeHandler}
                             value={this.state.phone}
                         />
-                        <div className="new-field-button">+ New Field</div>
+                        {this.getCustomFields()}
+                        <div
+                            className="new-field-button"
+                            onClick={this.addCustomField}
+                        >
+                            + New Field
+                        </div>
                     </div>
                 </div>
                 <div className="button-row">
