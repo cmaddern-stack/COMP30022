@@ -2,8 +2,30 @@
     padding: 35px 25px;
 }
 
-.form {
+.form,
+.title-row {
     display: flex;
+}
+
+.info-dropdown {
+    height: 1.75rem;
+}
+
+.info {
+    position: relative;
+    margin-left: 5px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--dark-grey-40);
+}
+
+.info:hover {
+    text-decoration: underline;
+    color: var(--iris-100);
+}
+
+.info:hover + .tool-tip {
+    display: block;
 }
 
 .col {
@@ -26,6 +48,14 @@
 
     .col {
         width: 100%;
+    }
+
+    .left-col {
+        padding-right: 0;
+    }
+
+    .right-col {
+        padding-left: 0;
     }
 }
 

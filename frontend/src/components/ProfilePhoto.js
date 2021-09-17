@@ -4,6 +4,12 @@ import "../pages/Profile.css";
 import { FontAwesome } from "react-icons/fa";
 import { FaCamera } from "react-icons/fa";
 
+/**
+ * Profile photo icon which can be found on the profile page
+ * - Displayes user's current profile photo
+ * - On click, file selector opens and user can select a new profile photo
+ */
+
 class ProfilePhoto extends React.Component {
     constructor(props) {
         super(props);
@@ -29,6 +35,7 @@ class ProfilePhoto extends React.Component {
                     <input
                         className="invisible-button"
                         type="file"
+                        accept="image/png, image/jpeg"
                         onChange={this.onHiddenInputClick}
                         ref={this.hiddenInputRef}
                     />

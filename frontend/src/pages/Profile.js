@@ -61,17 +61,31 @@ class Profile extends React.Component {
     };
 
     photoChangeHandler = async (event) => {
+        // creates temporary URL for selected photo file object
         const selected = URL.createObjectURL(event.target.files[0]);
-        this.setState({ 
+        this.setState({
             photoURL: selected,
             buttonDisabled: false,
         });
     };
 
+    saveHandler = async (event) => {
+        // TODO: post new data using API
+    };
+
     render() {
         return (
             <div className="profile-content">
-                <h3>Public Contact Details</h3>
+                <div className="title-row">
+                    <h3>Public Information</h3>
+                    <div className="info-dropdown">
+                        <div className="info">What's this?</div>
+                        <div className="tool-tip">
+                            Your public information may be downloaded by other
+                            users of this application.
+                        </div>
+                    </div>
+                </div>
                 <ProfilePhoto
                     src={this.state.photoURL}
                     alt="User Profile Photo"
@@ -137,6 +151,7 @@ class Profile extends React.Component {
                             onChange={this.changeHandler}
                             value={this.state.phone}
                         />
+                        <div className="new-field-button">+ New Field</div>
                     </div>
                 </div>
                 <div className="button-row">
@@ -144,6 +159,7 @@ class Profile extends React.Component {
                     <button
                         className="primary-button"
                         disabled={this.state.buttonDisabled}
+                        onClick={this.saveHandler}
                     >
                         SAVE
                     </button>
