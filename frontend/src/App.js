@@ -12,7 +12,7 @@ To run the app on your local browser - from your terminal run:
 
 function App() {
     return (
-        <section class="body">
+        <section className="body">
             <div>
                 <AppRouter/>
             </div>

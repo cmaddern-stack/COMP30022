@@ -1,17 +1,22 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { useContacts } from '../apis/contactsApi';
-import './Contacts.css';
+import React from "react";
+import { render } from "react-dom";
+import { useContacts } from "../apis/contactsApi";
+import "./Contacts.css";
+import ContactsOptionsBar from "../components/ContactsOptionsBar";
 
 export default function Contacts() {
-
     const { loading, items, error } = useContacts();
 
     if (loading) {
         return <p>Loading contacts, sit tight...</p>;
-    } 
+    }
     if (error) {
-        return <div><p>Something went wrong!</p><p>{error.message}</p></div>
+        return (
+            <div>
+                <p>Something went wrong!</p>
+                <p>{error.message}</p>
+            </div>
+        );
     }
 
     function renderTableHeader() {
@@ -22,32 +27,31 @@ export default function Contacts() {
                 <div class="email">Email</div>
                 <div class="edit">Edit</div>
             </div>
-        )
+        );
     }
 
     function renderItems() {
         return items.map((item) => (
             <div class="person d-flex">
-                <div class="name">{item.firstName} {item.lastName}</div>
+                <div class="name">
+                    {item.firstName} {item.lastName}
+                </div>
                 <div class="phone">{item.phoneNumber}</div>
                 <div class="email">{item.emailAddress}</div>
                 <div class="edit">Edit</div>
             </div>
-        ))
+        ));
     }
-
 
     return (
         <div>
             <h1>This is your contacts page!</h1>
             <h4>This is getting contacts from the backend, woo!</h4>
-            {renderTableHeader()}
-            {renderItems()}
+            {this.renderTableHeader()}
+            {this.renderItems()}
         </div>
     );
-    
 }
-
 
 // function EditContact(id) {
 
@@ -55,11 +59,10 @@ export default function Contacts() {
 
 //     if (loading) {
 //         return <p>Loading contacts, sit tight...</p>;
-//     } 
+//     }
 //     if (error) {
 //         return <div><p>Something went wrong!</p><p>{error.message}</p></div>
 //     }
-
 
 //     return (
 //         <div class="contact-card">
@@ -67,6 +70,5 @@ export default function Contacts() {
 //             <h1>Close</h1>
 //         </div>
 //     );
-    
-// }
 
+// }
