@@ -98,26 +98,102 @@ class Profile extends React.Component {
         });
     };
 
-    getCustomFields = () => {
-        return this.state.customInput.map((item, id) => (
-            <CustomInputField
-                key={id}
-                listId={id}
-                label={item.label}
+    getFields = () => {
+        return [
+            <InputField
                 type="text"
-                placeholder="Enter custom value"
-                value={item.value}
-                name={id}
-                onChange={this.customChangeHandler}
-                onLabelChange={this.customLabelChangeHandler}
-                onDeleteChange={this.deleteCustomField}
-            />
-        ));
+                name="firstName"
+                label="First Name"
+                placeholder="e.g. Jane"
+                onChange={this.changeHandler}
+                value={this.state.firstName}
+            />,
+            <InputField
+                type="text"
+                name="lastName"
+                label="Last Name"
+                placeholder="e.g. Doe"
+                onChange={this.changeHandler}
+                value={this.state.lastName}
+            />,
+            <InputField
+                type="email"
+                name="email"
+                label="Email Address"
+                placeholder="e.g. jane.doe@email.com"
+                onChange={this.emailChangeHandler}
+                value={this.state.email}
+            />,
+            <InputField
+                type="text"
+                name="organisation"
+                label="Organisation"
+                placeholder="e.g. Hogwarts"
+                onChange={this.changeHandler}
+                value={this.state.organisation}
+            />,
+            <InputField
+                type="text"
+                name="role"
+                label="Role"
+                placeholder="e.g. Wizard"
+                onChange={this.changeHandler}
+                value={this.state.role}
+            />,
+            <InputField
+                type="text"
+                name="phone"
+                label="Phone Number"
+                placeholder="e.g. +61 302 203 392"
+                onChange={this.changeHandler}
+                value={this.state.phone}
+            />,
+            <InputField
+                type="url"
+                name="link"
+                label="LinkedIn URL"
+                placeholder="e.g. linkedin.com/in/jane-doe"
+                onChange={this.changeHandler}
+                value={this.state.phone}
+            />,
+        ];
+    };
+
+    getLeftCol = () => {
+        const fields = this.getFields().concat(this.getCustomFields());
+        const colLen = Math.floor((fields.length + 1) / 2);
+        return fields.slice(0, colLen).map((item) => item);
+    };
+
+    getRightCol = () => {
+        const fields = this.getFields().concat(this.getCustomFields());
+        const colLen = Math.floor((fields.length + 1) / 2);
+        return fields.slice(colLen, fields.length).map((item) => item);
+    };
+
+    getCustomFields = () => {
+        var fields = [];
+        for (const [id, item] of this.state.customInput.entries()) {
+            fields.push(
+                <CustomInputField
+                    key={id}
+                    listId={id}
+                    label={item.label}
+                    type="text"
+                    placeholder="Enter custom value"
+                    value={item.value}
+                    name={id}
+                    onChange={this.customChangeHandler}
+                    onLabelChange={this.customLabelChangeHandler}
+                    onDeleteChange={this.deleteCustomField}
+                />
+            );
+        }
+        return fields;
     };
 
     addCustomField = () => {
         var newCustomInputs = this.state.customInput;
-        const id = this.state.customInput.length;
         newCustomInputs.push({
             label: "Label",
             value: "Value",
@@ -160,66 +236,9 @@ class Profile extends React.Component {
                     onChange={this.photoChangeHandler}
                 />
                 <div className="form">
-                    <div className="col left-col">
-                        <InputField
-                            type="text"
-                            name="firstName"
-                            label="First Name"
-                            placeholder="e.g. Jane"
-                            onChange={this.changeHandler}
-                            value={this.state.firstName}
-                        />
-                        <InputField
-                            type="text"
-                            name="lastName"
-                            label="Last Name"
-                            placeholder="e.g. Doe"
-                            onChange={this.changeHandler}
-                            value={this.state.lastName}
-                        />
-                        <InputField
-                            type="email"
-                            name="email"
-                            label="Email Address"
-                            placeholder="e.g. jane.doe@email.com"
-                            onChange={this.emailChangeHandler}
-                            value={this.state.email}
-                        />
-                        <InputField
-                            type="text"
-                            name="organisation"
-                            label="Organisation"
-                            placeholder="e.g. Hogwarts"
-                            onChange={this.changeHandler}
-                            value={this.state.organisation}
-                        />
-                    </div>
+                    <div className="col left-col">{this.getLeftCol()}</div>
                     <div className="col right-col">
-                        <InputField
-                            type="text"
-                            name="role"
-                            label="Role"
-                            placeholder="e.g. Wizard"
-                            onChange={this.changeHandler}
-                            value={this.state.role}
-                        />
-                        <InputField
-                            type="text"
-                            name="phone"
-                            label="Phone Number"
-                            placeholder="e.g. +61 302 203 392"
-                            onChange={this.changeHandler}
-                            value={this.state.phone}
-                        />
-                        <InputField
-                            type="url"
-                            name="link"
-                            label="LinkedIn URL"
-                            placeholder="e.g. linkedin.com/in/jane-doe"
-                            onChange={this.changeHandler}
-                            value={this.state.phone}
-                        />
-                        {this.getCustomFields()}
+                        {this.getRightCol()}
                         <div
                             className="new-field-button"
                             onClick={this.addCustomField}

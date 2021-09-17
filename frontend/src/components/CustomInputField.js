@@ -17,7 +17,7 @@ class CustomInputField extends React.Component {
 
     render() {
         return (
-            <div className="input-field">
+            <div className="input-field custom-input-field">
                 <div className="label">
                     <label for={this.props.name}>
                         <input
