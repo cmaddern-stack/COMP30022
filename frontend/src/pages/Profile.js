@@ -28,6 +28,7 @@ class Profile extends React.Component {
     }
 
     // TODO: CONNECT WITH PFOFILE API
+    // request user profile data
     componentDidMount() {
         const profileAPI = "";
         // data = await fetch(profileAPI);
@@ -59,6 +60,14 @@ class Profile extends React.Component {
         });
     };
 
+    photoChangeHandler = async (event) => {
+        const selected = URL.createObjectURL(event.target.files[0]);
+        this.setState({ 
+            photoURL: selected,
+            buttonDisabled: false,
+        });
+    };
+
     render() {
         return (
             <div className="profile-content">
@@ -66,6 +75,7 @@ class Profile extends React.Component {
                 <ProfilePhoto
                     src={this.state.photoURL}
                     alt="User Profile Photo"
+                    onChange={this.photoChangeHandler}
                 />
                 <div className="form">
                     <div className="col left-col">
