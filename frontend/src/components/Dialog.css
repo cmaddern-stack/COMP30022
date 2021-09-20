@@ -1,0 +1,7 @@
+.split{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0;
+    line-height: 0px;
+}
