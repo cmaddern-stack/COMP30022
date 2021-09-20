@@ -42,11 +42,17 @@ class ProfileIcon extends React.Component {
                 ></img>
                 <div className={"dropdown " + this.state.dropdown}>
                     <ul>
+                        <a href="/groups">
+                            <li>Home</li>
+                        </a>
                         <a href="/profile">
-                            <li>Profile & Account</li>
+                            <li>Profile</li>
                         </a>
                         <a href="/events">
                             <li>Events</li>
+                        </a>
+                        <a href="/settings">
+                            <li>Settings</li>
                         </a>
                         <a href="/auth/logout">
                             <li>Logout</li>

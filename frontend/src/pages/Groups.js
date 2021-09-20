@@ -1,34 +1,28 @@
-import React from 'react';
-import './Groups.css';
+import React from "react";
+import "./Groups.css";
+import ContactsOptionsBar from "../components/ContactsOptionsBar";
 
 export default function Groups() {
-    
-
     return (
         <div>
-            <div class="padded title">
-                IT Project
+            <div class="padded title">IT Project</div>
+            <div class="topContainer">
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
             </div>
             <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
             </div>
             <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-
-            </div>
-            <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
+                <ContactCard name="Leon Sterling" />
             </div>
         </div>
-    )
+    );
 }
 
 function ContactCard(props) {
@@ -36,9 +30,7 @@ function ContactCard(props) {
         <div class="rcorners">
             <div class="topContainer top">
                 <div class="dot">
-                    <div class="centeredInDot">
-                        LS
-                    </div>
+                    <div class="centeredInDot">LS</div>
                 </div>
                 <div class="padded">{props.name}</div>
             </div>
@@ -46,9 +38,8 @@ function ContactCard(props) {
                 <div class="padded3"> Title </div>
                 <div class="padded2"> it project subject coordinator </div>
             </div>
-
         </div>
-    )
+    );
 }
 
 function AddCard(props) {
@@ -56,9 +47,7 @@ function AddCard(props) {
         <div class="rcorners">
             <div class="topContainer top">
                 <div class="dot">
-                    <div class="centeredInDot">
-                        LS
-                    </div>
+                    <div class="centeredInDot">LS</div>
                 </div>
                 <div class="padded">{props.name}</div>
             </div>
@@ -66,7 +55,6 @@ function AddCard(props) {
                 <div class="padded3"> Title </div>
                 <div class="padded2"> it project subject coordinator </div>
             </div>
-
         </div>
-    )
+    );
 }

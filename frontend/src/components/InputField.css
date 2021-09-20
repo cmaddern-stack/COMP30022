@@ -1,0 +1,72 @@
+input,
+label {
+    display: block;
+}
+
+.input-field {
+    margin: 25px 0px;
+}
+
+.custom-input-field {
+    animation: growDown 0.2s ease-in forwards;
+    transform-origin: top center;
+}
+
+input {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 5px 0;
+    border: 1px solid var(--light-blue-60);
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--light-grey-100);
+    font-style: italic;
+}
+
+.input-error {
+    color: red;
+    font-size: 12px;
+    margin: 5px 5px;
+}
+
+label {
+    font-size: 14px;
+    color: var(--dark-grey-40);
+    padding-left: 5px;
+}
+
+.custom-input-label {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--light-grey-40);
+    border: none;
+}
+
+.custom-input-label {
+    height: 21px;
+}
+
+.custom-input-label:focus {
+    background-color: var(--light-blue-40);
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-button {
+    color: var(--dark-grey-40);
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    color: var(--iris-100);
+}

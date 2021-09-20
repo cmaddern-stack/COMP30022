@@ -7,6 +7,7 @@ import Contacts from "../pages/Contacts";
 import EnterEmail from "../pages/auth/EnterEmail";
 import SignUp from "../pages/auth/SignUp";
 import Login from "../pages/auth/Login";
+import Profile from "../pages/Profile";
 import ContactsOptionsBar from "./ContactsOptionsBar";
 
 /**
@@ -14,27 +15,54 @@ import ContactsOptionsBar from "./ContactsOptionsBar";
  * @returns Router object with defined app routes
  */
 
-export default function AppRouter() {
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={EnterEmail}></Route>
-                <Route exact path="/auth/signup" component={SignUp}></Route>
-                <Route exact path="/auth/login" component={Login}></Route>
-                <div>
-                    <Header />
-                    {/* <Route exact path="/profile" component={}></Route> */}
+class AppRouter extends React.Component {
+    contactsPage = () => {
+        return (
+            <div>
+                <ContactsOptionsBar />
+                <Contacts />
+            </div>
+        );
+    };
+
+    groupsPage = () => {
+        return (
+            <div>
+                <ContactsOptionsBar />
+                <Groups />
+            </div>
+        );
+    };
+
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={EnterEmail}></Route>
+                    <Route exact path="/auth/signup" component={SignUp}></Route>
+                    <Route exact path="/auth/login" component={Login}></Route>
                     <div>
-                        <ContactsOptionsBar />
-                        <Route exact path="/groups" component={Groups}></Route>
+                        <Header />
+                        <Route
+                            exact
+                            path="/profile"
+                            component={Profile}
+                        ></Route>
+                        <Route
+                            exact
+                            path="/groups"
+                            component={this.groupsPage}
+                        ></Route>
                         <Route
                             exact
                             path="/contacts"
-                            component={Contacts}
+                            component={this.contactsPage}
                         ></Route>
                     </div>
-                </div>
-            </Switch>
-        </Router>
-    );
+                </Switch>
+            </Router>
+        );
+    }
 }
+
+export default AppRouter;
