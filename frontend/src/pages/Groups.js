@@ -32,13 +32,10 @@ export default function Groups() {
                     );
                 })}
 
-            </div>
-            <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
                 <AddCard name = "Leon Sterling"/>
 
             </div>
+
             </Collapsible>
 
             <div class="padded title">
@@ -48,14 +45,20 @@ export default function Groups() {
             <Collapsible triggerClassName="padded" trigger="Expand" triggerOpenedClassName="padded" triggerWhenOpen="Collapse" open= {true} >
 
             <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
+                {JSONDATA.filter((val)=> {
+                    if (searchTerm == "") {
+                        return val
+                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map((val, key) => {
+                    return (
+                        <div className="user" key={key}>
+                            <ContactCard name = {val.name}/>
+                        </div>
+                    );
+                })}
 
-            </div>
-            <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
                 <AddCard name = "Leon Sterling"/>
 
             </div>
