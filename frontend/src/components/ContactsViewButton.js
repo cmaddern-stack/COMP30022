@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import "./TwoSelectButton.css";
+import "../css/TwoSelectButton.css";
 import { FontAwesome } from "react-icons/fa";
 import { FaTable, FaAddressBook } from "react-icons/fa";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './ContactsOptionsBar.css'
+import '../css/ContactsOptionsBar.css'
 import ContactsViewButton from "./ContactsViewButton";
 import SearchBar from "./SearchBar";
 import { FontAwesome } from "react-icons/fa";

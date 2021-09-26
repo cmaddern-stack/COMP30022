@@ -1,0 +1,35 @@
+/* Person page styling */
+.person {
+    justify-content: space-between;
+    width: 97%;
+    padding: 1em 2em;
+    border-radius: 90px;
+    margin: 10px 20px;
+}
+
+.color-0 { background-color: white; }
+
+.color-1 { background-color: #dde8fd; }
+
+.w-15 { width: 15%; }
+.w-10 { width: 10%; }
+.w-5 { width: 30px; }
+.w-2 { width: 30px; }
+
+.contact-card {
+    height: 200px;
+    width: 400px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid green;
+    background: gray;
+}
+
+.initials {
+    background-color: #c3d3fa;
+    color: #5d5fef;
+    padding: 5px;
+    border-radius: 90%;
+    text-align: center;
+}
