@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesome } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
-import "./Header.css";
+import "../../css/Header.css";
 
 /**
  * Notification Icon

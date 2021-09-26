@@ -1,7 +1,7 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import CustomizedDialogs from '../components/Dialog';
-import './Groups.css';
+import '../css/Groups.css';
 
 export default function Groups() {
     
