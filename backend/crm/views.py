@@ -12,6 +12,7 @@ from rest_framework.decorators import action
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 import json
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -134,10 +135,13 @@ class HomeViewSet(viewsets.ModelViewSet):
 @api_view(['POST'])  # ensures only certain requests are given
 def check_email(request):
     queryset = User.objects.values_list('username', flat=True)
-    exists = decode(request.body)['email'] in queryset
-    return HttpResponse(exists)
+    rbody = request.body
+    body = decode(request.body)
+    exists = body['email'] in queryset
+    return JsonResponse({'success': exists})
+
 
 def decode(body):
-    body_unicode = body.decode('utf-8')
-    body = json.loads(body_unicode)
+    # body_unicode = body.decode('utf-8')
+    body = json.loads(body)
     return body

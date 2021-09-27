@@ -27,7 +27,8 @@ class EnterEmail extends React.Component {
         let data = { email: this.state.email };
         // redirect to login or sign up pages
         const authApi = require("../../apis/authApi");
-        let exists = await authApi.checkEmail(this.state.email);
+        let response = await authApi.checkEmail(this.state.email);
+        let exists = response.success;
         var path = "";
         if (exists) {
             path = "/auth/login";
