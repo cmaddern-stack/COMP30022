@@ -23,6 +23,7 @@ async function getUserProfile() {
 }
 
 async function updateProfile(user) {
+    console.log(user)
     const requestOptions = {
         method: "PATCH",
         headers: {
@@ -31,12 +32,15 @@ async function updateProfile(user) {
         },
         mode: "cors",
         body: JSON.stringify({
+            id: id,
+            url: profileEndpoint,
+            userAccount: accountEndpoint,
             first_name: user.firstName,
             last_name: user.lastName,
             email: user.email,
             organisation: user.organisation,
             role: user.role,
-            phone: user.phone,
+            phoneNumber: user.phone,
         }),
     };
     await fetch(accountEndpoint, requestOptions);

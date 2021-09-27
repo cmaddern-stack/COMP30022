@@ -5,13 +5,6 @@ import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "./Profile.css";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
-
 /**
  * Profile Page
  * - Shows user their account information
@@ -50,7 +43,7 @@ class Profile extends React.Component {
             email: data.email,
             organisation: data.organisation,
             role: data.role,
-            phone: data.phone
+            phone: data.phone,
         });
     }
 
@@ -230,6 +223,9 @@ class Profile extends React.Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
+            organisation: this.state.organisation,
+            role: this.state.role,
+            phone: this.state.phone,
         });
         this.setState({
             buttonDisabled: true,
