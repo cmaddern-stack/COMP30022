@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import Groups from "../pages/Groups";
 import Header from "./header/Header";
@@ -41,6 +41,9 @@ class AppRouter extends React.Component {
                     <Route exact path="/" component={EnterEmail}></Route>
                     <Route exact path="/auth/signup" component={SignUp}></Route>
                     <Route exact path="/auth/login" component={Login}></Route>
+                    <Route exact path="/auth/logout">
+                        <Redirect to="/"/>
+                    </Route>
                     <div>
                         <Header />
                         <Route

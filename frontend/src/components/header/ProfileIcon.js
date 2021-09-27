@@ -31,6 +31,10 @@ class ProfileIcon extends React.Component {
         }
     };
 
+    logout = () => {
+        sessionStorage.clear();
+    }
+
     render() {
         return (
             <div class="profile-dropdown">
@@ -55,7 +59,7 @@ class ProfileIcon extends React.Component {
                             <li>Settings</li>
                         </a>
                         <a href="/auth/logout">
-                            <li>Logout</li>
+                            <li onClick={this.logout}>Logout</li>
                         </a>
                     </ul>
                 </div>
