@@ -14,6 +14,10 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=100, blank=True, null=True)
 
+class UserProfileField(models.Model):
+    userAccount = models.ForeignKey(User, on_delete=models.CASCADE)
+    label = models.CharField(max_length=100, blank=False, null=False)
+    value = models.CharField(max_length=100, blank=True, null=True)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

@@ -35,6 +35,7 @@ class Profile extends React.Component {
     async componentDidMount() {
         const profileApi = require("../apis/profileApi");
         const data = await profileApi.getUserProfile();
+        const customFields = await profileApi.getCustomFields();
         this.setState({
             photoURL:
                 "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
@@ -44,6 +45,7 @@ class Profile extends React.Component {
             organisation: data.organisation,
             role: data.role,
             phone: data.phone,
+            customInput: customFields,
         });
     }
 
@@ -227,6 +229,7 @@ class Profile extends React.Component {
             role: this.state.role,
             phone: this.state.phone,
         });
+        await profileApi.updateCustomFields(this.state.customInput);
         this.setState({
             buttonDisabled: true,
         });

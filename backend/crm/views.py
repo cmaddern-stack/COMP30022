@@ -1,12 +1,12 @@
 from django.shortcuts import render
-
+from rest_framework import status
 from django.http import HttpResponse
-from rest_framework import viewsets
+from rest_framework import generics, viewsets
 from rest_framework import permissions
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
-from .models import CustomAnswer, CustomQuestion, Contact, Event, UserProfile, Group
-from .serialisers import ContactSerializer, UserProfileSerializer, UserAccountSerializer, PermissionSerializer, GroupSerializer
+from .models import CustomAnswer, CustomQuestion, Contact, Event, UserProfile, Group, UserProfileField
+from .serialisers import ContactSerializer, UserProfileSerializer, UserAccountSerializer, PermissionSerializer, GroupSerializer, UserProfileFieldSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.views.decorators.csrf import csrf_exempt
@@ -150,3 +150,22 @@ def login(request):
         return JsonResponse({'success': True, 'id': user.id, 'username': user.username})
     else:
         return JsonResponse({'success': False})
+
+
+@csrf_exempt  # temporarily disable csrf token
+@api_view(['GET', 'POST'])
+def get_profile_fields(request, id):
+    if request.method == 'GET':
+        fields = UserProfileField.objects.filter(userAccount=id)
+        serializer = UserProfileFieldSerializer(fields, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        UserProfileField.objects.filter(userAccount=id).delete()
+        serializer = UserProfileFieldSerializer(data=request.data['fields'], many=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

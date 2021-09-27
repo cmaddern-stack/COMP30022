@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from .models import CustomAnswer, CustomQuestion, Contact, Event, UserProfile, Group
+from .models import CustomAnswer, CustomQuestion, Contact, Event, UserProfile, Group, UserProfileField
 from django.contrib.auth.models import Permission
 
 
@@ -69,4 +69,10 @@ class CustomQuestionSerializer(serializers.HyperlinkedModelSerializer):
 class CustomAnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomAnswer
+        fields = '__all__'
+
+
+class UserProfileFieldSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfileField
         fields = '__all__'

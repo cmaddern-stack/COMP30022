@@ -17,5 +17,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/checkemail/', views.check_email),
     path('api-auth/alt-login/', views.login),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('userprofiles/<int:id>/fields/', views.get_profile_fields)
 ]

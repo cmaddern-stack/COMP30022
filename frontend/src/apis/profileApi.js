@@ -23,7 +23,6 @@ async function getUserProfile() {
 }
 
 async function updateProfile(user) {
-    console.log(user)
     const requestOptions = {
         method: "PATCH",
         headers: {
@@ -48,7 +47,42 @@ async function updateProfile(user) {
     return { success: true };
 }
 
+async function getCustomFields() {
+    const endpoint = profileEndpoint + "fields/";
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+    };
+    const fields = await fetch(endpoint, requestOptions);
+    return fields.json();
+}
+
+async function updateCustomFields(fields) {
+    const endpoint = profileEndpoint + "fields/";
+    for (var field of fields) {
+        field.userAccount = id;
+    }
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+            fields: fields,
+        }),
+    };
+    await fetch(endpoint, requestOptions);
+}
+
 module.exports = {
     getUserProfile,
     updateProfile,
+    getCustomFields,
+    updateCustomFields,
 };
