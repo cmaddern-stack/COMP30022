@@ -15,8 +15,25 @@ async function checkEmail(email) {
     return response.json();
 }
 
-function signup(user) {
+async function signup(user) {
     const endpoint = BASE_URL + "useraccounts/";
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+            username: user.email,
+            email: user.email,
+            password: user.password,
+            first_name: user.first_name,
+            last_name: user.last_name,
+        }),
+    };
+    let response = await fetch(endpoint, requestOptions);
+    return response.json();
 }
 
 module.exports = {

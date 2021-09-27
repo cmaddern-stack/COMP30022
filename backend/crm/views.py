@@ -135,13 +135,6 @@ class HomeViewSet(viewsets.ModelViewSet):
 @api_view(['POST'])  # ensures only certain requests are given
 def check_email(request):
     queryset = User.objects.values_list('username', flat=True)
-    rbody = request.body
-    body = decode(request.body)
+    body = json.loads(request.body)
     exists = body['email'] in queryset
     return JsonResponse({'success': exists})
-
-
-def decode(body):
-    # body_unicode = body.decode('utf-8')
-    body = json.loads(body)
-    return body

@@ -53,10 +53,11 @@ class SignUp extends React.Component {
             passwordError: result.error,
             passwordValid: result.valid,
         });
-        let confirmPasswordResult = await AuthController.confirmPasswordChangeHandler(
-            this.state.password,
-            this.state.confirmPassword
-        );
+        let confirmPasswordResult =
+            await AuthController.confirmPasswordChangeHandler(
+                this.state.password,
+                this.state.confirmPassword
+            );
         this.setState({
             confirmPasswordError: confirmPasswordResult.error,
             confirmPasswordValid: confirmPasswordResult.valid,
@@ -92,7 +93,13 @@ class SignUp extends React.Component {
     // TODO: CONNECT SIGNUP API
     nextHandler = async (event) => {
         // redirect to home page
-        let signupAPI = "";
+        const authApi = require("../../apis/authApi");
+        authApi.signup({
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.firstName,
+            last_name: this.state.lastName
+        })
         this.props.history.push("/groups");
     };
 
