@@ -10,10 +10,11 @@ class PermissionSerializer(serializers.ModelSerializer):
         model = Permission
         fields = '__all__'
 
+
 class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
     password = serializers.CharField(write_only=True)
-    
+
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data['username'],
@@ -23,41 +24,49 @@ class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
             email=validated_data['username']
         )
         return user
+
     class Meta:
         model = User
         fields = '__all__'
 
+
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
+
     class Meta:
         model = UserProfile
         fields = '__all__'
-        
+
+
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
+
     class Meta:
         model = Contact
         fields = '__all__'
-          
+
+
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
+
     class Meta:
         model = Group
         fields = '__all__'
-          
-          
+
+
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
-  
+
+
 class CustomQuestionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomQuestion
         fields = '__all__'
-  
+
+
 class CustomAnswerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomAnswer
         fields = '__all__'
-  

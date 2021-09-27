@@ -30,17 +30,18 @@ class Profile extends React.Component {
         };
     }
 
-    // TODO: CONNECT WITH PFOFILE API
+    // TODO: ADD user account fields 
     // request user profile data
-    componentDidMount() {
-        const profileAPI = "";
-        // data = await fetch(profileAPI);
+    async componentDidMount() {
+        const profileApi = require("../apis/profileApi");
+        const data = await profileApi.getUserProfile();
+        console.log(data)
         this.setState({
             photoURL:
                 "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
-            firstName: "First Name",
-            lastName: "Last Name",
-            email: "first.last@gmail.com",
+            firstName: data.first_name,
+            lastName: data.last_name,
+            email: data.email,
         });
     }
 

@@ -47,7 +47,7 @@ async function login(user) {
         mode: "cors",
         body: JSON.stringify({
             username: user.email,
-            password: user.password
+            password: user.password,
         }),
     };
     let response = await fetch(endpoint, requestOptions);
