@@ -45,16 +45,17 @@ class AppRouter extends React.Component {
     };
 
     render() {
+        console.log(this.isLoggedIn())
         return (
             <Router>
                 <Switch>
-                    this.isLoggedIn ?
+                    {this.isLoggedIn() ?
                     <Route exact path="/">
                         <Redirect to="/groups" />
                     </Route>
-                    : <Route exact path="/" component={EnterEmail}/>
-                    <Route exact path="/auth/signup" component={SignUp}/>
-                    <Route exact path="/auth/login" component={Login}/>
+                    : <Route exact path="/" component={EnterEmail} />}
+                    <Route exact path="/auth/signup" component={SignUp} />
+                    <Route exact path="/auth/login" component={Login} />
                     <Route exact path="/auth/logout">
                         <Redirect to="/" />
                     </Route>
