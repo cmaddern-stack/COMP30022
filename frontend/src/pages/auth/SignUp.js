@@ -90,17 +90,22 @@ class SignUp extends React.Component {
         this.props.history.goBack();
     };
 
-    // TODO: CONNECT SIGNUP API
+    // CONNECT SIGNUP API
     nextHandler = async (event) => {
         // redirect to home page
         const authApi = require("../../apis/authApi");
-        authApi.signup({
+        let response = await authApi.signup({
             email: this.state.email,
             password: this.state.password,
             first_name: this.state.firstName,
-            last_name: this.state.lastName
-        })
-        this.props.history.push("/groups");
+            last_name: this.state.lastName,
+        });
+        if ("id" in response) {
+            sessionStorage.setItem("userId", response.id);
+            this.props.history.push("/groups");
+        } else {
+            alert(JSON.stringify(response));
+        }
     };
 
     render() {

@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 import json
 from django.http import JsonResponse
+from django.contrib.auth import authenticate
 
 
 # Create your views here.
@@ -132,9 +133,20 @@ class HomeViewSet(viewsets.ModelViewSet):
 
 
 @csrf_exempt  # temporarily disable csrf token
-@api_view(['POST'])  # ensures only certain requests are given
+@api_view(['POST'])
 def check_email(request):
     queryset = User.objects.values_list('username', flat=True)
     body = json.loads(request.body)
     exists = body['email'] in queryset
     return JsonResponse({'success': exists})
+
+
+@csrf_exempt  # temporarily disable csrf token
+@api_view(['POST'])
+def login(request):
+    body = json.loads(request.body)
+    user = authenticate(username=body['username'], password=body['password'])
+    if user is not None:
+        return JsonResponse({'success': True, 'userId': user.id})
+    else:
+        return JsonResponse({'success': False})

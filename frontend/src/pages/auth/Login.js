@@ -45,11 +45,21 @@ class Login extends React.Component {
         this.props.history.goBack();
     };
 
-    // TODO: CONNECT LOGIN API
+    // CONNECT LOGIN API
     nextHandler = async (event) => {
         // redirect to home page
-        let loginAPI = "";
-        this.props.history.push("/groups");
+        const authApi = require("../../apis/authApi");
+        let response = await authApi.login({
+            email: this.state.email,
+            password: this.state.password,
+        });
+        console.log(response)
+        // if ("id" in response) {
+        //     sessionStorage.setItem("userId", response.id);
+        //     this.props.history.push("/groups");
+        // } else {
+        //     alert(JSON.stringify(response));
+        // }
     };
 
     render() {

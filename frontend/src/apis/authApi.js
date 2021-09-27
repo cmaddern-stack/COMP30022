@@ -36,7 +36,26 @@ async function signup(user) {
     return response.json();
 }
 
+async function login(user) {
+    const endpoint = BASE_URL + "api-auth/alt-login/";
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Accept: "*/*",
+            "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+            username: user.email,
+            password: user.password
+        }),
+    };
+    let response = await fetch(endpoint, requestOptions);
+    return response.json();
+}
+
 module.exports = {
     checkEmail,
     signup,
+    login,
 };
