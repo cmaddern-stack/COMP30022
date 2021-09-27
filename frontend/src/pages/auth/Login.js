@@ -12,6 +12,8 @@ class Login extends React.Component {
             passwordError: "",
             emailValid: true,
             passwordValid: false,
+            errorMessage: "Incorrect email address or password. Please try again.",
+            failed: "",
         };
     }
 
@@ -54,12 +56,14 @@ class Login extends React.Component {
             password: this.state.password,
         });
         console.log(response)
-        // if ("id" in response) {
-        //     sessionStorage.setItem("userId", response.id);
-        //     this.props.history.push("/groups");
-        // } else {
-        //     alert(JSON.stringify(response));
-        // }
+        if ("id" in response) {
+            sessionStorage.setItem("userId", response.id);
+            this.props.history.push("/groups");
+        } else {
+            this.setState({
+                failed: this.state.errorMessage,
+            })
+        }
     };
 
     render() {
@@ -86,6 +90,9 @@ class Login extends React.Component {
                         disabled="false"
                         error={this.state.passwordError}
                     />
+                </div>
+                <div className="input-error">
+                    {this.state.failed}
                 </div>
                 <div className="button-row">
                     <button
