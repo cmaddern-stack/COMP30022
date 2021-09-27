@@ -1,9 +1,9 @@
 const BASE_URL = "http://127.0.0.1:8000/crm/";
 const id = sessionStorage.getItem("userId");
-const username = sessionStorage.getItem("username");
+const accountEndpoint = BASE_URL + "useraccounts/" + id + "/";
+const profileEndpoint = BASE_URL + "userprofiles/" + id + "/";
 
 async function getUserProfile() {
-    const endpoint = BASE_URL + "useraccounts/" + id + "/";
     const requestOptions = {
         method: "GET",
         headers: {
@@ -12,12 +12,17 @@ async function getUserProfile() {
         },
         mode: "cors",
     };
-    let response = await fetch(endpoint, requestOptions);
-    return response.json();
+    let accountResponse = await fetch(accountEndpoint, requestOptions);
+    let profileResponse = await fetch(profileEndpoint, requestOptions);
+    var accountData = await accountResponse.json();
+    let profileData = await profileResponse.json();
+    accountData.organisation = profileData.organisation;
+    accountData.role = profileData.role;
+    accountData.phone = profileData.phoneNumber;
+    return accountData;
 }
 
 async function updateProfile(user) {
-    const endpoint = BASE_URL + "useraccounts/" + id + "/";
     const requestOptions = {
         method: "PATCH",
         headers: {
@@ -28,11 +33,15 @@ async function updateProfile(user) {
         body: JSON.stringify({
             first_name: user.firstName,
             last_name: user.lastName,
-            email: user.email
+            email: user.email,
+            organisation: user.organisation,
+            role: user.role,
+            phone: user.phone,
         }),
     };
-    let response = await fetch(endpoint, requestOptions);
-    return {success: true, user: response.json()};
+    await fetch(accountEndpoint, requestOptions);
+    await fetch(profileEndpoint, requestOptions);
+    return { success: true };
 }
 
 module.exports = {

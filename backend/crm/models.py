@@ -10,6 +10,10 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     userAccount = models.OneToOneField(User, on_delete=models.CASCADE)
+    organisation = models.CharField(max_length=100, blank=True, null=True)
+    role = models.CharField(max_length=100, blank=True, null=True)
+    phoneNumber = models.CharField(max_length=10, validators=[
+                                   RegexValidator(r'^\d{1,10}$')], blank=True, null=True)
 
 
 @receiver(post_save, sender=User)
@@ -37,7 +41,7 @@ class Contact(models.Model):
     starred = models.BooleanField(_("Star"), default=False)
     contactOwner = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, blank=True, null=True)
-    # TODO: ADD LINKEDIN LINK, PROFILE PICTURE 
+    # TODO: ADD LINKEDIN LINK, PROFILE PICTURE
 
 
 class Group(models.Model):

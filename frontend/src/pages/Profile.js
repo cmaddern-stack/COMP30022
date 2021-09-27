@@ -48,6 +48,9 @@ class Profile extends React.Component {
             firstName: data.first_name,
             lastName: data.last_name,
             email: data.email,
+            organisation: data.organisation,
+            role: data.role,
+            phone: data.phone
         });
     }
 
