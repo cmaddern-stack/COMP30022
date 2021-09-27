@@ -25,7 +25,6 @@ async function signup(user) {
         },
         mode: "cors",
         body: JSON.stringify({
-            username: user.email,
             email: user.email,
             password: user.password,
             first_name: user.first_name,

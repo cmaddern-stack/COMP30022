@@ -147,6 +147,6 @@ def login(request):
     body = json.loads(request.body)
     user = authenticate(username=body['username'], password=body['password'])
     if user is not None:
-        return JsonResponse({'success': True, 'id': user.id})
+        return JsonResponse({'success': True, 'id': user.id, 'username': user.username})
     else:
         return JsonResponse({'success': False})

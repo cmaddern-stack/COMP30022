@@ -105,11 +105,12 @@ class SignUp extends React.Component {
         });
         if ("id" in response) {
             sessionStorage.setItem("userId", response.id);
+            sessionStorage.setItem("username", response.username);
             this.props.history.push("/groups");
         } else {
             this.setState({
                 failed: this.state.errorMessage,
-                emailValid: false
+                emailValid: false,
             });
         }
     };

@@ -5,6 +5,13 @@ import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "./Profile.css";
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+
 /**
  * Profile Page
  * - Shows user their account information
@@ -30,12 +37,11 @@ class Profile extends React.Component {
         };
     }
 
-    // TODO: ADD user account fields 
+    // TODO: ADD user account fields
     // request user profile data
     async componentDidMount() {
         const profileApi = require("../apis/profileApi");
         const data = await profileApi.getUserProfile();
-        console.log(data)
         this.setState({
             photoURL:
                 "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
@@ -155,7 +161,7 @@ class Profile extends React.Component {
                 label="LinkedIn URL"
                 placeholder="e.g. linkedin.com/in/jane-doe"
                 onChange={this.changeHandler}
-                value={this.state.phone}
+                value={this.state.link}
             />,
         ];
     };
@@ -214,8 +220,17 @@ class Profile extends React.Component {
         });
     };
 
+    // TODO: add more fields
     saveHandler = async (event) => {
-        // TODO: post new data using API
+        const profileApi = require("../apis/profileApi");
+        await profileApi.updateProfile({
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+        });
+        this.setState({
+            buttonDisabled: true,
+        });
     };
 
     render() {
