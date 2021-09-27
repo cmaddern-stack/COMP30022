@@ -54,6 +54,7 @@ class Profile extends React.Component {
             [event.target.name]: event.target.value,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     customChangeHandler = async (event) => {
@@ -67,6 +68,7 @@ class Profile extends React.Component {
             customInput: newCustomInput,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     customLabelChangeHandler = async (event) => {
@@ -76,10 +78,22 @@ class Profile extends React.Component {
             label: event.target.value,
             value: this.state.customInput[id].value,
         };
+        // labels must not be blank
         this.setState({
             customInput: newCustomInput,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
+    };
+
+    preventBlankLabel = () => {
+        for (const field of this.state.customInput) {
+            if (field.label.trim() === "") {
+                this.setState({
+                    buttonDisabled: true,
+                });
+            }
+        }
     };
 
     emailChangeHandler = async (event) => {
@@ -92,6 +106,7 @@ class Profile extends React.Component {
             emailValid: result.valid,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     photoChangeHandler = async (event) => {
@@ -101,6 +116,7 @@ class Profile extends React.Component {
             photoURL: selected,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     getFields = () => {
@@ -207,6 +223,7 @@ class Profile extends React.Component {
             customInput: newCustomInputs,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     deleteCustomField = (id) => {
@@ -216,6 +233,7 @@ class Profile extends React.Component {
             customInput: newCustomInputs,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     // TODO: add more fields
