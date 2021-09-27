@@ -21,14 +21,20 @@ class EnterEmail extends React.Component {
         });
     };
 
-    // TODO: CHECK IF EMAIL IS ASSOCIATED WITH AN EXISTING ACCOUNT
-    // IF YES, PUSH LOGIN PAGE, ELSE PUSH SIGNUP PAGE 
+    // CHECK IF EMAIL IS ASSOCIATED WITH AN EXISTING ACCOUNT
+    // IF YES, PUSH LOGIN PAGE, ELSE PUSH SIGNUP PAGE
     nextHandler = async (event) => {
-        let data = {email: this.state.email};
+        let data = { email: this.state.email };
         // redirect to login or sign up pages
-        let emailLookupAPI = "";
-        // this.props.history.push({pathname: "/auth/login", state: data});
-        this.props.history.push({pathname: "/auth/signup", state: data});
+        const authApi = require("../../apis/authApi");
+        let exists = await authApi.checkEmail(this.state.email);
+        var path = "";
+        if (exists) {
+            path = "/auth/login";
+        } else {
+            path = "/auth/signup";
+        }
+        this.props.history.push({ pathname: path, state: data });
     };
 
     render() {
