@@ -21,6 +21,9 @@ class SignUp extends React.Component {
             lastNameValid: false,
             passwordValid: false,
             confirmPasswordValid: false,
+            errorMessage:
+                "Email already associated with existing account. Try again with a different email address. ",
+            failed: "",
         };
     }
 
@@ -104,7 +107,10 @@ class SignUp extends React.Component {
             sessionStorage.setItem("userId", response.id);
             this.props.history.push("/groups");
         } else {
-            alert(JSON.stringify(response));
+            this.setState({
+                failed: this.state.errorMessage,
+                emailValid: false
+            });
         }
     };
 
@@ -163,6 +169,7 @@ class SignUp extends React.Component {
                         error={this.state.confirmPasswordError}
                     />
                 </div>
+                <div className="input-error">{this.state.failed}</div>
                 <div className="button-row">
                     <button
                         className="secondary-button"
