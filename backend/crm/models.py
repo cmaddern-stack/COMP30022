@@ -4,21 +4,31 @@ from django.core.validators import RegexValidator
 from django.utils.translation import gettext as _
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
+
+def validate_file_size(file):
+    MAX_FILE_SIZE = 10485760  # 10MB
+    if file.size > MAX_FILE_SIZE:
+        raise ValidationError("File size exceeded 10MB")
+    return file
 
 class UserProfile(models.Model):
     userAccount = models.OneToOneField(User, on_delete=models.CASCADE)
     organisation = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=100, blank=True, null=True)
-    image = models.ImageField(upload_to='images/', height_field=None, width_field=None, null=True, blank=True)
+    image = models.ImageField(
+        upload_to='images/', height_field=None, width_field=None, null=True, blank=True)
+
 
 class UserProfileField(models.Model):
     userAccount = models.ForeignKey(User, on_delete=models.CASCADE)
     label = models.CharField(max_length=100, blank=False, null=False)
     value = models.CharField(max_length=100, blank=True, null=True)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
