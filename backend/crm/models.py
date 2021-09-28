@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     organisation = models.CharField(max_length=100, blank=True, null=True)
     role = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=100, blank=True, null=True)
-    image = models.ImageField(upload_to='uploads/', height_field=None, width_field=None, null=True, blank=True)
+    image = models.ImageField(upload_to='images/', height_field=None, width_field=None, null=True, blank=True)
 
 class UserProfileField(models.Model):
     userAccount = models.ForeignKey(User, on_delete=models.CASCADE)
