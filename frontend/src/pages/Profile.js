@@ -27,6 +27,8 @@ class Profile extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
+            defaultPhotoURL: "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
+            image: null,
         };
     }
 
@@ -37,8 +39,7 @@ class Profile extends React.Component {
         const data = await profileApi.getUserProfile();
         const customFields = await profileApi.getCustomFields();
         this.setState({
-            photoURL:
-                "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
+            photoURL: data.image===null ? this.state.defaultPhotoURL : data.image, 
             firstName: data.first_name,
             lastName: data.last_name,
             email: data.email,
@@ -115,6 +116,7 @@ class Profile extends React.Component {
         this.setState({
             photoURL: selected,
             buttonDisabled: false,
+            image: event.target.files[0]
         });
         this.preventBlankLabel();
     };
@@ -246,6 +248,7 @@ class Profile extends React.Component {
             organisation: this.state.organisation,
             role: this.state.role,
             phone: this.state.phone,
+            image: this.state.image,
         });
         await profileApi.updateCustomFields(this.state.customInput);
         this.setState({

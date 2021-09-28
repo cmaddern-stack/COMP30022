@@ -19,28 +19,40 @@ async function getUserProfile() {
     accountData.organisation = profileData.organisation;
     accountData.role = profileData.role;
     accountData.phone = profileData.phoneNumber;
+    accountData.image = profileData.image;
     return accountData;
 }
 
-async function updateProfile(user) {
+async function getProfileIcon() {
     const requestOptions = {
-        method: "PATCH",
+        method: "GET",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
         },
         mode: "cors",
-        body: JSON.stringify({
-            id: id,
-            url: profileEndpoint,
-            userAccount: accountEndpoint,
-            first_name: user.firstName,
-            last_name: user.lastName,
-            email: user.email,
-            organisation: user.organisation,
-            role: user.role,
-            phoneNumber: user.phone,
-        }),
+    };
+    let profileResponse = await fetch(profileEndpoint, requestOptions);
+    return profileResponse.json();
+}
+
+async function updateProfile(user) {
+    const form = new FormData();
+    form.append("id", id);
+    form.append("url", profileEndpoint);
+    form.append("userAccount", accountEndpoint);
+    form.append("first_name", user.firstName);
+    form.append("last_name", user.lastName);
+    form.append("email", user.email);
+    form.append("organisation", user.organisation);
+    form.append("role", user.role);
+    form.append("phoneNumber", user.phone);
+    if (user.image !== null) form.append("image", user.image);
+    const requestOptions = {
+        method: "PATCH",
+        headers: {},
+        mode: "cors",
+        body: form,
     };
     await fetch(accountEndpoint, requestOptions);
     await fetch(profileEndpoint, requestOptions);
@@ -82,6 +94,7 @@ async function updateCustomFields(fields) {
 
 module.exports = {
     getUserProfile,
+    getProfileIcon,
     updateProfile,
     getCustomFields,
     updateCustomFields,

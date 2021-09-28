@@ -17,6 +17,16 @@ class ProfileIcon extends React.Component {
         };
     }
 
+    async componentDidMount() {
+        const profileApi = require("../../apis/profileApi");
+        const data = await profileApi.getProfileIcon();
+        if (data.image !== null) {
+            this.setState({
+                url: data.image
+            })
+        }
+    }
+
     toggleMenu = () => {
         if (this.state.dropdown === "inactive") {
             this.setState({
