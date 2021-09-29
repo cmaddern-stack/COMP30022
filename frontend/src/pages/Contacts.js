@@ -174,7 +174,7 @@ export default function Contacts() {
 
     return (
         <div>
-            {showDropdown()}
+            {/* {showDropdown()} */}
             {renderTableHeader()}
             {renderItems()}
         </div>
