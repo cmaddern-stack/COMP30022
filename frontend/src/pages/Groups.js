@@ -2,12 +2,15 @@ import React from 'react';
 import Collapsible from 'react-collapsible';
 import CustomizedDialogs from '../components/Dialog';
 import './Groups.css';
+import {useState} from 'react'
+import JSONDATA from '../MOCK_DATA.json'
 
 export default function Groups() {
-    
+    const [searchTerm, setSearchTerm] = useState('')
 
     return (
         <div>
+            <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
             <div class="padded title">
                 IT Project
             </div>
@@ -15,17 +18,24 @@ export default function Groups() {
             <Collapsible triggerClassName="padded" trigger="Expand" triggerOpenedClassName="padded" triggerWhenOpen="Collapse" open= {true} >
 
             <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
+                {JSONDATA.filter((val)=> {
+                    if (searchTerm == "") {
+                        return val
+                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map((val, key) => {
+                    return (
+                        <div className="user" key={key}>
+                            <ContactCard name = {val.name}/>
+                        </div>
+                    );
+                })}
 
-            </div>
-            <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
                 <AddCard name = "Leon Sterling"/>
 
             </div>
+
             </Collapsible>
 
             <div class="padded title">
@@ -35,14 +45,20 @@ export default function Groups() {
             <Collapsible triggerClassName="padded" trigger="Expand" triggerOpenedClassName="padded" triggerWhenOpen="Collapse" open= {true} >
 
             <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
+                {JSONDATA.filter((val)=> {
+                    if (searchTerm == "") {
+                        return val
+                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map((val, key) => {
+                    return (
+                        <div className="user" key={key}>
+                            <ContactCard name = {val.name}/>
+                        </div>
+                    );
+                })}
 
-            </div>
-            <div class="topContainer">
-                <ContactCard name = "Leon Sterling"/>
-                <ContactCard name = "Leon Sterling"/>
                 <AddCard name = "Leon Sterling"/>
 
             </div>
