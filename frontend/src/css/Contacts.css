@@ -2,9 +2,13 @@
 .person {
     justify-content: space-between;
     width: 97%;
-    padding: 1em 2em;
+    padding: 0.5em 2em;
     border-radius: 90px;
     margin: 10px 20px;
+}
+
+.person div {
+    margin: auto;
 }
 
 .color-0 { background-color: white; }
