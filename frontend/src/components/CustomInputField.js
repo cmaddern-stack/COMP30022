@@ -1,5 +1,5 @@
 import React from "react";
-import "./InputField.css";
+import "../css/InputField.css";
 import { FaMinusCircle, FontAwesome } from "react-icons/fa";
 
 /**

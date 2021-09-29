@@ -1,7 +1,7 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import CustomizedDialogs from '../components/Dialog';
-import './Groups.css';
+import '../css/Groups.css';
 import {useState} from 'react'
 import JSONDATA from '../MOCK_DATA.json'
 

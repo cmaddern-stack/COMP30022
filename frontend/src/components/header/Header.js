@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileIcon from "./ProfileIcon";
-import "./Header.css";
+import "../../css/Header.css";
 import NotificationIcon from "./NotificationIcon";
 import PopularityCounter from "./PopularityCounter";
 import DarkModeToggle from "./DarkModeToggle";
@@ -19,7 +19,7 @@ class Header extends React.Component {
             <header>
                 <div className="header-content">
                     <div className="left-header">
-                        <a href="/">Logo and App Name</a>
+                        <a href="/groups">Logo and App Name</a>
                     </div>
                     <div className="right-header">
                         <PopularityCounter />
