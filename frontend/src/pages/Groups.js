@@ -4,13 +4,16 @@ import CustomizedDialogs from '../components/Dialog';
 import '../css/Groups.css';
 import {useState} from 'react'
 import JSONDATA from '../MOCK_DATA.json'
+import Dropdown from 'react-dropdown'
 
 export default function Groups() {
     const [searchTerm, setSearchTerm] = useState('')
 
+
     return (
         <div>
             <input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/>
+            
             <div class="padded title">
                 IT Project
             </div>
@@ -63,8 +66,6 @@ export default function Groups() {
 
             </div>
             </Collapsible>
-            
-            
             
             
         </div>
