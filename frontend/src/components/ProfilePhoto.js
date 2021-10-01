@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "../pages/Profile.css";
+import "../css/Profile.css";
 import { FontAwesome } from "react-icons/fa";
 import { FaCamera } from "react-icons/fa";
 

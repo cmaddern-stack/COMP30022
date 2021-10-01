@@ -3,7 +3,7 @@ import InputField from "../components/InputField";
 import CustomInputField from "../components/CustomInputField";
 import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
-import "./Profile.css";
+import "../css/Profile.css";
 
 /**
  * Profile Page

@@ -1,6 +1,9 @@
 .topContainer {
+    column-count: 3;
     display: flex;
     flex-direction: row;
+    place-items: center start;
+    flex-wrap: wrap;
 }
 
 .rcorners {
