@@ -12,6 +12,9 @@ class Login extends React.Component {
             passwordError: "",
             emailValid: true,
             passwordValid: false,
+            errorMessage:
+                "Incorrect email address or password. Please try again.",
+            failed: "",
         };
     }
 
@@ -45,11 +48,23 @@ class Login extends React.Component {
         this.props.history.goBack();
     };
 
-    // TODO: CONNECT LOGIN API
+    // CONNECT LOGIN API
     nextHandler = async (event) => {
         // redirect to home page
-        let loginAPI = "";
-        this.props.history.push("/groups");
+        const authApi = require("../../apis/authApi");
+        let response = await authApi.login({
+            email: this.state.email,
+            password: this.state.password,
+        });
+        if ("id" in response) {
+            sessionStorage.setItem("userId", response.id);
+            sessionStorage.setItem("username", response.username);
+            this.props.history.push("/groups");
+        } else {
+            this.setState({
+                failed: this.state.errorMessage,
+            });
+        }
     };
 
     render() {
@@ -77,6 +92,7 @@ class Login extends React.Component {
                         error={this.state.passwordError}
                     />
                 </div>
+                <div className="input-error">{this.state.failed}</div>
                 <div className="button-row">
                     <button
                         className="secondary-button"

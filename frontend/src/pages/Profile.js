@@ -27,20 +27,26 @@ class Profile extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
+            defaultPhotoURL: "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
+            image: null,
         };
     }
 
-    // TODO: CONNECT WITH PFOFILE API
+    // TODO: ADD user account fields
     // request user profile data
-    componentDidMount() {
-        const profileAPI = "";
-        // data = await fetch(profileAPI);
+    async componentDidMount() {
+        const profileApi = require("../apis/profileApi");
+        const data = await profileApi.getUserProfile();
+        const customFields = await profileApi.getCustomFields();
         this.setState({
-            photoURL:
-                "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
-            firstName: "First Name",
-            lastName: "Last Name",
-            email: "first.last@gmail.com",
+            photoURL: data.image===null ? this.state.defaultPhotoURL : data.image, 
+            firstName: data.first_name,
+            lastName: data.last_name,
+            email: data.email,
+            organisation: data.organisation,
+            role: data.role,
+            phone: data.phone,
+            customInput: customFields,
         });
     }
 
@@ -49,6 +55,7 @@ class Profile extends React.Component {
             [event.target.name]: event.target.value,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     customChangeHandler = async (event) => {
@@ -62,6 +69,7 @@ class Profile extends React.Component {
             customInput: newCustomInput,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     customLabelChangeHandler = async (event) => {
@@ -71,10 +79,22 @@ class Profile extends React.Component {
             label: event.target.value,
             value: this.state.customInput[id].value,
         };
+        // labels must not be blank
         this.setState({
             customInput: newCustomInput,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
+    };
+
+    preventBlankLabel = () => {
+        for (const field of this.state.customInput) {
+            if (field.label.trim() === "") {
+                this.setState({
+                    buttonDisabled: true,
+                });
+            }
+        }
     };
 
     emailChangeHandler = async (event) => {
@@ -87,6 +107,7 @@ class Profile extends React.Component {
             emailValid: result.valid,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     photoChangeHandler = async (event) => {
@@ -95,7 +116,9 @@ class Profile extends React.Component {
         this.setState({
             photoURL: selected,
             buttonDisabled: false,
+            image: event.target.files[0]
         });
+        this.preventBlankLabel();
     };
 
     getFields = () => {
@@ -154,7 +177,7 @@ class Profile extends React.Component {
                 label="LinkedIn URL"
                 placeholder="e.g. linkedin.com/in/jane-doe"
                 onChange={this.changeHandler}
-                value={this.state.phone}
+                value={this.state.link}
             />,
         ];
     };
@@ -202,6 +225,7 @@ class Profile extends React.Component {
             customInput: newCustomInputs,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
     deleteCustomField = (id) => {
@@ -211,10 +235,25 @@ class Profile extends React.Component {
             customInput: newCustomInputs,
             buttonDisabled: false,
         });
+        this.preventBlankLabel();
     };
 
+    // TODO: add more fields
     saveHandler = async (event) => {
-        // TODO: post new data using API
+        const profileApi = require("../apis/profileApi");
+        await profileApi.updateProfile({
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            organisation: this.state.organisation,
+            role: this.state.role,
+            phone: this.state.phone,
+            image: this.state.image,
+        });
+        await profileApi.updateCustomFields(this.state.customInput);
+        this.setState({
+            buttonDisabled: true,
+        });
     };
 
     render() {

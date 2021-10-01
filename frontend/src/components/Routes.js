@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from "react-router-dom";
 
 import Groups from "../pages/Groups";
 import Header from "./header/Header";
@@ -16,6 +21,11 @@ import ContactsOptionsBar from "./ContactsOptionsBar";
  */
 
 class AppRouter extends React.Component {
+    isLoggedIn = () => {
+        const id = sessionStorage.getItem("userId");
+        return id !== null;
+    };
+
     contactsPage = () => {
         return (
             <div>
@@ -35,12 +45,20 @@ class AppRouter extends React.Component {
     };
 
     render() {
+        console.log(this.isLoggedIn())
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={EnterEmail}></Route>
-                    <Route exact path="/auth/signup" component={SignUp}></Route>
-                    <Route exact path="/auth/login" component={Login}></Route>
+                    {this.isLoggedIn() ?
+                    <Route exact path="/">
+                        <Redirect to="/groups" />
+                    </Route>
+                    : <Route exact path="/" component={EnterEmail} />}
+                    <Route exact path="/auth/signup" component={SignUp} />
+                    <Route exact path="/auth/login" component={Login} />
+                    <Route exact path="/auth/logout">
+                        <Redirect to="/" />
+                    </Route>
                     <div>
                         <Header />
                         <Route

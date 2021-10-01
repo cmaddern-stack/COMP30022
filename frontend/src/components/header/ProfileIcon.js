@@ -17,6 +17,16 @@ class ProfileIcon extends React.Component {
         };
     }
 
+    async componentDidMount() {
+        const profileApi = require("../../apis/profileApi");
+        const data = await profileApi.getProfileIcon();
+        if (data.image !== null) {
+            this.setState({
+                url: data.image
+            })
+        }
+    }
+
     toggleMenu = () => {
         if (this.state.dropdown === "inactive") {
             this.setState({
@@ -30,6 +40,10 @@ class ProfileIcon extends React.Component {
             });
         }
     };
+
+    logout = () => {
+        sessionStorage.clear();
+    }
 
     render() {
         return (
@@ -55,7 +69,7 @@ class ProfileIcon extends React.Component {
                             <li>Settings</li>
                         </a>
                         <a href="/auth/logout">
-                            <li>Logout</li>
+                            <li onClick={this.logout}>Logout</li>
                         </a>
                     </ul>
                 </div>

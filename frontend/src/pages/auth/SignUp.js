@@ -21,6 +21,9 @@ class SignUp extends React.Component {
             lastNameValid: false,
             passwordValid: false,
             confirmPasswordValid: false,
+            errorMessage:
+                "Email already associated with existing account. Try again with a different email address. ",
+            failed: "",
         };
     }
 
@@ -53,10 +56,11 @@ class SignUp extends React.Component {
             passwordError: result.error,
             passwordValid: result.valid,
         });
-        let confirmPasswordResult = await AuthController.confirmPasswordChangeHandler(
-            this.state.password,
-            this.state.confirmPassword
-        );
+        let confirmPasswordResult =
+            await AuthController.confirmPasswordChangeHandler(
+                this.state.password,
+                this.state.confirmPassword
+            );
         this.setState({
             confirmPasswordError: confirmPasswordResult.error,
             confirmPasswordValid: confirmPasswordResult.valid,
@@ -89,11 +93,26 @@ class SignUp extends React.Component {
         this.props.history.goBack();
     };
 
-    // TODO: CONNECT SIGNUP API
+    // CONNECT SIGNUP API
     nextHandler = async (event) => {
         // redirect to home page
-        let signupAPI = "";
-        this.props.history.push("/groups");
+        const authApi = require("../../apis/authApi");
+        let response = await authApi.signup({
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.firstName,
+            last_name: this.state.lastName,
+        });
+        if ("id" in response) {
+            sessionStorage.setItem("userId", response.id);
+            sessionStorage.setItem("username", response.username);
+            this.props.history.push("/groups");
+        } else {
+            this.setState({
+                failed: this.state.errorMessage,
+                emailValid: false,
+            });
+        }
     };
 
     render() {
@@ -151,6 +170,7 @@ class SignUp extends React.Component {
                         error={this.state.confirmPasswordError}
                     />
                 </div>
+                <div className="input-error">{this.state.failed}</div>
                 <div className="button-row">
                     <button
                         className="secondary-button"
