@@ -1,5 +1,5 @@
 module.exports = {
     local: 'http://localhost:3000/',
-    prod: 'https://julia-test-prod.herokuapp.com/',
-    qa: 'https://julia-qa.herokuapp.com/'
+    prod: 'https://team-69-production.herokuapp.com/',
+    qa: 'https://team-69-qa.herokuapp.com/'
 }
