@@ -10,9 +10,12 @@ class InputField extends React.Component {
         return (
             <div className="input-field">
                 <div className="label">
-                    <label for={this.props.name}>{this.props.label}</label>
+                    <label id={this.props.name} htmlFor={this.props.name}>
+                        {this.props.label}
+                    </label>
                 </div>
                 <input
+                    id={this.props.name}
                     type={this.props.type}
                     name={this.props.name}
                     placeholder={this.props.placeholder}

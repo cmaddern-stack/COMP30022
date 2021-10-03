@@ -54,12 +54,8 @@ class EnterEmail extends React.Component {
                     <button
                         className="invisible-button"
                         type="button"
-                        name="next"
-                        disabled={!this.state.emailValid}
-                        onClick={this.nextHandler}
-                    >
-                        NEXT
-                    </button>
+                        disabled={true}
+                    ></button>
                     <button
                         className="primary-button"
                         type="button"
