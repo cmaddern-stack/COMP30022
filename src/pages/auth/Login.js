@@ -1,6 +1,7 @@
 import React from "react";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
+import AuthAPI from "../../apis/authApi";
 
 class Login extends React.Component {
     constructor(props) {
@@ -50,9 +51,7 @@ class Login extends React.Component {
 
     // CONNECT LOGIN API
     nextHandler = async (event) => {
-        // redirect to home page
-        const authApi = require("../../apis/authApi");
-        let response = await authApi.login({
+        let response = await AuthAPI.login({
             email: this.state.email,
             password: this.state.password,
         });

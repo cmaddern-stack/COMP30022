@@ -1,6 +1,7 @@
 import React from "react";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
+import AuthAPI from "../../apis/authApi";
 
 class EnterEmail extends React.Component {
     constructor(props) {
@@ -25,9 +26,7 @@ class EnterEmail extends React.Component {
     // IF YES, PUSH LOGIN PAGE, ELSE PUSH SIGNUP PAGE
     nextHandler = async (event) => {
         let data = { email: this.state.email };
-        // redirect to login or sign up pages
-        const authApi = require("../../apis/authApi");
-        let response = await authApi.checkEmail(this.state.email);
+        let response = await AuthAPI.checkEmail(this.state.email);
         let exists = response.success;
         var path = "";
         if (exists) {

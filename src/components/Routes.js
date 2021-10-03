@@ -45,7 +45,6 @@ class AppRouter extends React.Component {
     };
 
     render() {
-        console.log(this.isLoggedIn())
         return (
             <Router>
                 <Switch>
