@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/Header.css";
+import ProfileAPI from "../../apis/profileApi";
 
 /**
  * Profile Icon
@@ -18,8 +19,7 @@ class ProfileIcon extends React.Component {
     }
 
     async componentDidMount() {
-        const profileApi = require("../../apis/profileApi");
-        const data = await profileApi.getProfileIcon();
+        const data = await ProfileAPI.getProfileIcon();
         if (data.image !== null) {
             this.setState({
                 url: data.image

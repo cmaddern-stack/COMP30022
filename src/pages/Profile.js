@@ -4,6 +4,7 @@ import CustomInputField from "../components/CustomInputField";
 import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "../css/Profile.css";
+import ProfileAPI from "../apis/profileApi";
 
 /**
  * Profile Page
@@ -27,7 +28,8 @@ class Profile extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
-            defaultPhotoURL: "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
+            defaultPhotoURL:
+                "https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999",
             image: null,
         };
     }
@@ -35,11 +37,11 @@ class Profile extends React.Component {
     // TODO: ADD user account fields
     // request user profile data
     async componentDidMount() {
-        const profileApi = require("../apis/profileApi");
-        const data = await profileApi.getUserProfile();
-        const customFields = await profileApi.getCustomFields();
+        const data = await ProfileAPI.getUserProfile();
+        const customFields = await ProfileAPI.getCustomFields();
         this.setState({
-            photoURL: data.image===null ? this.state.defaultPhotoURL : data.image, 
+            photoURL:
+                data.image === null ? this.state.defaultPhotoURL : data.image,
             firstName: data.first_name,
             lastName: data.last_name,
             email: data.email,
@@ -116,7 +118,7 @@ class Profile extends React.Component {
         this.setState({
             photoURL: selected,
             buttonDisabled: false,
-            image: event.target.files[0]
+            image: event.target.files[0],
         });
         this.preventBlankLabel();
     };
@@ -171,14 +173,14 @@ class Profile extends React.Component {
                 onChange={this.changeHandler}
                 value={this.state.phone}
             />,
-            <InputField
-                type="url"
-                name="link"
-                label="LinkedIn URL"
-                placeholder="e.g. linkedin.com/in/jane-doe"
-                onChange={this.changeHandler}
-                value={this.state.link}
-            />,
+            // <InputField
+            //     type="url"
+            //     name="link"
+            //     label="LinkedIn URL"
+            //     placeholder="e.g. linkedin.com/in/jane-doe"
+            //     onChange={this.changeHandler}
+            //     value={this.state.link}
+            // />,
         ];
     };
 
@@ -240,8 +242,7 @@ class Profile extends React.Component {
 
     // TODO: add more fields
     saveHandler = async (event) => {
-        const profileApi = require("../apis/profileApi");
-        await profileApi.updateProfile({
+        await ProfileAPI.updateProfile({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
@@ -250,7 +251,7 @@ class Profile extends React.Component {
             phone: this.state.phone,
             image: this.state.image,
         });
-        await profileApi.updateCustomFields(this.state.customInput);
+        await ProfileAPI.updateCustomFields(this.state.customInput);
         this.setState({
             buttonDisabled: true,
         });
