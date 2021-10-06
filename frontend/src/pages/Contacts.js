@@ -8,7 +8,6 @@ import { IoMdArrowDropdown, IoMdArrowDropleft } from 'react-icons/io';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { IconContext } from "react-icons";
 
-
 const contacts = [
     {
         url: "http://localhost:8000/crm/contacts/7/",
@@ -84,20 +83,6 @@ const contacts = [
 
 
 export default function Contacts() {
-    
-    // const { loading, items, error } = useContacts();
-    
-    // if (loading) {
-        //     return <p>Loading contacts, sit tight...</p>;
-        // }
-        // if (error) {
-            //     return (
-                //         <div>
-                //             <p>Something went wrong!</p>
-                //             <p>{error.message}</p>
-                //         </div>
-                //     );
-                // }
 
     const [ organisation, setOrganisation ] = useState(true)
     const [ role, setRole ] = useState(true)
@@ -105,23 +90,41 @@ export default function Contacts() {
     const [ phone, setPhone ] = useState(true)
     const [ notes, setNotes ] = useState(true)
     const [ dropdown, setDropdown ] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const { loading, items, error } = useContacts();
+
+    if (loading) {
+        return <p>Loading Orders, sit tight...</p>;
+    } 
+    if (error) {
+        return <div><p>Something went wrong! Log in to view your cart. </p><p>{error.message}</p></div>
+    }
                 
     function showDropdown() {
         if (dropdown) {
             return (
-                <div>
-                    <div><button class="w-25"  onClick={() => setDropdown(false)}><BsListUl /> Change Columns <IoMdArrowDropdown /></button></div>
-                    { organisation ? <h5><button onClick={() => setOrganisation(false)}>Show Organisation</button></h5> : <h5><button onClick={() => setOrganisation(true)}>Show Organisation</button></h5>}
-                    { role ? <h5><button onClick={() => setRole(false)}>Show Role</button></h5> : <h5><button onClick={() => setRole(true)}>Show Role</button></h5>}
-                    { email ? <h5><button onClick={() => setEmail(false)}>Show Email</button></h5> : <h5><button onClick={() => setEmail(true)}>Show Email</button></h5>}
-                    { phone ? <h5><button onClick={() => setPhone(false)}>Show Phone</button></h5> : <h5><button onClick={() => setPhone(true)}>Show Phone</button></h5>}
-                    { notes ? <h5><button onClick={() => setNotes(false)}>Show Notes</button></h5> : <h5><button onClick={() => setNotes(true)}>Show Notes</button></h5>}
+                <div className="d-flex">
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
+                        
+                    <div className="dropdown-box">
+                        <button className="dropbtn" onClick={() => setDropdown(false)}><BsListUl /> Change Columns <IoMdArrowDropdown /></button>
+                        <div className="dropdown-content">
+                            { organisation ? <button onClick={() => setOrganisation(false)}>&#x2611; Show Organisation </button> : <button onClick={() => setOrganisation(true)}>&#x2610; Show Organisation </button>}
+                            { role ? <button onClick={() => setRole(false)}>&#x2611; Show Role</button> : <button onClick={() => setRole(true)}>&#x2610; Show Role</button>}
+                            { email ? <button onClick={() => setEmail(false)}>&#x2611; Show Email</button> : <button onClick={() => setEmail(true)}>&#x2610; Show Email</button>}
+                            { phone ? <button onClick={() => setPhone(false)}>&#x2611; Show Phone</button> : <button onClick={() => setPhone(true)}>&#x2610; Show Phone</button>}
+                            { notes ? <button onClick={() => setNotes(false)}>&#x2611; Show Notes</button> : <button onClick={() => setNotes(true)}>&#x2610; Show Notes</button>}
+                        </div>
+                    
+                    </div>
+                    
                 </div>
             )
         } else {
             return (
-                <div>
-                    <div><button class="w-25" onClick={() => setDropdown(true)}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
+                <div className="d-flex">
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
+                    <div className="dropdown-box"><button className="dropbtn" onClick={() => setDropdown(true)}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
                 </div>
             )
         }
@@ -129,17 +132,17 @@ export default function Contacts() {
 
     function renderTableHeader() {
         return (
-            <div class="person d-flex">
-                <div class="w-2"></div>
-                <div class="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
-                <div class="w-10">Name</div>
-                <div class="w-10">Groups</div>
-                { organisation ? <div class="w-10">Organisation</div> : null}
-                { role ? <div class="w-10">Role</div> : null}
-                { email ? <div class="w-10">Email</div> : null}
-                { phone ? <div class="w-10">Phone</div> : null}
-                { notes ? <div class="w-15">Notes</div> : null}
-                <div class="w-5 text-right">Edit</div>
+            <div className="person d-flex">
+                <div className="w-2"></div>
+                <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
+                <div className="w-10">Name</div>
+                <div className="w-10">Groups</div>
+                { organisation ? <div className="w-10">Organisation</div> : null}
+                { role ? <div className="w-10">Role</div> : null}
+                { email ? <div className="w-10">Email</div> : null}
+                { phone ? <div className="w-10">Phone</div> : null}
+                { notes ? <div className="w-15">Notes</div> : null}
+                <div className="w-5 text-right">Edit</div>
             </div>
         );
     }
@@ -148,25 +151,43 @@ export default function Contacts() {
         const first = item.firstName[0];
         const second = item.lastName[0];
         return (
-            <div class="initials">{first}{second}</div>
+            <div className="initials">{first}{second}</div>
         )
     }
 
     function renderItems() {
-        return contacts.map((item, index) => {
+        return items.filter((val)=> {
+                if (searchTerm === "") {
+                    return val
+                } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.organisation.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.role.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.emailAddress.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                } else if (val.notes.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return val
+                }
+            }).map((item, index) => {
                 let x = index % 2;
                 return (
-                    <div class={'person d-flex white space-around color-' + x}>
-                        <div class="w-2">{showInitials(item)}</div>
-                        <div class="w-2">{ item.starred ? <div class="w-2"><IconContext.Provider value={{ color: '#df5571;' }}><AiFillStar /></IconContext.Provider></div> : <div class="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
-                        <div class="w-10">{item.firstName} {item.lastName}</div>
-                        <div class="w-10">Groups</div>
-                        { organisation ? <div class="w-10">{item.organisation}</div> : null}
-                        { role ? <div class="w-10">{item.role}</div> : null}
-                        { email ? <div class="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
-                        { phone ? <div class="w-10">{item.phoneNumber}</div> : null}
-                        { notes ? <div class="w-15">{item.notes}</div> : null}
-                        <div class="w-5 text-right">Edit</div>
+                    <div className={'person d-flex white space-around color-' + x}>
+                        <div className="w-2">{showInitials(item)}</div>
+                        <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
+                        <div className="w-10">{item.firstName} {item.lastName}</div>
+                        <div className="w-10">Groups</div>
+                        { organisation ? <div className="w-10">{item.organisation}</div> : null}
+                        { role ? <div className="w-10">{item.role}</div> : null}
+                        { email ? <div className="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
+                        { phone ? <div className="w-10">{item.phoneNumber}</div> : null}
+                        { notes ? <div className="w-15">{item.notes}</div> : null}
+                        <div className="w-5 text-right">Edit</div>
                     </div>
                 )
             });
@@ -174,7 +195,7 @@ export default function Contacts() {
 
     return (
         <div>
-            {/* {showDropdown()} */}
+            {showDropdown()}
             {renderTableHeader()}
             {renderItems()}
         </div>
