@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Collapsible from 'react-collapsible';
 import CustomizedDialogs from '../components/Dialog';
 import '../css/Groups.css';
 import {useState} from 'react'
+import Contacts, { useContacts } from '../apis/contactsApi'
 import JSONDATA from '../MOCK_DATA.json'
 import Dropdown from 'react-dropdown'
+import axios from 'axios';
+import Login from './auth/Login';
+import AuthAPI from '../apis/authApi';
+
+const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+
 
 export default function Groups() {
     const [searchTerm, setSearchTerm] = useState('')
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        getContacts();
+    
+        async function getContacts(user){
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    'Authorization': `Basic ` + btoa(sessionStorage.getItem("username") + ':' + sessionStorage.getItem("password"))
+                },
+                mode: "cors",
+            };
+            const response = await fetch(BASE_URL + "contacts/", requestOptions);
+            const data = await response.json();
+            console.log(data);
+
+            setContacts(data);
+        }
+    }, []);  
 
 
     return (
@@ -21,16 +50,16 @@ export default function Groups() {
             <Collapsible triggerClassName="padded" trigger="Expand" triggerOpenedClassName="padded" triggerWhenOpen="Collapse" open= {true} >
 
             <div class="topContainer">
-                {JSONDATA.filter((val)=> {
+                {contacts.filter((val)=> {
                     if (searchTerm == "") {
                         return val
-                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return val
                     }
                 }).map((val, key) => {
                     return (
                         <div className="user" key={key}>
-                            <ContactCard name = {val.name}/>
+                            <ContactCard name = {val.firstName}/>
                         </div>
                     );
                 })}
@@ -51,13 +80,13 @@ export default function Groups() {
                 {JSONDATA.filter((val)=> {
                     if (searchTerm == "") {
                         return val
-                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase())) {
                         return val
                     }
                 }).map((val, key) => {
                     return (
                         <div className="user" key={key}>
-                            <ContactCard name = {val.name}/>
+                            <ContactCard name = {val.firstName}/>
                         </div>
                     );
                 })}

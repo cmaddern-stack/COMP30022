@@ -2,8 +2,12 @@ import React from "react";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
 import AuthAPI from "../../apis/authApi";
+import Groups from "../Groups";
+
+let password = ""
 
 class Login extends React.Component {
+    static email = ""
     constructor(props) {
         super(props);
         this.state = {
@@ -58,12 +62,15 @@ class Login extends React.Component {
         if ("id" in response) {
             sessionStorage.setItem("userId", response.id);
             sessionStorage.setItem("username", response.username);
+            sessionStorage.setItem("password", this.state.password);
             this.props.history.push("/groups");
         } else {
             this.setState({
                 failed: this.state.errorMessage,
             });
         }
+        //email = this.state.email
+        password = this.state.password
     };
 
     render() {

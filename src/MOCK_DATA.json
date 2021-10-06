@@ -1,6 +1,6 @@
-[{"name":"Cameron"},
-{"name":"Ben"},
-{"name":"Bob"},
-{"name":"Bill"},
-{"name":"Steve"}
+[{"firstName":"Cameron"},
+{"firstName":"Ben"},
+{"firstName":"Bob"},
+{"firstName":"Bill"},
+{"firstName":"Steve"}
 ]
