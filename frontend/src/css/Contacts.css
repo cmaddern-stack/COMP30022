@@ -37,3 +37,41 @@
     border-radius: 90%;
     text-align: center;
 }
+
+.searchbar {
+    padding: 0em 2em;
+    width: 75%;
+}
+
+.dropdown-box {
+    padding: 0em 2em;
+    width: 25%;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+    position: relative;
+}
+
+.dropbtn {
+    background-color: #c3d3fa;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    position: absolute;
+    text-align: center;
+    padding: .5rem;
+    width: 85%;
+}
+
+.dropdown-content button {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background-color: white;
+}
+
+.dropdown-content button:hover {
+    background-color: lightgray;
+}

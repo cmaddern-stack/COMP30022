@@ -6,7 +6,6 @@ export async function getContacts() {
     return axios.get("/crm/contacts/").then(res => res.data);
 }
 
-
 export function useContacts() {
     const [loading, setLoading] = useState(true);
     const [items, setItems] = useState([]);
