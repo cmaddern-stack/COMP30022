@@ -94,7 +94,6 @@ class SignUp extends React.Component {
         this.props.history.goBack();
     };
 
-    // CONNECT SIGNUP API
     nextHandler = async (event) => {
         // redirect to home page
         let response = await AuthAPI.signup({
@@ -104,8 +103,7 @@ class SignUp extends React.Component {
             last_name: this.state.lastName,
         });
         if ("id" in response) {
-            sessionStorage.setItem("userId", response.id);
-            sessionStorage.setItem("username", response.username);
+            await AuthController.loginUser(response);
             this.props.history.push("/groups");
         } else {
             this.setState({

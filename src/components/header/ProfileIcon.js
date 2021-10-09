@@ -18,11 +18,11 @@ class ProfileIcon extends React.Component {
         };
     }
 
-    async componentDidMount() {
-        const data = await ProfileAPI.getProfileIcon();
-        if (data.image !== null) {
+    async componentWillMount() {
+        const image = sessionStorage.getItem("image");
+        if (image !== null && image !== "undefined") {
             this.setState({
-                url: data.image
+                url: image
             })
         }
     }

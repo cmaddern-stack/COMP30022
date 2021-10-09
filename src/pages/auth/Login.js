@@ -56,8 +56,7 @@ class Login extends React.Component {
             password: this.state.password,
         });
         if ("id" in response) {
-            sessionStorage.setItem("userId", response.id);
-            sessionStorage.setItem("username", response.username);
+            await AuthController.loginUser(response);
             this.props.history.push("/groups");
         } else {
             this.setState({

@@ -1,6 +1,7 @@
 import React from "react";
 import validator from "validator";
 import InputField from "../components/InputField";
+import ProfileAPI from "../apis/profileApi";
 
 class AuthController {
     static emailChangeHandler = async (email) => {
@@ -69,6 +70,13 @@ class AuthController {
         }
         return { error: error, valid: valid };
     };
+
+    static loginUser = async (response) => {
+        sessionStorage.setItem("userId", response.id);
+        sessionStorage.setItem("username", response.username);
+        const data = await ProfileAPI.getProfileIcon();
+        sessionStorage.setItem("image", data.image);
+    }
 }
 
 export default AuthController;

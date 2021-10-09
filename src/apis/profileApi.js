@@ -1,4 +1,5 @@
-const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+// const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+const BASE_URL = "http://127.0.0.1:8000/crm/";
 const id = sessionStorage.getItem("userId");
 const accountEndpoint = BASE_URL + "useraccounts/" + id + "/";
 const profileEndpoint = BASE_URL + "userprofiles/" + id + "/";
@@ -21,8 +22,9 @@ class ProfileAPI {
         accountData.role = profileData.role;
         accountData.phone = profileData.phoneNumber;
         accountData.image = profileData.image;
+        sessionStorage.setItem("image", accountData.image);
         return accountData;
-    }
+    };
 
     static getProfileIcon = async () => {
         const requestOptions = {
@@ -34,8 +36,9 @@ class ProfileAPI {
             mode: "cors",
         };
         let profileResponse = await fetch(profileEndpoint, requestOptions);
-        return profileResponse.json();
-    }
+        const res = await profileResponse.json();
+        return res;
+    };
 
     static updateProfile = async (user) => {
         const form = new FormData();
@@ -58,7 +61,7 @@ class ProfileAPI {
         await fetch(accountEndpoint, requestOptions);
         await fetch(profileEndpoint, requestOptions);
         return { success: true };
-    }
+    };
 
     static getCustomFields = async () => {
         const endpoint = profileEndpoint + "fields/";
@@ -72,7 +75,7 @@ class ProfileAPI {
         };
         const fields = await fetch(endpoint, requestOptions);
         return fields.json();
-    }
+    };
 
     static updateCustomFields = async (fields) => {
         const endpoint = profileEndpoint + "fields/";
@@ -91,7 +94,7 @@ class ProfileAPI {
             }),
         };
         await fetch(endpoint, requestOptions);
-    }
+    };
 }
 
 export default ProfileAPI;

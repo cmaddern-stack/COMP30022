@@ -22,6 +22,8 @@ jobs:
       - name: Test
         run: npm test
         env:
-          CI: ""
+          CI: false
       - name: Generate build
         run: npm run build
+        env:
+          CI: ""
