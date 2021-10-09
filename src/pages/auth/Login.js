@@ -2,8 +2,12 @@ import React from "react";
 import InputField from "../../components/InputField";
 import AuthController from "../../controllers/AuthController";
 import AuthAPI from "../../apis/authApi";
+import Groups from "../Groups";
+
+let password = ""
 
 class Login extends React.Component {
+    static email = ""
     constructor(props) {
         super(props);
         this.state = {
@@ -63,6 +67,8 @@ class Login extends React.Component {
                 failed: this.state.errorMessage,
             });
         }
+        //email = this.state.email
+        password = this.state.password
     };
 
     render() {
