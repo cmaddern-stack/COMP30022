@@ -1,4 +1,6 @@
 import React, { useState, Component, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useHistory, Route } from "react-router";
 import { render } from "react-dom";
 import { useContacts } from "../apis/contactsApi";
 import "../css/Contacts.css";
@@ -7,11 +9,13 @@ import { BsListUl } from "react-icons/bs";
 import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import EditContact from "../components/EditContact";
+
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 
 var sortUp = false;
 
-export default function Contacts() {
+export default function Contacts(props) {
     // const { loading, items, error } = useContacts();
 
     // if (loading) {
@@ -32,6 +36,8 @@ export default function Contacts() {
     const [phone, setPhone] = useState(true);
     const [notes, setNotes] = useState(true);
     const [dropdown, setDropdown] = useState(false);
+    const location = useLocation();
+    const history = useHistory();
 
     const [contacts, setContacts] = useState([]);
 
@@ -203,13 +209,16 @@ export default function Contacts() {
         return contacts.map((item, index) => {
             let x = index % 2;
             return (
-                <div class={"person d-flex white space-around color-" + x}>
+                <div
+                    key={index}
+                    class={"person d-flex white space-around color-" + x}
+                >
                     <div class="w-2">{showInitials(item)}</div>
                     <div class="w-2">
                         {item.starred ? (
                             <div class="w-2">
                                 <IconContext.Provider
-                                    value={{ color: "#df5571;" }}
+                                    value={{ color: "#df5571" }}
                                 >
                                     <AiFillStar />
                                 </IconContext.Provider>
@@ -244,7 +253,20 @@ export default function Contacts() {
                     {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
                     {notes ? <div class="w-15">{item.notes}</div> : null}
                     {/* // TODO: Connect edit contacts */}
-                    <div class="w-5 text-right">Edit</div>
+                    <div
+                        class="w-5 text-right"
+                        onClick={() => {
+                            history.push({
+                                pathname: `${location.pathname.replace(
+                                    /\/$/g,
+                                    ""
+                                )}/edit/${item.id}`,
+                                url: item.url,
+                            });
+                        }}
+                    >
+                        Edit
+                    </div>
                 </div>
             );
         });
@@ -252,6 +274,11 @@ export default function Contacts() {
 
     return (
         <div>
+            <Route
+                exact
+                path={`/contacts/edit/:id`}
+                component={EditContact}
+            ></Route>
             {/* {showDropdown()} */}
             {renderTableHeader()}
             {renderItems()}

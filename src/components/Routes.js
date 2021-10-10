@@ -79,7 +79,6 @@ class AppRouter extends React.Component {
                             component={this.groupsPage}
                         ></Route>
                         <Route
-                            exact
                             path="/contacts"
                             component={this.contactsPage}
                         ></Route>
