@@ -22,3 +22,9 @@
         display: block;
     }
 }
+
+@media (max-width: 481px) {
+    .button {
+        width: 50px;
+    }
+}

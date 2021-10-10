@@ -183,6 +183,12 @@ li:hover {
     display: block;
 }
 
+@media (max-width:481px) {
+    .popularity {
+        display: none;
+    }
+}
+
 @keyframes colorChange {
     from {
         background-color: var(--iris-60);

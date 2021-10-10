@@ -24,14 +24,14 @@ class ContactsOptionsBar extends React.Component {
                 <div className="right-items">
                     {/* <SearchBar /> */}
                     <button
-                        className="primary-button"
+                        className="button primary-button"
                         id="add-contact-button"
                         onClick={this.newContactOnclick}
                     >
                         NEW CONTACT
                     </button>
                     <button
-                        className="primary-button"
+                        className="button primary-button"
                         id="add-contact-button-small"
                         onClick={this.newContactOnclick}
                     >
