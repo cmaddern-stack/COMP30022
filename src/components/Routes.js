@@ -5,7 +5,6 @@ import {
     Route,
     Redirect,
 } from "react-router-dom";
-
 import Groups from "../pages/Groups";
 import Header from "./header/Header";
 import Contacts from "../pages/Contacts";
@@ -14,6 +13,7 @@ import SignUp from "../pages/auth/SignUp";
 import Login from "../pages/auth/Login";
 import Profile from "../pages/Profile";
 import ContactsOptionsBar from "./ContactsOptionsBar";
+import EditContact from "./EditContact";
 
 /**
  * App Router
@@ -75,12 +75,10 @@ class AppRouter extends React.Component {
                             component={Profile}
                         ></Route>
                         <Route
-                            exact
                             path="/groups"
                             component={this.groupsPage}
                         ></Route>
                         <Route
-                            exact
                             path="/contacts"
                             component={this.contactsPage}
                         ></Route>

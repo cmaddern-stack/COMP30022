@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Route } from "react-router";
 import Collapsible from "react-collapsible";
 import "../css/Groups.css";
 import { GroupsAPI } from "../apis/groupsApi";
 import ContactCard from "../components/groups/ContactCard";
 import AddCard from "../components/groups/AddCard";
+import EditContact from "../components/EditContact";
 
 export default class Groups extends React.Component {
     constructor(props) {
@@ -35,51 +37,58 @@ export default class Groups extends React.Component {
             return <div>Loading...</div>;
         }
         return (
-            <div className="groups-area">
-                <input
-                    type="text"
-                    name="searchTerm"
-                    placeholder="Search..."
-                    onChange={this.setSearchTerm}
-                />
-                {this.state.groups.map((group) => (
-                    <div className="group-area">
-                        <div className="title">{group.name}</div>
-                        <Collapsible
-                            triggerClassName="trigger-text"
-                            trigger="Expand"
-                            triggerOpenedClassName="trigger-text"
-                            triggerWhenOpen="Collapse"
-                            open={true}
-                        >
-                            <div className="contact-card-area">
-                                {group.contactObjects
-                                    .filter((contact) => {
-                                        if (this.state.searchTerm === "")
-                                            return contact;
-                                        else if (
-                                            contact.firstName
-                                                .toLowerCase()
-                                                .includes(
-                                                    this.state.searchTerm.toLowerCase()
-                                                )
-                                        )
-                                            return contact;
-                                    })
-                                    .map((contact, key) => {
-                                        return (
-                                            <div className="user" key={key}>
-                                                <ContactCard
-                                                    contact={contact}
-                                                />
-                                            </div>
-                                        );
-                                    })}
-                                <AddCard />
-                            </div>
-                        </Collapsible>
-                    </div>
-                ))}
+            <div>
+                <Route
+                    exact
+                    path={`/groups/edit/:id`}
+                    component={EditContact}
+                ></Route>
+                <div className="groups-area">
+                    <input
+                        type="text"
+                        name="searchTerm"
+                        placeholder="Search..."
+                        onChange={this.setSearchTerm}
+                    />
+                    {this.state.groups.map((group) => (
+                        <div className="group-area">
+                            <div className="title">{group.name}</div>
+                            <Collapsible
+                                triggerClassName="trigger-text"
+                                trigger="Expand"
+                                triggerOpenedClassName="trigger-text"
+                                triggerWhenOpen="Collapse"
+                                open={true}
+                            >
+                                <div className="contact-card-area">
+                                    {group.contactObjects
+                                        .filter((contact) => {
+                                            if (this.state.searchTerm === "")
+                                                return contact;
+                                            else if (
+                                                contact.firstName
+                                                    .toLowerCase()
+                                                    .includes(
+                                                        this.state.searchTerm.toLowerCase()
+                                                    )
+                                            )
+                                                return contact;
+                                        })
+                                        .map((contact, key) => {
+                                            return (
+                                                <div className="user" key={key}>
+                                                    <ContactCard
+                                                        contact={contact}
+                                                    />
+                                                </div>
+                                            );
+                                        })}
+                                    <AddCard />
+                                </div>
+                            </Collapsible>
+                        </div>
+                    ))}
+                </div>
             </div>
         );
     }
