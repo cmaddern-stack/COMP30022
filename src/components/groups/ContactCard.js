@@ -32,8 +32,8 @@ export default class ContactCard extends React.Component {
 
     render() {
         return (
-            <div className="rcorners">
-                <div className="topContainer top">
+            <div className="rcorners group-contact-card">
+                <div className="topContainer">
                     <div className="dot">
                         <div className="centeredInDot">
                             {this.getProfileIcon()}
@@ -45,16 +45,16 @@ export default class ContactCard extends React.Component {
                     </div>
                 </div>
                 <div className="">
-                    {this.state.entries.map((entry) => {
-                        return (
-                            <table>
+                    <table className="contact-details">
+                        {this.state.entries.map((entry) => {
+                            return (
                                 <tr>
                                     <th>{entry.label}</th>
                                     <td>{entry.value}</td>
                                 </tr>
-                            </table>
-                        );
-                    })}
+                            );
+                        })}
+                    </table>
                 </div>
             </div>
         );

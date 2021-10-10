@@ -9,9 +9,8 @@
 .rcorners {
     border-radius: 5px;
     background: #fff;
-    padding: 20px;
+    padding: 10px;
     width: 425px;
-    height: 80px;
     margin: 10px 20px;
     box-shadow: 5px 5px 25px var(--light-shadow);
 }
@@ -27,10 +26,6 @@
 
 .padded {
     margin-left: 20px;
-}
-
-.top {
-    margin-top: -10px;
 }
 
 .space {
@@ -52,6 +47,35 @@
     font-size: 26pt;
 }
 
-.lb100{
+.lb100 {
     background-color: #c3d3fa;
+}
+
+th,
+td {
+    background-color: var(--light-blue-40);
+}
+
+th {
+    font-weight: normal;
+    color: var(--iris-80);
+    width: 35%;
+    text-align: center;
+}
+
+td {
+    padding-left: 10px;
+    color: var(--dark-grey-80);
+}
+
+table {
+    width: 100%;
+    margin-top: 5px;
+}
+
+table,
+th,
+td {
+    border: 2px solid white;
+    border-collapse: collapse;
 }
