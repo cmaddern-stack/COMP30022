@@ -33,8 +33,12 @@ class AuthAPI {
                 last_name: user.last_name,
             }),
         };
-        let response = await fetch(endpoint, requestOptions);
-        return response.json();
+        await fetch(endpoint, requestOptions);
+        let res = await AuthAPI.login({
+            username: user.email,
+            password: user.password
+        });
+        return res.json();
     };
 
     static login = async (user) => {

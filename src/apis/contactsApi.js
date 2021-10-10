@@ -8,12 +8,7 @@ export default class ContactsAPI {
         const requestOptions = {
             method: "PATCH",
             headers: {
-                // TODO: Need to change this to token authorization
-                Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") + ":" + "#GodKing69"
-                    ),
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
             body: form,
@@ -28,12 +23,7 @@ export default class ContactsAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // TODO: Need to change this to token authorization
-                Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") + ":" + "#GodKing69"
-                    ),
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
         };

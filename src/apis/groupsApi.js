@@ -9,12 +9,8 @@ export class GroupsAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // TODO: Need to change this to token authorization
                 Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") + ":" + "#GodKing69"
-                    ),
+                    `token ${sessionStorage.getItem("token")}`
             },
             mode: "cors",
         };

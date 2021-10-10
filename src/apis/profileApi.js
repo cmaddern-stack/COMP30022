@@ -11,6 +11,7 @@ class ProfileAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
         };
@@ -32,6 +33,7 @@ class ProfileAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
         };
@@ -54,7 +56,9 @@ class ProfileAPI {
         if (user.image !== null) form.append("image", user.image);
         const requestOptions = {
             method: "PATCH",
-            headers: {},
+            headers: {
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
             mode: "cors",
             body: form,
         };
@@ -70,6 +74,7 @@ class ProfileAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
         };
@@ -87,6 +92,7 @@ class ProfileAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
             body: JSON.stringify({

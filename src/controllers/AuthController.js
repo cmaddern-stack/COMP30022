@@ -74,6 +74,7 @@ class AuthController {
     static loginUser = async (response) => {
         sessionStorage.setItem("userId", response.id);
         sessionStorage.setItem("username", response.username);
+        sessionStorage.setItem("token", response.token);
         const data = await ProfileAPI.getProfileIcon();
         sessionStorage.setItem("image", data.image);
     }
