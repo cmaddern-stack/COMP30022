@@ -1,9 +1,11 @@
 import React from "react";
+import { Route } from "react-router";
 import Collapsible from "react-collapsible";
 import "../css/Groups.css";
 import { GroupsAPI } from "../apis/groupsApi";
 import ContactCard from "../components/groups/ContactCard";
 import AddCard from "../components/groups/AddCard";
+import EditContact from "../components/EditContact";
 
 export default class Groups extends React.Component {
     constructor(props) {
@@ -36,6 +38,11 @@ export default class Groups extends React.Component {
         }
         return (
             <div>
+                <Route
+                    exact
+                    path={`/groups/edit/:id`}
+                    component={EditContact}
+                ></Route>
                 <div className="groups-area">
                     <input
                         type="text"

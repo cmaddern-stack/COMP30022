@@ -3,6 +3,7 @@ import Modal from "./Modal";
 
 export default class EditContact extends React.Component {
     render() {
+        console.log(this.props.match.params.id)
         return (
             <Modal
                 onClick={() => {
