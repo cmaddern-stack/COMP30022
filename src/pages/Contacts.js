@@ -243,7 +243,7 @@ export default function Contacts() {
                     )}
                     {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
                     {notes ? <div class="w-15">{item.notes}</div> : null}
-                    // TODO: Connect edit contacts
+                    {/* // TODO: Connect edit contacts */}
                     <div class="w-5 text-right">Edit</div>
                 </div>
             );
