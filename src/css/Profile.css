@@ -65,9 +65,9 @@
 }
 
 .profile-photo {
-    width: 170px;
-    height: 170px;
-    border-radius: 85px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     box-shadow: 5px 5px 25px var(--light-shadow);
 }
 
@@ -81,9 +81,9 @@ img:hover {
 }
 
 img {
-    width: 170px;
-    height: 170px;
-    border-radius: 85px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     border: 2px solid var(--light-blue-100);
 }
 
@@ -93,6 +93,18 @@ img {
     padding: 15px 0px;
     justify-content: center;
     display: flex;
+}
+
+.large-profile-initials:hover {
+    opacity: 0.8;
+}
+
+.large-initials {
+    height: 100px;
+    width: 100px;
+    color: #7879f1;
+    font-size: 50px;
+    line-height: 90px;
 }
 
 .overlay-icon {

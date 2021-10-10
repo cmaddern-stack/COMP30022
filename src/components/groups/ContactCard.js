@@ -33,12 +33,20 @@ class ContactCard extends React.Component {
     };
 
     editContact = async () => {
-        this.props.history.push(`${this.props.match.url}/edit/${this.props.contact.id}`);
-    }
+        this.props.history.push({
+            pathname: `${this.props.match.url.replace(/\/$/g, "")}/edit/${
+                this.props.contact.id
+            }`,
+            url: this.props.contact.url,
+        });
+    };
 
     render() {
         return (
-            <div className="rcorners group-contact-card" onDoubleClick={this.editContact}>
+            <div
+                className="rcorners group-contact-card"
+                onDoubleClick={this.editContact}
+            >
                 <div className="contact-card-title">
                     <div className="left-col">
                         <div className="dot">
@@ -53,9 +61,9 @@ class ContactCard extends React.Component {
                     </div>
                     <div className="right-col">
                         <ContactCardStar
-                        starred={this.props.contact.starred}
-                        url={this.props.contact.url}
-                    />
+                            starred={this.props.contact.starred}
+                            url={this.props.contact.url}
+                        />
                     </div>
                 </div>
                 <div className="">

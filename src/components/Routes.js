@@ -74,13 +74,6 @@ class AppRouter extends React.Component {
                             path="/profile"
                             component={Profile}
                         ></Route>
-
-                        {/* <Route
-                            exact
-                            path="/groups/edit/:id"
-                            component={EditContact}
-                        ></Route> */}
-
                         <Route
                             path="/groups"
                             component={this.groupsPage}
