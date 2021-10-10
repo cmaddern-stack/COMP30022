@@ -22,6 +22,7 @@
     background-color: #c3d3fa;
     border-radius: 50%;
     display: inline-block;
+    text-align: center;
 }
 
 .padded {
@@ -37,17 +38,7 @@
 }
 
 .centeredInDot {
-    margin-left: 5px;
     margin-top: 2.5px;
-    color: #7879f1;
-}
-
-.padded2 {
-    margin-left: 60px;
-}
-
-.padded3 {
-    margin-left: 50px;
     color: #7879f1;
 }
 

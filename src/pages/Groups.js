@@ -70,10 +70,7 @@ export default class Groups extends React.Component {
                                         return (
                                             <div className="user" key={key}>
                                                 <ContactCard
-                                                    firstName={
-                                                        contact.firstName
-                                                    }
-                                                    lastName={contact.lastName}
+                                                    contact={contact}
                                                 />
                                             </div>
                                         );
