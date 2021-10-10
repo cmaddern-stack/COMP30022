@@ -18,15 +18,6 @@ class ProfileIcon extends React.Component {
         };
     }
 
-    // async componentDidMount() {
-    //     const image = sessionStorage.getItem("image");
-    //     if (image !== null && image !== "undefined") {
-    //         this.setState({
-    //             url: image
-    //         })
-    //     }
-    // }
-
     toggleMenu = () => {
         if (this.state.dropdown === "inactive") {
             this.setState({
