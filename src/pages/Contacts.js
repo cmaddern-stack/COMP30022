@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import { render } from "react-dom";
 import { useContacts } from "../apis/contactsApi";
 import "../css/Contacts.css";
@@ -7,9 +7,10 @@ import { BsListUl } from 'react-icons/bs';
 import { IoMdArrowDropdown, IoMdArrowDropleft } from 'react-icons/io';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { IconContext } from "react-icons";
+const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 
 
-const contacts = [
+const contacts_deprecated = [
     {
         url: "http://localhost:8000/crm/contacts/7/",
         id: 7,
@@ -82,6 +83,8 @@ const contacts = [
     },
 ]
 
+var sortUp = false;
+
 
 export default function Contacts() {
     
@@ -105,6 +108,31 @@ export default function Contacts() {
     const [ phone, setPhone ] = useState(true)
     const [ notes, setNotes ] = useState(true)
     const [ dropdown, setDropdown ] = useState(false)
+
+    const [contacts, setContacts] = useState([]);
+    
+
+
+    useEffect(() => {
+        getContacts();
+    
+        async function getContacts(user){
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    'Authorization': `Basic ` + btoa(sessionStorage.getItem("username") + ':' + sessionStorage.getItem("password"))
+                },
+                mode: "cors",
+            };
+            const response = await fetch(BASE_URL + "contacts/", requestOptions);
+            const data = await response.json();
+            console.log(data);
+
+            setContacts(data);
+        }
+    }, []);
                 
     function showDropdown() {
         if (dropdown) {
@@ -127,12 +155,24 @@ export default function Contacts() {
         }
     }
 
+    function sortBy(){
+        sortUp = !sortUp
+        if(sortUp) contacts.sort((a,b) => (a.firstName > b.firstName) ? 1: -1)
+        else contacts.sort((a,b) => (a.firstName < b.firstName) ? 1: -1)
+    }
+
     function renderTableHeader() {
         return (
             <div class="person d-flex">
                 <div class="w-2"></div>
                 <div class="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
-                <div class="w-10">Name</div>
+                <div class="w-10">
+                    {/* <button onClick={
+                        sortBy()
+                    }>
+                        Name
+                    </button> */}
+                </div>
                 <div class="w-10">Groups</div>
                 { organisation ? <div class="w-10">Organisation</div> : null}
                 { role ? <div class="w-10">Role</div> : null}

@@ -104,6 +104,8 @@ class SignUp extends React.Component {
         });
         if ("id" in response) {
             await AuthController.loginUser(response);
+            sessionStorage.setItem("username", response.username);
+            sessionStorage.setItem("password", this.state.password);
             this.props.history.push("/groups");
         } else {
             this.setState({
