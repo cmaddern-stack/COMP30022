@@ -11,16 +11,14 @@ export class GroupsAPI {
                 Authorization:
                     `Basic ` +
                     btoa(
-                        sessionStorage.getItem("username") +
-                            ":" +
-                            "Today123"
+                        sessionStorage.getItem("username") + ":" + "#GodKing69"
                     ),
             },
             mode: "cors",
         };
         const response = await fetch(BASE_URL + "groups/", requestOptions);
         var groups = await response.json();
-        for (let i=0; i<groups.length; i++) {
+        for (let i = 0; i < groups.length; i++) {
             const group = groups[i];
             group.contactObjects = [];
             for (let j = 0; j < group.contacts.length; j++) {
@@ -40,35 +38,13 @@ export class GroupsAPI {
                 // Need to change this to token authorization
                 Authorization:
                     `Basic ` +
-                    btoa(sessionStorage.getItem("username") + ":" + "Today123"),
+                    btoa(
+                        sessionStorage.getItem("username") + ":" + "#GodKing69"
+                    ),
             },
             mode: "cors",
         };
         const response = await fetch(url, requestOptions);
         return response.json();
-    }
+    };
 }
-
-// export function useGroups() {
-//     const [loading, setLoading] = useState(true);
-//     const [items, setItems] = useState([]);
-//     const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         getGroups()
-//             .then((items) => {
-//                 setItems(items);
-//                 setLoading(false);
-//             })
-//             .catch((e) => {
-//                 setError(e);
-//                 setLoading(false);
-//             });
-//     }, []);
-
-//     return {
-//         loading,
-//         items,
-//         error,
-//     };
-// }

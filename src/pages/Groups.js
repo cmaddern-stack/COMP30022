@@ -46,14 +46,42 @@ export default class Groups extends React.Component {
                 {this.state.groups.map((group) => (
                     <div>
                         <div className="padded title">{group.name}</div>
-                        <div className="topContainer">
-                            {group.contactObjects.map((contact, key) => (
-                                <div className="user" key={key}>
-                                    <ContactCard firstName={contact.firstName} lastName={contact.lastName}/>
-                                </div>
-                            ))}
-                            <AddCard />
-                        </div>
+                        <Collapsible
+                            triggerClassName="padded"
+                            trigger="Expand"
+                            triggerOpenedClassName="padded"
+                            triggerWhenOpen="Collapse"
+                            open={true}
+                        >
+                            <div className="topContainer">
+                                {group.contactObjects
+                                    .filter((contact) => {
+                                        if (this.state.searchTerm === "")
+                                            return contact;
+                                        else if (
+                                            contact.firstName
+                                                .toLowerCase()
+                                                .includes(
+                                                    this.state.searchTerm.toLowerCase()
+                                                )
+                                        )
+                                            return contact;
+                                    })
+                                    .map((contact, key) => {
+                                        return (
+                                            <div className="user" key={key}>
+                                                <ContactCard
+                                                    firstName={
+                                                        contact.firstName
+                                                    }
+                                                    lastName={contact.lastName}
+                                                />
+                                            </div>
+                                        );
+                                    })}
+                                <AddCard />
+                            </div>
+                        </Collapsible>
                     </div>
                 ))}
             </div>
@@ -162,7 +190,9 @@ function ContactCard(props) {
                 <div class="dot">
                     <div class="centeredInDot">LS</div>
                 </div>
-                <div class="padded">{props.firstName} {props.lastName}</div>
+                <div class="padded">
+                    {props.firstName} {props.lastName}
+                </div>
             </div>
             <div class="subText topContainer space">
                 <div class="padded3"> Title </div>
