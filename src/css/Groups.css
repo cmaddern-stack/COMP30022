@@ -1,0 +1,161 @@
+.groups-area {
+    padding: 0px 20px;
+}
+
+.group-area {
+    margin-top: 20px;
+}
+
+.topContainer {
+    column-count: 3;
+    display: flex;
+    flex-direction: row;
+    place-items: center start;
+    flex-wrap: wrap;
+}
+
+.rcorners {
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    margin: 5px 15px 5px 0px;
+    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+.contact-card-area {
+    display: flex;
+    flex-direction: row;
+    place-items: start start;
+    flex-wrap: wrap;
+}
+
+.group-contact-card {
+    min-width: 380px;
+    width: calc((100vw - 70px)/3.1);
+}
+
+@media (max-width: 1025px) {
+    .group-contact-card {
+        min-width: calc((100vw - 70px)/2);
+    }
+}
+
+@media (max-width: 961px) {
+    .group-contact-card {
+        min-width: calc((100vw - 40px)/2.1);
+    }
+}
+
+@media (max-width: 641px) {
+    .group-contact-card {
+        min-width: calc(100vw - 40px);
+    }
+}
+
+.contact-card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-card-title > .left-col {
+    display: flex;
+    place-items: center start;
+}
+
+.dot {
+    height: 30px;
+    width: 30px;
+    background-color: #c3d3fa;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.padded {
+    margin-left: 20px;
+}
+
+.space {
+    margin-top: 5px;
+}
+
+.centeredInDot {
+    margin-top: 2.5px;
+    color: #7879f1;
+}
+
+.subText {
+    background: var(--light-blue-40);
+}
+
+.title {
+    color: #222529;
+    font-weight: bold;
+    font-size: 26pt;
+}
+
+.lb100 {
+    background-color: #c3d3fa;
+}
+
+th,
+td {
+    background-color: var(--light-blue-40);
+}
+
+th {
+    font-weight: normal;
+    color: var(--iris-80);
+    width: 35%;
+    text-align: center;
+}
+
+td {
+    padding-left: 10px;
+    color: var(--dark-grey-80);
+}
+
+table {
+    width: 100%;
+    margin-top: 5px;
+}
+
+table,
+th,
+td {
+    border: 2px solid white;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.starred {
+    color: var(--accent-pink-100);
+}
+
+.unstarred {
+    color: var(--iris-60);
+}
+
+.contact-star:hover {
+    animation: starHover 1s;
+    cursor: pointer;
+    color: var(--iris-80);
+}
+
+@keyframes starHover {
+    from {
+        color: var(--iris-60);
+    }
+    to {
+        color: var(--iris-80);
+    }
+}
+
+.trigger-text {
+    color: var(--dark-grey-40);
+}
+
+.trigger-text:hover {
+    text-decoration: underline;
+}

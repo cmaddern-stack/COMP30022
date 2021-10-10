@@ -1,0 +1,30 @@
+.options-bar {
+    padding: 19px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-items {
+    display: flex;
+    position: relative;
+}
+
+#add-contact-button-small {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    #add-contact-button {
+        display: none;
+    }
+
+    #add-contact-button-small {
+        display: block;
+    }
+}
+
+@media (max-width: 481px) {
+    .button {
+        width: 50px;
+    }
+}
