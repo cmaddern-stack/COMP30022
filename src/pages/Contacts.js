@@ -167,11 +167,11 @@ export default function Contacts() {
                 <div class="w-2"></div>
                 <div class="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
                 <div class="w-10">
-                    <button onClick={
+                    {/* <button onClick={
                         sortBy()
                     }>
                         Name
-                    </button>
+                    </button> */}
                 </div>
                 <div class="w-10">Groups</div>
                 { organisation ? <div class="w-10">Organisation</div> : null}
