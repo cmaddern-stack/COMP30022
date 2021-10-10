@@ -45,7 +45,7 @@ class ContactCard extends React.Component {
         return (
             <div
                 className="rcorners group-contact-card"
-                onDoubleClick={this.editContact}
+                onClick={this.editContact}
             >
                 <div className="contact-card-title">
                     <div className="left-col">
