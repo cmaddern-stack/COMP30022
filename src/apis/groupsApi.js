@@ -1,3 +1,5 @@
+import ContactsAPI from "./contactsApi";
+
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 
 export class GroupsAPI {
@@ -7,7 +9,7 @@ export class GroupsAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // Need to change this to token authorization
+                // TODO: Need to change this to token authorization
                 Authorization:
                     `Basic ` +
                     btoa(
@@ -22,29 +24,10 @@ export class GroupsAPI {
             const group = groups[i];
             group.contactObjects = [];
             for (let j = 0; j < group.contacts.length; j++) {
-                const res = await GroupsAPI.getContact(group.contacts[j]);
+                const res = await ContactsAPI.getContact(group.contacts[j]);
                 group.contactObjects.push(res);
             }
         }
         return groups;
-    };
-
-    static getContact = async (url) => {
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                // Need to change this to token authorization
-                Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") + ":" + "#GodKing69"
-                    ),
-            },
-            mode: "cors",
-        };
-        const response = await fetch(url, requestOptions);
-        return response.json();
     };
 }

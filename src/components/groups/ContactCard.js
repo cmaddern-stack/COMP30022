@@ -1,4 +1,5 @@
 import React from "react";
+import ContactCardStar from "./ContactCardStar";
 
 export default class ContactCard extends React.Component {
     constructor(props) {
@@ -33,15 +34,23 @@ export default class ContactCard extends React.Component {
     render() {
         return (
             <div className="rcorners group-contact-card">
-                <div className="topContainer">
-                    <div className="dot">
-                        <div className="centeredInDot">
-                            {this.getProfileIcon()}
+                <div className="contact-card-title">
+                    <div className="left-col">
+                        <div className="dot">
+                            <div className="centeredInDot">
+                                {this.getProfileIcon()}
+                            </div>
+                        </div>
+                        <div>
+                            {this.props.contact.firstName}{" "}
+                            {this.props.contact.lastName}
                         </div>
                     </div>
-                    <div className="padded">
-                        {this.props.contact.firstName}{" "}
-                        {this.props.contact.lastName}
+                    <div className="right-col">
+                        <ContactCardStar
+                        starred={this.props.contact.starred}
+                        url={this.props.contact.url}
+                    />
                     </div>
                 </div>
                 <div className="">

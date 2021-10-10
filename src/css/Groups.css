@@ -15,6 +15,16 @@
     box-shadow: 5px 5px 25px var(--light-shadow);
 }
 
+.contact-card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-card-title > .left-col {
+    display: flex;
+    place-items: center start;
+}
+
 .dot {
     height: 30px;
     width: 30px;
@@ -22,6 +32,7 @@
     border-radius: 50%;
     display: inline-block;
     text-align: center;
+    margin-right: 15px;
 }
 
 .padded {
@@ -78,4 +89,27 @@ th,
 td {
     border: 2px solid white;
     border-collapse: collapse;
+}
+
+.starred {
+    color: var(--accent-pink-100);
+}
+
+.unstarred {
+    color: var(--iris-60);
+}
+
+.contact-star:hover {
+    animation: starHover 1s;
+    cursor: pointer;
+    color: var(--iris-80);
+}
+
+@keyframes starHover {
+    from {
+        color: var(--iris-60);
+    }
+    to {
+        color: var(--iris-80);
+    }
 }
