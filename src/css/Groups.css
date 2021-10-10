@@ -126,6 +126,7 @@ th,
 td {
     border: 2px solid white;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
 .starred {
