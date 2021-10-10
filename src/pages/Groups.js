@@ -35,7 +35,7 @@ export default class Groups extends React.Component {
             return <div>Loading...</div>;
         }
         return (
-            <div>
+            <div className="groups-area">
                 <input
                     type="text"
                     name="searchTerm"
@@ -43,16 +43,16 @@ export default class Groups extends React.Component {
                     onChange={this.setSearchTerm}
                 />
                 {this.state.groups.map((group) => (
-                    <div>
-                        <div className="padded title">{group.name}</div>
+                    <div className="group-area">
+                        <div className="title">{group.name}</div>
                         <Collapsible
-                            triggerClassName="padded"
+                            triggerClassName="trigger-text"
                             trigger="Expand"
-                            triggerOpenedClassName="padded"
+                            triggerOpenedClassName="trigger-text"
                             triggerWhenOpen="Collapse"
                             open={true}
                         >
-                            <div className="topContainer">
+                            <div className="contact-card-area">
                                 {group.contactObjects
                                     .filter((contact) => {
                                         if (this.state.searchTerm === "")

@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchField: "",
+            searchTerm: "",
         };
     }
 
@@ -17,17 +17,16 @@ class SearchBar extends React.Component {
         });
     };
 
-    onClick = async(event) => {
-        // TODO: On click on search callback from props
-        // E.g. this.props.callback()
-    }
+    onClick = async (event) => {
+        // TODO: connect searching
+    };
 
     render() {
         return (
             <div className="search-bar">
                 <input
                     type="text"
-                    name="searchField"
+                    name="searchTerm"
                     placeholder="Search"
                     onChange={this.handleChange}
                 />

@@ -1,5 +1,5 @@
-import React from 'react';
-import '../css/ContactsOptionsBar.css'
+import React from "react";
+import "../css/ContactsOptionsBar.css";
 import ContactsViewButton from "./ContactsViewButton";
 import SearchBar from "./SearchBar";
 import { FontAwesome } from "react-icons/fa";
@@ -22,7 +22,7 @@ class ContactsOptionsBar extends React.Component {
                     <ContactsViewButton />
                 </div>
                 <div className="right-items">
-                    <SearchBar />
+                    {/* <SearchBar /> */}
                     <button
                         className="primary-button"
                         id="add-contact-button"
@@ -44,4 +44,3 @@ class ContactsOptionsBar extends React.Component {
 }
 
 export default ContactsOptionsBar;
-

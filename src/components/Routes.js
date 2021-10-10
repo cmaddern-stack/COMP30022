@@ -21,6 +21,13 @@ import ContactsOptionsBar from "./ContactsOptionsBar";
  */
 
 class AppRouter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            contactsOptionsBar: <ContactsOptionsBar />,
+        };
+    }
+
     isLoggedIn = () => {
         const id = sessionStorage.getItem("userId");
         return id !== null;
@@ -29,7 +36,7 @@ class AppRouter extends React.Component {
     contactsPage = () => {
         return (
             <div>
-                <ContactsOptionsBar />
+                {this.state.contactsOptionsBar}
                 <Contacts />
             </div>
         );
@@ -38,7 +45,7 @@ class AppRouter extends React.Component {
     groupsPage = () => {
         return (
             <div>
-                <ContactsOptionsBar />
+                {this.state.contactsOptionsBar}
                 <Groups />
             </div>
         );
@@ -48,11 +55,13 @@ class AppRouter extends React.Component {
         return (
             <Router>
                 <Switch>
-                    {this.isLoggedIn() ?
-                    <Route exact path="/">
-                        <Redirect to="/groups" />
-                    </Route>
-                    : <Route exact path="/" component={EnterEmail} />}
+                    {this.isLoggedIn() ? (
+                        <Route exact path="/">
+                            <Redirect to="/groups" />
+                        </Route>
+                    ) : (
+                        <Route exact path="/" component={EnterEmail} />
+                    )}
                     <Route exact path="/auth/signup" component={SignUp} />
                     <Route exact path="/auth/login" component={Login} />
                     <Route exact path="/auth/logout">

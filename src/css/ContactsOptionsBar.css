@@ -13,16 +13,6 @@
     display: none;
 }
 
-@media (max-width: 961px) {
-    .options-bar {
-        display: block;
-    }
-
-    .right-items {
-        margin-top: 10px;
-    }
-}
-
 @media (max-width: 480px) {
     #add-contact-button {
         display: none;

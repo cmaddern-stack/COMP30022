@@ -1,3 +1,11 @@
+.groups-area {
+    padding: 0px 20px;
+}
+
+.group-area {
+    margin-top: 20px;
+}
+
 .topContainer {
     column-count: 3;
     display: flex;
@@ -10,9 +18,38 @@
     border-radius: 5px;
     background: #fff;
     padding: 10px;
-    width: 425px;
-    margin: 10px 20px;
+    margin: 5px 15px 5px 0px;
     box-shadow: 5px 5px 25px var(--light-shadow);
+}
+
+.contact-card-area {
+    display: flex;
+    flex-direction: row;
+    place-items: start start;
+    flex-wrap: wrap;
+}
+
+.group-contact-card {
+    min-width: 380px;
+    width: calc((100vw - 70px)/3.1);
+}
+
+@media (max-width: 1025px) {
+    .group-contact-card {
+        min-width: calc((100vw - 70px)/2);
+    }
+}
+
+@media (max-width: 961px) {
+    .group-contact-card {
+        min-width: calc((100vw - 40px)/2.1);
+    }
+}
+
+@media (max-width: 641px) {
+    .group-contact-card {
+        min-width: calc(100vw - 40px);
+    }
 }
 
 .contact-card-title {
@@ -112,4 +149,12 @@ td {
     to {
         color: var(--iris-80);
     }
+}
+
+.trigger-text {
+    color: var(--dark-grey-40);
+}
+
+.trigger-text:hover {
+    text-decoration: underline;
 }
