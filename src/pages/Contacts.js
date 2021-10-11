@@ -256,6 +256,7 @@ export default function Contacts(props) {
                     <div
                         class="w-5 text-right"
                         onClick={() => {
+                            console.log(history);
                             history.push({
                                 pathname: `${location.pathname.replace(
                                     /\/$/g,
