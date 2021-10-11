@@ -18,6 +18,13 @@ class AuthAPI {
 
     static signup = async (user) => {
         const endpoint = BASE_URL + "useraccounts/";
+        const userDetails = {
+            username: user.email,
+            email: user.email,
+            password: user.password,
+            first_name: user.first_name,
+            last_name: user.last_name,
+        };
         const requestOptions = {
             method: "POST",
             headers: {
@@ -25,24 +32,16 @@ class AuthAPI {
                 "Content-Type": "application/json",
             },
             mode: "cors",
-            body: JSON.stringify({
-                username: user.email,
-                email: user.email,
-                password: user.password,
-                first_name: user.first_name,
-                last_name: user.last_name,
-            }),
+            body: JSON.stringify(userDetails),
         };
         await fetch(endpoint, requestOptions);
-        let res = await AuthAPI.login({
-            username: user.email,
-            password: user.password
-        });
-        return res.json();
+        let res = await AuthAPI.login(user);
+        return res;
     };
 
     static login = async (user) => {
         const endpoint = BASE_URL + "api-auth/alt-login/";
+        console.log(user);
         const requestOptions = {
             method: "POST",
             headers: {
