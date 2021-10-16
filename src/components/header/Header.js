@@ -4,6 +4,7 @@ import "../../css/Header.css";
 import NotificationIcon from "./NotificationIcon";
 import PopularityCounter from "./PopularityCounter";
 import DarkModeToggle from "./DarkModeToggle";
+import logo from './knot-logo.png'
 
 /**
  * Header
@@ -19,7 +20,11 @@ class Header extends React.Component {
             <header>
                 <div className="header-content">
                     <div className="left-header">
-                        <a href="/groups">Logo and App Name</a>
+                        <a href="/groups"><img class="logo" src={logo}/></a>
+                        
+                    </div>
+                    <div>
+                        
                     </div>
                     <div className="right-header">
                         <PopularityCounter />
