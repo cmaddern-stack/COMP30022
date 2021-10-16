@@ -68,7 +68,11 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.profile-photo.dark-theme {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .profile-photo:hover {

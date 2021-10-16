@@ -1,3 +1,19 @@
+/* Define Light Theme Styling */
+body {
+    --text-color: #black;
+    --colour-0-colour: white;
+    --colour-1-colour: #dde8fd;
+    --dropdown-content-bk-color: white;
+}
+
+/* Define Dark Theme Styling */
+body.dark-theme {
+    --text-color: #c3d3fa;
+    --colour-0-colour: gray;
+    --colour-1-colour: #4d4d4d;
+    --dropdown-content-bk-color: lightgray;
+}
+
 /* Person page styling */
 .person {
     justify-content: space-between;
@@ -5,20 +21,25 @@
     padding: 0.5em 2em;
     border-radius: 90px;
     margin: 10px 20px;
+    color: var(--text-color);
 }
 
 .person div {
     margin: auto;
 }
 
-.color-0 { background-color: white; }
-
-.color-1 { background-color: #dde8fd; }
+.color-0 { background-color: var(--colour-0-colour); }
+.color-1 { background-color: var(--colour-1-colour); }
 
 .w-15 { width: 15%; }
 .w-10 { width: 10%; }
 .w-5 { width: 30px; }
 .w-2 { width: 30px; }
+
+
+.contacts-header {
+    color: var(--text-color);
+}
 
 .contact-card {
     height: 200px;
@@ -69,7 +90,7 @@
     width: 100%;
     text-align: left;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--dropdown-content-bk-color);
 }
 
 .dropdown-content button:hover {

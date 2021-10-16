@@ -165,7 +165,7 @@ export default class EditContact extends React.Component {
         console.log(error)
         })
         this.props.history.goBack();
-
+        // window.location.reload()
     };
 
     render() {

@@ -5,7 +5,14 @@
     font-size: 14px;
     border: 1px solid var(--light-grey-80);
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.two-select-button.dark-theme {
+    display: flex;
+    width: 220px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid var(--light-grey-80);
+    border-radius: 5px;
 }
 
 .two-select-button a {
