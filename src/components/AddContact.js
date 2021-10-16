@@ -6,7 +6,6 @@ import InputField from "./InputField";
 import CustomInputField from "./CustomInputField";
 import ProfilePhoto from "./ProfilePhoto";
 import ContactCardStar from "./groups/ContactCardStar";
-import Select from 'react-select'
 import { GroupsAPI } from "../apis/groupsApi";
 import ProfileAPI from "../apis/profileApi";
 
