@@ -19,7 +19,8 @@ class Header extends React.Component {
             <header>
                 <div className="header-content">
                     <div className="left-header">
-                        <a href="/groups">Logo and App Name</a>
+                        {/* <a href="/groups">Logo and App Name</a> */}
+                        <a href="/groups"><img id="logo" src="knotwork-02.png"></img></a>
                     </div>
                     <div className="right-header">
                         <PopularityCounter />

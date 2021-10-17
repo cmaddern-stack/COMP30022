@@ -72,3 +72,20 @@ body.dark-theme {
         width: 90%;
     }
 }
+
+select, option {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 0px 0;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+#select-box {
+    background-color: white;
+    padding-right: 10px;
+    margin: 5px 0;
+    border-radius: 5px; 
+    border: 1px solid var(--light-blue-60);
+}

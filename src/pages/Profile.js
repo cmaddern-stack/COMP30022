@@ -5,6 +5,7 @@ import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "../css/Profile.css";
 import ProfileAPI from "../apis/profileApi";
+import Loading from "../components/Loading";
 
 /**
  * Profile Page
@@ -16,6 +17,7 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             buttonDisabled: true,
             photoURL: "",
             firstName: "",
@@ -49,6 +51,7 @@ class Profile extends React.Component {
             role: data.role,
             phone: data.phone,
             customInput: customFields,
+            loading: false,
         });
     }
 
@@ -240,7 +243,6 @@ class Profile extends React.Component {
         this.preventBlankLabel();
     };
 
-    // TODO: add more fields
     saveHandler = async (event) => {
         await ProfileAPI.updateProfile({
             firstName: this.state.firstName,
@@ -258,6 +260,7 @@ class Profile extends React.Component {
     };
 
     render() {
+        if (this.state.loading) return <Loading/>
         return (
             <div className="profile-content">
                 <div className="title-row">

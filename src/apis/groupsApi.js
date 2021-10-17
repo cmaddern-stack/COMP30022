@@ -9,8 +9,7 @@ export class GroupsAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization:
-                    `token ${sessionStorage.getItem("token")}`
+                Authorization: `token ${sessionStorage.getItem("token")}`,
             },
             mode: "cors",
         };
@@ -25,5 +24,26 @@ export class GroupsAPI {
             }
         }
         return groups;
+    };
+
+    static getGroupNames = async () => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        var response = await fetch(BASE_URL + "groups/", requestOptions);
+        response = await response.json();
+        var groups = response.map((group) => {
+            return {
+                name: group.name,
+                url: group.url,
+            };
+        });
+        return groups; 
     };
 }

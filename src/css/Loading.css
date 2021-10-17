@@ -1,0 +1,6 @@
+.loading-screen {
+    width: 100vw;
+    height: 100vh;
+    padding-left: calc(50% - 25px);
+    padding-top: 10%;
+}

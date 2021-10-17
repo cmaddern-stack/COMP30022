@@ -6,6 +6,7 @@ import InputField from "./InputField";
 import CustomInputField from "./CustomInputField";
 import ProfilePhoto from "./ProfilePhoto";
 import ContactCardStar from "./groups/ContactCardStar";
+import { GroupsAPI } from "../apis/groupsApi";
 
 export default class EditContact extends React.Component {
     constructor(props) {
@@ -24,6 +25,8 @@ export default class EditContact extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
+            group: "",
+            groups: []
         };
     }
 
@@ -32,6 +35,7 @@ export default class EditContact extends React.Component {
         const endpoint = "https://team-69-backend.herokuapp.com/crm/contacts/";
         const url = endpoint + this.props.match.params.id + "/";
         const contact = await ContactsAPI.getContact(url);
+        const groups = await GroupsAPI.getGroupNames();
         this.setState({
             url: url,
             starred: contact.starred,
@@ -43,6 +47,8 @@ export default class EditContact extends React.Component {
             organisation: contact.organisation,
             role: contact.role,
             phone: contact.phoneNumber,
+            group: "None",
+            groups: groups,
         });
         // TODO: ADD CUSTOM FIELDS
     }
@@ -141,6 +147,13 @@ export default class EditContact extends React.Component {
         window.location.reload();
     };
 
+    onGroupSelect = (event) => {
+        this.setState({
+            'group': event.target.value
+        })
+        console.log(event.target.value);
+    }
+
     render() {
         if (this.state.contact === null) {
             return (
@@ -188,6 +201,18 @@ export default class EditContact extends React.Component {
                                 onChange={this.changeHandler}
                                 value={this.state.lastName}
                             />
+                            <label for="group">Group</label>
+                            <div id="select-box">
+                                <select name="group" id="group" onChange={this.onGroupSelect}>
+                                    {this.state.groups.map((group, id) => {
+                                        return (
+                                            <option key={id} value={group.name}>
+                                                {group.name}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            </div>
                             <InputField
                                 type="email"
                                 name="email"
