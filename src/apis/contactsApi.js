@@ -30,6 +30,28 @@ export default class ContactsAPI {
         const response = await fetch(url, requestOptions);
         return response.json();
     };
+
+    static editContact = async (url, contact) => {
+        const requestOptions = {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                emailAddress: contact.email,
+                organisation: contact.organisation,
+                role: contact.role,
+                phoneNumber: contact.phone,
+            }),
+        };
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    };
 }
 
 // Getting list of ALL contacts

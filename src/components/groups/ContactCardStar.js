@@ -14,7 +14,10 @@ export default class ContactCardStar extends React.Component {
     };
 
     render() {
-        const ICON_SIZE = 23;
+        var ICON_SIZE = 23;
+        if (this.props.size !== null ) {
+            ICON_SIZE = this.props.size
+        }
         return (
             <div onClick={this.toggleStar}>
                 {this.props.starred ? (

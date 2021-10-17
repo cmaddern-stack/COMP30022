@@ -1,0 +1,48 @@
+.edit-contact-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.edit-contact-card {
+    background-color: var(--light-blue-60);
+    padding: 20px;
+    width: 60%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px var(--dark-shadow);
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.form-area {
+    padding: 15px;
+    overflow-y: scroll;
+    max-height: 60vh;
+}
+
+.large-profile-initials {
+    height: 100px;
+    width: 100px;
+    background-color: #c3d3fa;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.edit-contact-row {
+    text-align: right;
+}
+
+@media (max-width: 961px){
+    .edit-contact-card {
+        width: 80%;
+    }
+}
+
+@media (max-width: 481px){
+    .edit-contact-card {
+        width: 90%;
+    }
+}
