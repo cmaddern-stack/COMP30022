@@ -20,7 +20,7 @@ class DarkModeToggle extends React.Component {
         };
         if (localStorage.getItem("theme") === "dark") {
             document.body.classList.add("dark-theme");
-        }
+        } 
     };
     
 
@@ -42,6 +42,8 @@ class DarkModeToggle extends React.Component {
                 light: "active",
                 dark: "inactive"
             });
+        } else {
+            localStorage.setItem("theme", "light");
         }
     };
 
@@ -49,8 +51,8 @@ class DarkModeToggle extends React.Component {
     render() {
         return (
             <div className={"icon " + localStorage.getItem("theme")} onClick={this.onClick}>
-                <FaMoon className={"moon-" + localStorage.getItem("theme")}/>
-                <FaSun className={"sun-" + localStorage.getItem("theme")}/>
+                <FaMoon className={"moon-" + localStorage.getItem("theme") + " {this.state.dark}"}/>
+                <FaSun className={"sun-" + localStorage.getItem("theme") + " {this.state.light}"}/>
             </div>
         );
     }
