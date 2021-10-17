@@ -5,6 +5,7 @@ import ProfilePhoto from "../components/ProfilePhoto";
 import AuthController from "../controllers/AuthController";
 import "../css/Profile.css";
 import ProfileAPI from "../apis/profileApi";
+import Loading from "../components/Loading";
 
 /**
  * Profile Page
@@ -259,7 +260,7 @@ class Profile extends React.Component {
     };
 
     render() {
-        if (this.state.loading) return <div>Loading...</div>
+        if (this.state.loading) return <Loading/>
         return (
             <div className="profile-content">
                 <div className="title-row">

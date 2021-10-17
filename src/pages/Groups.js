@@ -6,6 +6,7 @@ import { GroupsAPI } from "../apis/groupsApi";
 import ContactCard from "../components/groups/ContactCard";
 import AddCard from "../components/groups/AddCard";
 import EditContact from "../components/EditContact";
+import Loading from "../components/Loading";
 
 export default class Groups extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class Groups extends React.Component {
 
     render() {
         if (!this.state.isLoaded) {
-            return <div>Loading...</div>;
+            return <Loading/>
         }
         return (
             <div>
