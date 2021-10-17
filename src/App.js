@@ -10,14 +10,21 @@ To run the app on your local browser - from your terminal run:
 2. npm run start
 */
 
-function App() {
-    return (
-        <section className="body">
-            <div>
-                <AppRouter/>
-            </div>
-        </section>
-    );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        localStorage.setItem("theme", "light");
+    }
+
+    render() {
+        return (
+            <section className="body">
+                <div>
+                    <AppRouter />
+                </div>
+            </section>
+        );
+    }
 }
 
 export default App;
