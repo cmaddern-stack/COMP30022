@@ -206,71 +206,75 @@ export default function Contacts(props) {
     }
 
     function renderItems() {
-        return contacts.map((item, index) => {
-            let x = index % 2;
-            return (
-                <div
-                    key={index}
-                    class={"person d-flex white space-around color-" + x}
-                >
-                    <div class="w-2">{showInitials(item)}</div>
-                    <div class="w-2">
-                        {item.starred ? (
-                            <div class="w-2">
-                                <IconContext.Provider
-                                    value={{ color: "#df5571" }}
-                                >
-                                    <AiFillStar />
-                                </IconContext.Provider>
+        if (contacts.length > 0) {
+            return contacts.map((item, index) => {
+                let x = index % 2;
+                return (
+                    <div
+                        key={index}
+                        class={"person d-flex white space-around color-" + x}
+                    >
+                        <div class="w-2">{showInitials(item)}</div>
+                        <div class="w-2">
+                            {item.starred ? (
+                                <div class="w-2">
+                                    <IconContext.Provider
+                                        value={{ color: "#df5571" }}
+                                    >
+                                        <AiFillStar />
+                                    </IconContext.Provider>
+                                </div>
+                            ) : (
+                                <div class="w-2">
+                                    <IconContext.Provider
+                                        value={{ color: "a4a6f6" }}
+                                    >
+                                        <AiOutlineStar />
+                                    </IconContext.Provider>
+                                </div>
+                            )}
+                        </div>
+                        <div class="w-10">
+                            {item.firstName} {item.lastName}
+                        </div>
+                        <div class="w-10">Groups</div>
+                        {organisation ? (
+                            <div class="w-10">{item.organisation}</div>
+                        ) : null}
+                        {role ? <div class="w-10">{item.role}</div> : null}
+                        {email ? (
+                            <div class="w-10">
+                                <a href={"mailto:" + item.emailAddress}>
+                                    {item.emailAddress}
+                                </a>
                             </div>
                         ) : (
-                            <div class="w-2">
-                                <IconContext.Provider
-                                    value={{ color: "a4a6f6" }}
-                                >
-                                    <AiOutlineStar />
-                                </IconContext.Provider>
-                            </div>
+                            <div></div>
                         )}
-                    </div>
-                    <div class="w-10">
-                        {item.firstName} {item.lastName}
-                    </div>
-                    <div class="w-10">Groups</div>
-                    {organisation ? (
-                        <div class="w-10">{item.organisation}</div>
-                    ) : null}
-                    {role ? <div class="w-10">{item.role}</div> : null}
-                    {email ? (
-                        <div class="w-10">
-                            <a href={"mailto:" + item.emailAddress}>
-                                {item.emailAddress}
-                            </a>
+                        {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
+                        {notes ? <div class="w-15">{item.notes}</div> : null}
+                        {/* // TODO: Connect edit contacts */}
+                        <div
+                            class="w-5 text-right"
+                            onClick={() => {
+                                console.log(history);
+                                history.push({
+                                    pathname: `${location.pathname.replace(
+                                        /\/$/g,
+                                        ""
+                                    )}/edit/${item.id}`,
+                                    url: item.url,
+                                });
+                            }}
+                        >
+                            Edit
                         </div>
-                    ) : (
-                        <div></div>
-                    )}
-                    {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
-                    {notes ? <div class="w-15">{item.notes}</div> : null}
-                    {/* // TODO: Connect edit contacts */}
-                    <div
-                        class="w-5 text-right"
-                        onClick={() => {
-                            console.log(history);
-                            history.push({
-                                pathname: `${location.pathname.replace(
-                                    /\/$/g,
-                                    ""
-                                )}/edit/${item.id}`,
-                                url: item.url,
-                            });
-                        }}
-                    >
-                        Edit
                     </div>
-                </div>
-            );
-        });
+                );
+            });
+        } else {
+            return null;
+        }
     }
 
     return (
