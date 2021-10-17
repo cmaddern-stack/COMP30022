@@ -11,7 +11,9 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import EditContact from "../components/EditContact";
 
-const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+// const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+const BASE_URL = "http://127.0.0.1:8000/crm/";
+
 
 var sortUp = false;
 

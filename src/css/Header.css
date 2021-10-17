@@ -7,9 +7,9 @@ body {
 
 /* Define Dark Theme Colours */
 body.dark-theme {
-    --bkg-color: #333333;
-    --header-bg: var(--iris-60);
-    --header-text: white;
+    --bkg-color: #232528;
+    --header-bg: #353a3f;
+    --header-text: #c3d3fa;
 }
 
 /* Define Body Elements */
