@@ -40,6 +40,7 @@ class EnterEmail extends React.Component {
     render() {
         return (
             <div className="auth-form">
+                <img className="logo auth-logo" src="knotwork-textonly.png"></img>
                 <InputField
                     name="email"
                     value={this.state.email}
