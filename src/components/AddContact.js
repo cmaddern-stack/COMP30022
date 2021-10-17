@@ -6,10 +6,6 @@ import InputField from "./InputField";
 import CustomInputField from "./CustomInputField";
 import ProfilePhoto from "./ProfilePhoto";
 import ContactCardStar from "./groups/ContactCardStar";
-<<<<<<< HEAD
-import Select from 'react-select'
-=======
->>>>>>> b02868be86fa53341b4922696072fc940995f187
 import { GroupsAPI } from "../apis/groupsApi";
 import ProfileAPI from "../apis/profileApi";
 
@@ -156,11 +152,7 @@ export default class EditContact extends React.Component {
             console.log(error)
         })
 
-<<<<<<< HEAD
-        const groups = await GroupsAPI.getGroups();
-=======
         var groups = await GroupsAPI.getGroups();
->>>>>>> b02868be86fa53341b4922696072fc940995f187
 
         var group = "";
         var found = false;
