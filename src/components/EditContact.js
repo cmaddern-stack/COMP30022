@@ -6,16 +6,6 @@ import InputField from "./InputField";
 import CustomInputField from "./CustomInputField";
 import ProfilePhoto from "./ProfilePhoto";
 import ContactCardStar from "./groups/ContactCardStar";
-import { GroupsAPI } from "../apis/groupsApi";
-import ProfileAPI from "../apis/profileApi";
-
-const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
-
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
 
 export default class EditContact extends React.Component {
     constructor(props) {
@@ -29,13 +19,32 @@ export default class EditContact extends React.Component {
             lastName: "",
             email: "",
             organisation: "",
-            group: "",
             role: "",
             phone: "",
             emailError: "",
             emailValid: true,
             customInput: [],
         };
+    }
+
+    async componentDidMount() {
+        // const contact = await ContactsAPI.getContact(this.props.location.url);
+        const endpoint = "https://team-69-backend.herokuapp.com/crm/contacts/";
+        const url = endpoint + this.props.match.params.id + "/";
+        const contact = await ContactsAPI.getContact(url);
+        this.setState({
+            url: url,
+            starred: contact.starred,
+            loading: false,
+            photoURL: "",
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            email: contact.emailAddress,
+            organisation: contact.organisation,
+            role: contact.role,
+            phone: contact.phoneNumber,
+        });
+        // TODO: ADD CUSTOM FIELDS
     }
 
     proceed = () => {
@@ -116,133 +125,20 @@ export default class EditContact extends React.Component {
     };
 
     save = async () => {
-
-        var contactUrl = "";
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") +
-                            ":" +
-                            sessionStorage.getItem("password")
-                    ),
-            },
-            body: JSON.stringify({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                organisation: this.state.organisation,
-                role: this.state.role,
-                phone: this.state.phone
-            }),
-            mode: "cors",
-        };
-        await fetch(BASE_URL+ "contacts/", requestOptions)
-        .then(res => {
-           return res.json()
-        })
-        .then(data => {
-            contactUrl = data.url
-        })
-        .catch(error => {
-            console.log(error)
-        })
-
-        var groups = await GroupsAPI.getGroups();
-
-        var group = "";
-        var found = false;
-
-        for (let i=0; i < groups.length; i++){
-            if(JSON.stringify(groups[i].name) === JSON.stringify(this.state.group)){
-                found = true;
-                group = groups[i];
-            }
-        }
-
-        if(!found){
-            {
-                const data = await ProfileAPI.getUserProfile();
-
-                const newGroup = JSON.stringify({
-                    name: this.state.group,
-                    groupOwner: BASE_URL + "userprofiles/" + data.id + "/",
-                    contacts: [],
-                });
-
-                const requestOptionsGroup = {
-                    method: "POST",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                        Authorization:
-                            `Basic ` +
-                            btoa(
-                                sessionStorage.getItem("username") +
-                                    ":" +
-                                    sessionStorage.getItem("password")
-                            ),
-                    },
-                    body: newGroup,
-                    mode: "cors",
-                }
-                await fetch(BASE_URL+ "groups/", requestOptionsGroup)
-                .then(res => {
-                return res.json()
-                })
-                .catch(error => {
-                // enter your logic for when there is an error (ex. error toast)
-                console.log(error)
-                })
-            }
-        }
-        groups = await GroupsAPI.getGroups();
-        for (let i=0; i < groups.length; i++){
-            if(JSON.stringify(groups[i].name) === JSON.stringify(this.state.group)){
-                found = true;
-                group = groups[i];
-            }
-        }
-        
-        group['contacts'].push(contactUrl);
-        const requestOptionsGroup = {
-            method: "PUT",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization:
-                    `Basic ` +
-                    btoa(
-                        sessionStorage.getItem("username") +
-                            ":" +
-                            sessionStorage.getItem("password")
-                    ),
-            },
-            body: JSON.stringify(group),
-            mode: "cors",
-        }
-        await fetch(BASE_URL+ "groups/" + JSON.stringify(group.id) + "/", requestOptionsGroup)
-        .then(res => {
-        return res.json()
-        })
-        .then(data => {
-        // enter you logic when the fetch is successful
-            //console.log(data)
-        //this.nextPath(data)
-        
-        })
-        .catch(error => {
-        // enter your logic for when there is an error (ex. error toast)
-        console.log(error)
-        })
-
-        console.log(JSON.stringify(groups));
-        this.props.history.goBack();
-
+        await ContactsAPI.editContact(this.state.url, {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            organisation: this.state.organisation,
+            role: this.state.role,
+            phone: this.state.phone
+        });
+        // go back and reload
+        var url = this.props.match.url;
+        url = url.substring(0, url.lastIndexOf("/"))
+        url = url.substring(0, url.lastIndexOf("/"));
+        this.props.history.push(url);
+        window.location.reload();
     };
 
     render() {
@@ -307,14 +203,6 @@ export default class EditContact extends React.Component {
                                 placeholder="e.g. Hogwarts"
                                 onChange={this.changeHandler}
                                 value={this.state.organisation}
-                            />
-                            <InputField
-                                type="text"
-                                name="group"
-                                label="Group"
-                                placeholder="e.g. Work Colleague"
-                                onChange={this.changeHandler}
-                                value={this.state.group}
                             />
                             <InputField
                                 type="text"

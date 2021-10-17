@@ -1,7 +1,8 @@
 import React from "react";
 import ContactCardStar from "./ContactCardStar";
+import { withRouter } from "react-router-dom";
 
-export default class ContactCard extends React.Component {
+class ContactCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,9 +32,21 @@ export default class ContactCard extends React.Component {
         );
     };
 
+    editContact = async () => {
+        this.props.history.push({
+            pathname: `${this.props.match.url.replace(/\/$/g, "")}/edit/${
+                this.props.contact.id
+            }`,
+            url: this.props.contact.url,
+        });
+    };
+
     render() {
         return (
-            <div className="rcorners group-contact-card">
+            <div
+                className="rcorners group-contact-card"
+                onClick={this.editContact}
+            >
                 <div className="contact-card-title">
                     <div className="left-col">
                         <div className="dot">
@@ -48,9 +61,9 @@ export default class ContactCard extends React.Component {
                     </div>
                     <div className="right-col">
                         <ContactCardStar
-                        starred={this.props.contact.starred}
-                        url={this.props.contact.url}
-                    />
+                            starred={this.props.contact.starred}
+                            url={this.props.contact.url}
+                        />
                     </div>
                 </div>
                 <div className="">
@@ -69,3 +82,5 @@ export default class ContactCard extends React.Component {
         );
     }
 }
+
+export default withRouter(ContactCard);

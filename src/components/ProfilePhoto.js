@@ -8,6 +8,11 @@ import { FaCamera } from "react-icons/fa";
  * Profile photo icon which can be found on the profile page
  * - Displayes user's current profile photo
  * - On click, file selector opens and user can select a new profile photo
+ * props:
+ * - src
+ * - alt
+ * - firstName
+ * - lastName
  */
 
 class ProfilePhoto extends React.Component {
@@ -24,11 +29,26 @@ class ProfilePhoto extends React.Component {
         this.hiddenInputRef.current.click();
     };
 
+    getInitials = () => {
+        return (
+            (this.props.firstName && this.props.firstName[0]) +
+            (this.props.lastName && this.props.lastName[0])
+        );
+    };
+
     render() {
         return (
             <div className="profile-photo-row">
                 <div className="profile-photo" onClick={this.onFileSelect}>
-                    <img src={this.props.src} alt={this.props.alt}></img>
+                    {this.props.src === "" ? (
+                        <div className="large-profile-initials">
+                            <div className="large-initials">
+                                {this.getInitials()}
+                            </div>
+                        </div>
+                    ) : (
+                        <img src={this.props.src} alt={this.props.alt}></img>
+                    )}
                     <div className="overlay-icon">
                         <FaCamera />
                     </div>

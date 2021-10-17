@@ -102,7 +102,7 @@ class SignUp extends React.Component {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
         });
-        if ("id" in response) {
+        if (response && response.success) {
             await AuthController.loginUser(response);
             sessionStorage.setItem("username", response.username);
             sessionStorage.setItem("password", this.state.password);

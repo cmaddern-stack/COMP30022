@@ -273,6 +273,8 @@ class Profile extends React.Component {
                 <ProfilePhoto
                     src={this.state.photoURL}
                     alt="User Profile Photo"
+                    firstName={this.state.firstName}
+                    lastname={this.state.lastName}
                     onChange={this.photoChangeHandler}
                 />
                 <div className="form">

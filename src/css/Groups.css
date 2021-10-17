@@ -34,6 +34,19 @@
     width: calc((100vw - 70px)/3.1);
 }
 
+.group-contact-card:hover {
+    background-color: var(--light-grey-80);
+    cursor: pointer;
+}
+
+.group-contact-card:hover th {
+    background-color: var(--light-grey-60);
+}
+
+.group-contact-card:hover td{
+    background-color: var(--light-grey-60);
+}
+
 @media (max-width: 1025px) {
     .group-contact-card {
         min-width: calc((100vw - 70px)/2);
@@ -124,7 +137,7 @@ table {
 table,
 th,
 td {
-    border: 2px solid white;
+    border: 1px solid white;
     border-collapse: collapse;
     font-size: 14px;
 }
