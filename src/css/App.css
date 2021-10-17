@@ -156,3 +156,12 @@ h3 {
     color: var(--dark-grey-80);
     font-weight: bold;
 }
+
+#logo {
+    border-radius: 0;
+    width: auto;
+    height: 40px;
+    border: none;
+    margin-top: -5px;
+    padding-left: 5px;
+}
