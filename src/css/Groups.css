@@ -1,3 +1,14 @@
+/* Define Light Theme Colours */
+body {
+    --header-text: #222529;
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --header-text: white;
+}
+
+/* Define Body Elements */
 .groups-area {
     padding: 0px 20px;
 }
@@ -19,7 +30,12 @@
     background: #fff;
     padding: 10px;
     margin: 5px 15px 5px 0px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.rcorners.dark-theme {
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    margin: 5px 15px 5px 0px;
 }
 
 .contact-card-area {
@@ -103,7 +119,7 @@
 }
 
 .title {
-    color: #222529;
+    color: var(--header-text);
     font-weight: bold;
     font-size: 26pt;
 }

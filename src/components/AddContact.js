@@ -165,7 +165,6 @@ export default class EditContact extends React.Component {
         }
 
         if(!found){
-            {
                 const data = await ProfileAPI.getUserProfile();
 
                 const newGroup = JSON.stringify({
@@ -198,7 +197,6 @@ export default class EditContact extends React.Component {
                 // enter your logic for when there is an error (ex. error toast)
                 console.log(error)
                 })
-            }
         }
         groups = await GroupsAPI.getGroups();
         for (let i=0; i < groups.length; i++){

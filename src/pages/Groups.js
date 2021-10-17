@@ -50,7 +50,7 @@ export default class Groups extends React.Component {
                         placeholder="Search..."
                         onChange={this.setSearchTerm}
                     />
-                    {this.state.groups.map((group) => (
+                    {(this.state.groups.length > 0) && this.state.groups.map((group) => (
                         <div className="group-area">
                             <div className="title">{group.name}</div>
                             <Collapsible

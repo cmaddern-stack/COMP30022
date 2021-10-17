@@ -25,14 +25,26 @@
     --accent-pink-100: #df5571;
 }
 
+/* Define Light Theme Colours */
+body {
+    --bkg-color: var(--light-blue-60);
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --bkg-color: #333333;
+}
+
+/* Define Body Elements */
 .body {
-    background-color: var(--light-blue-60);
+    background-color: var(--bkg-color);
     position: absolute;
     width: 100%;
     min-height: 100%;
     font-family: "proxima-nova", sans-serif;
     font-size: 16px;
 }
+
 
 nav {
     left: 0;
@@ -76,7 +88,12 @@ button {
     font-size: 14px;
     color: white;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.primary-button.dark-theme {
+    background-color: var(brown);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
 }
 
 .primary-button:hover:enabled {
@@ -103,7 +120,12 @@ button:disabled {
     font-size: 14px;
     color: white;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.secondary-button.dark-theme {
+    background-color: var(--light-blue-80);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
 }
 
 .secondary-button:hover:enabled {

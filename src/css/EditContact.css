@@ -1,3 +1,16 @@
+/* Define Light Theme Colours */
+body {
+    --contact-card-bg: var(--light-blue-60);
+    --contact-card-text: var(--bkg-color);
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --contact-card-bg: gray;
+    --contact-card-text: red;
+}
+
+/* Define Elements */
 .edit-contact-modal {
     display: flex;
     align-items: center;
@@ -6,11 +19,24 @@
 }
 
 .edit-contact-card {
+    background-color: var(--contact-card-bg);
+    
+    padding: 20px;
+    width: 60%;
+    border-radius: 5px;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.edit-contact-card text {
+    color: var(--contact-card-tex);
+}
+
+.edit-contact-card.dark-theme {
     background-color: var(--light-blue-60);
     padding: 20px;
     width: 60%;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--dark-shadow);
     max-height: 80vh;
     overflow-y: scroll;
 }
