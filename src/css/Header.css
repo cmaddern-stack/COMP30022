@@ -268,3 +268,9 @@ li:hover {
     width: 96px;
     margin-right: 30px;
 }
+
+@media (max-width: 641px) {
+    .popularity-dropdown {
+        display: none;
+    }
+}

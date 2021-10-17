@@ -10,7 +10,7 @@ class PopularityCounter extends React.Component {
         super(props);
         // TODO: Retrieve popularity information to be displayed
         this.state = {
-            popularity: "1,428",
+            popularity: "0",
         };
     }
 
