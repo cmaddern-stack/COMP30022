@@ -10,6 +10,8 @@ import { GroupsAPI } from "../apis/groupsApi";
 import ProfileAPI from "../apis/profileApi";
 
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+// const BASE_URL = "http://127.0.0.1:8000/crm/";
+
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -206,6 +208,7 @@ export default class EditContact extends React.Component {
             }
         }
         
+        // debugger 
         group['contacts'].push(contactUrl);
         const requestOptionsGroup = {
             method: "PUT",

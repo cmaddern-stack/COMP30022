@@ -63,13 +63,13 @@ class ContactsViewButton extends React.Component {
                     className={"left " + this.state.leftButtonState}
                     onClick={this.leftOnClick}
                 >
-                    <FaAddressBook /> Groups
+                    <FaAddressBook /> <span className="text-color">Groups</span>
                 </div>
                 <div
                     className={"right " + this.state.rightButtonState}
                     onClick={this.rightOnClick}
                 >
-                    <FaTable /> Contacts
+                    <FaTable /> <span className="text-color">Contacts</span>
                 </div>
             </div>
         );

@@ -1,7 +1,6 @@
 .search-bar {
     align-items: center;
     display: flex;
-    box-shadow: 5px 5px 25px var(--light-shadow);
     border-radius: 5px;
     border: 1px solid var(--light-blue-60);
     width: 400px;

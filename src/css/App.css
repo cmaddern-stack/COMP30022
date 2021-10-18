@@ -32,7 +32,7 @@ body {
 
 /* Define Dark Theme Colours */
 body.dark-theme {
-    --bkg-color: #333333;
+    --bkg-color: rgb(35,37,40);
 }
 
 /* Define Body Elements */
