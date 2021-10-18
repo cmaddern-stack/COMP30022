@@ -1,5 +1,5 @@
-// const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
-const BASE_URL = "http://127.0.0.1:8000/crm/";
+const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+// const BASE_URL = "http://127.0.0.1:8000/crm/";
 
 
 class AuthAPI {
