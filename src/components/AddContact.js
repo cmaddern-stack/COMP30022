@@ -10,6 +10,10 @@ import { GroupsAPI } from "../apis/groupsApi";
 import ProfileAPI from "../apis/profileApi";
 
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+<<<<<<< Updated upstream
+=======
+// const BASE_URL = "http://127.0.0.1:8000/crm/";
+>>>>>>> Stashed changes
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -18,6 +22,11 @@ const options = [
   ]
 
 export default class EditContact extends React.Component {
+
+    componentDidMount(){
+        this.id = sessionStorage.getItem("userId");
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -163,14 +172,19 @@ export default class EditContact extends React.Component {
                 group = groups[i];
             }
         }
+        console.log(BASE_URL + "userprofiles/" + this.id + "/");
+
 
         if(!found){
+<<<<<<< Updated upstream
             {
                 const data = await ProfileAPI.getUserProfile();
+=======
+>>>>>>> Stashed changes
 
                 const newGroup = JSON.stringify({
                     name: this.state.group,
-                    groupOwner: BASE_URL + "userprofiles/" + data.id + "/",
+                    groupOwner: BASE_URL + "userprofiles/" + this.id + "/",
                     contacts: [],
                 });
 
@@ -194,6 +208,12 @@ export default class EditContact extends React.Component {
                 .then(res => {
                 return res.json()
                 })
+                .then(data => {
+                    // enter you logic when the fetch is successful
+                        console.log(data)
+                    //this.nextPath(data)
+                    
+                    })
                 .catch(error => {
                 // enter your logic for when there is an error (ex. error toast)
                 console.log(error)
@@ -201,12 +221,14 @@ export default class EditContact extends React.Component {
             }
         }
         groups = await GroupsAPI.getGroups();
+        console.log(groups.length);
         for (let i=0; i < groups.length; i++){
             if(JSON.stringify(groups[i].name) === JSON.stringify(this.state.group)){
                 found = true;
                 group = groups[i];
             }
         }
+        console.log(group);
         
         group['contacts'].push(contactUrl);
         const requestOptionsGroup = {
