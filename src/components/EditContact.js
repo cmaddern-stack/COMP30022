@@ -58,7 +58,7 @@ export default class EditContact extends ContactOverlay {
     };
 
     deleteContact = async () => {
-        this.goBackAndReload();
+        // this.goBackAndReload();
         await ContactsAPI.deleteContact(this.state.url);
     };
 }
