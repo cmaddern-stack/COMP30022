@@ -147,7 +147,7 @@ export class GroupsAPI {
         }
 
         // new group created
-        if (!newURL) {
+        if (newGroupName && !newURL) {
             await GroupsAPI.createGroup(newGroupName, [contactURL]);
         }
         // add contact to existing group
@@ -157,5 +157,6 @@ export class GroupsAPI {
             newContacts.push(contactURL);
             await fetch(newURL, requestOptions(newContacts));
         }
+        // otherwise contact becomes ungrouped
     };
 }
