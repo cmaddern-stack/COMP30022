@@ -50,8 +50,9 @@ export default class EditContact extends ContactOverlay {
         });
         await GroupsAPI.updateContactGroup(
             this.state.url,
-            this.state.originalGroup.url,
-            this.state.group.url
+            this.state.originalGroup && this.state.originalGroup.url,
+            this.state.group && this.state.group.url,
+            this.state.group && this.state.group.label
         );
         this.goBackAndReload();
     };

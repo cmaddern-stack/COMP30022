@@ -27,6 +27,38 @@ export class GroupsAPI {
         return groups;
     };
 
+    static createGroup = async (groupName, contacts) => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                name: groupName,
+                contacts: contacts
+            })
+        };
+        const response = await fetch(BASE_URL + "groups/", requestOptions);
+        var groups = await response.json();
+    }
+
+    static deleteGroup = async(url) => {
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    }
+
     static getGroup = async (url) => {
         const requestOptions = {
             method: "GET",
@@ -81,19 +113,7 @@ export class GroupsAPI {
         return group;
     };
 
-    static updateContactGroup = async (contactURL, oldURL, newURL) => {
-        // no group changes
-        if (oldURL === newURL) return;
-
-        // get Groups and contacts in groups
-        const oldGroup = await GroupsAPI.getGroup(oldURL);
-        const newGroup = await GroupsAPI.getGroup(newURL);
-        var oldContacts = oldGroup.contacts;
-        var newContacts = newGroup.contacts;
-        // move contact to new group 
-        oldContacts.splice(oldContacts.indexOf(contactURL), 1);
-        newContacts.push(contactURL);
-
+    static updateContactGroup = async (contactURL, oldURL, newURL, newGroupName) => {
         function requestOptions(contacts) {
             return {
                 method: "PATCH",
@@ -108,7 +128,34 @@ export class GroupsAPI {
                 }),
             };
         }
-        await fetch(oldURL, requestOptions(oldContacts));
-        await fetch(newURL, requestOptions(newContacts));
+
+        // no group changes
+        if (oldURL === newURL) return;
+
+        // no group to remove contact from if !oldURL
+        // remove contact from existing group
+        if (oldURL) {
+            const oldGroup = await GroupsAPI.getGroup(oldURL);
+            var oldContacts = oldGroup.contacts;
+            oldContacts.splice(oldContacts.indexOf(contactURL), 1);
+            await fetch(oldURL, requestOptions(oldContacts));
+
+            // delete empty groups
+            if (oldContacts.length === 0) {
+                GroupsAPI.deleteGroup(oldURL);
+            }
+        }
+
+        // new group created
+        if (!newURL) {
+            await GroupsAPI.createGroup(newGroupName, [contactURL]);
+        }
+        // add contact to existing group
+        else {
+            const newGroup = await GroupsAPI.getGroup(newURL);
+            var newContacts = newGroup.contacts;
+            newContacts.push(contactURL);
+            await fetch(newURL, requestOptions(newContacts));
+        }
     };
 }
