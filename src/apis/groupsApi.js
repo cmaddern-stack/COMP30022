@@ -59,6 +59,15 @@ export class GroupsAPI {
         return response.json();
     }
 
+    static deleteEmptyGroups = async () => {
+        const groups = await GroupsAPI.getGroups();
+        for (var i = 0; i < groups.length; i++) {
+            if (groups[i].contacts.length === 0) {
+                GroupsAPI.deleteGroup(groups[i].url);
+            }
+        }
+    }
+
     static getGroup = async (url) => {
         const requestOptions = {
             method: "GET",

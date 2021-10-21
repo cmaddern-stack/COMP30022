@@ -65,14 +65,7 @@ export default class ContactsAPI {
             mode: "cors",
         };
         const response = await fetch(url, requestOptions);
-        // Delete empty any empty groups
-        const groups = await GroupsAPI.getGroups();
-        console.log(groups);
-        for (var i = 0; i < groups.length; i++) {
-            if (groups[i].contacts.length === 0) {
-                GroupsAPI.deleteGroup(groups[i].url);
-            }
-        }
+        await GroupsAPI.deleteEmptyGroups();
         return response.json();
     };
 }
