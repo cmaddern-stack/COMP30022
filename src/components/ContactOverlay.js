@@ -17,6 +17,7 @@ export default class ContactOverlay extends React.Component {
             url: "",
             loading: true,
             starred: false,
+            changes: false,
             photoURL: "",
             firstName: "",
             lastName: "",
@@ -35,12 +36,13 @@ export default class ContactOverlay extends React.Component {
     }
 
     proceed = () => {
-        return this.state.emailValid && this.state.phoneValid;
+        return this.state.changes && this.state.emailValid && this.state.phoneValid;
     };
 
     changeHandler = async (event) => {
         this.setState({
             [event.target.name]: event.target.value,
+            changes: true,
         });
     };
 
@@ -56,6 +58,18 @@ export default class ContactOverlay extends React.Component {
         });
     };
 
+    phoneChangeHandler = async (event) => {
+        await this.changeHandler(event);
+        const validation = await AuthController.phoneChangeHandler(
+            this.state.phone,
+            true // isEmptyValid
+        );
+        this.setState({
+            phoneError: validation.error,
+            phoneValid: validation.valid,
+        });
+    }
+
     customChangeHandler = async (event) => {
         const newCustomInput = this.state.customInput;
         const id = parseInt(event.target.name);
@@ -66,6 +80,7 @@ export default class ContactOverlay extends React.Component {
         this.setState({
             customInput: newCustomInput,
             buttonDisabled: false,
+            changes: true,
         });
     };
 
@@ -80,6 +95,7 @@ export default class ContactOverlay extends React.Component {
         this.setState({
             customInput: newCustomInput,
             buttonDisabled: false,
+            changes: true,
         });
     };
 
@@ -112,6 +128,7 @@ export default class ContactOverlay extends React.Component {
         });
         this.setState({
             customInput: newCustomInputs,
+            changes: true,
         });
     };
 
@@ -120,6 +137,7 @@ export default class ContactOverlay extends React.Component {
         newCustomInputs.splice(id, 1);
         this.setState({
             customInput: newCustomInputs,
+            changes: true,
         });
     };
 
@@ -246,8 +264,9 @@ export default class ContactOverlay extends React.Component {
                                     name="phone"
                                     label="Phone Number"
                                     placeholder="e.g. 0402203392"
-                                    onChange={this.changeHandler}
+                                    onChange={this.phoneChangeHandler}
                                     value={this.state.phone}
+                                    error={this.state.phoneError}
                                 />
                                 {this.getCustomFields()}
                                 <div

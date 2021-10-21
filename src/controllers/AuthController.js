@@ -78,6 +78,25 @@ class AuthController {
         return { error: error, valid: valid };
     };
 
+    static phoneChangeHandler = async (phone, isEmptyValid=false) => {
+        var error, valid;
+        if (/^-?\d+$/.test(phone)) {
+            error = "";
+            valid = true;
+        } else {
+            error = "Invalid phone number";
+            valid = false;
+        }
+        // check if empty
+        if (isEmptyValid) {
+            if (phone === "") {
+                valid = true;
+                error = "";
+            }
+        }
+        return { error: error, valid: valid };
+    }
+
     static loginUser = async (response) => {
         sessionStorage.setItem("userId", response.id);
         sessionStorage.setItem("username", response.username);
