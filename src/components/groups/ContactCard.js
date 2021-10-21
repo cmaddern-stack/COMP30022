@@ -37,7 +37,7 @@ class ContactCard extends React.Component {
             pathname: `${this.props.match.url.replace(/\/$/g, "")}/edit/${
                 this.props.contact.id
             }`,
-            url: this.props.contact.url,
+            group: this.props.group,
         });
     };
 

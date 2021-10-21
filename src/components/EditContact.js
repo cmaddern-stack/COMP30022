@@ -27,7 +27,7 @@ export default class EditContact extends ContactOverlay {
             organisation: this.valOrEmptyString(contact.organisation),
             role: this.valOrEmptyString(contact.role),
             phone: this.valOrEmptyString(contact.phoneNumber),
-            group: "None",
+            group: this.valOrEmptyString(this.props.location.group),
             groups: groups,
         });
         // TODO: ADD CUSTOM FIELDS
@@ -35,7 +35,7 @@ export default class EditContact extends ContactOverlay {
 
     valOrEmptyString = (val) => {
         return val ? val : "";
-    }
+    };
 
     save = async () => {
         await ContactsAPI.editContact(this.state.url, {

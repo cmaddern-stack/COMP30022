@@ -42,7 +42,8 @@ export class GroupsAPI {
         response = await response.json();
         var groups = response.map((group) => {
             return {
-                name: group.name,
+                value: group.name,
+                label: group.name,
                 url: group.url,
             };
         });

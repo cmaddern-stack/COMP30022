@@ -10,6 +10,19 @@ import { GroupsAPI } from "../apis/groupsApi";
 import Loading from "./Loading";
 import AuthController from "../controllers/AuthController";
 import { Close } from "@material-ui/icons";
+import CreatableSelect, { makeCreatableSelect } from "react-select/creatable";
+import "../css/ReactSelect.css";
+
+const style = {
+    control: (base) => ({
+        ...base,
+        border: 0,
+        boxShadow: "none",
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 5,
+    }),
+};
 
 export default class ContactOverlay extends React.Component {
     constructor(props) {
@@ -156,11 +169,40 @@ export default class ContactOverlay extends React.Component {
         window.location.reload();
     };
 
-    onGroupSelect = (event) => {
-        this.setState({
-            group: event.target.value,
-        });
+    defaultGroup = () => {
+        if (this.state.group === "") return null;
+        return this.state.groups.filter((group) => {
+            return group.label === this.state.group;
+        })[0];
     };
+
+    onGroupSelect = (newValue, actionMeta) => {
+        switch (actionMeta.action) {
+            case "select-option": {
+                this.setState({
+                    group: newValue.label,
+                });
+                break;
+            }
+            case "clear": {
+                this.setState({
+                    group: "",
+                });
+                break;
+            }
+            case "create-option": {
+                var groups = this.state.groups;
+                groups.push(newValue);
+                this.setState({
+                    group: newValue.label,
+                    groups: groups,
+                });
+                break;
+            }
+        }
+    };
+
+    groupInputChangeHandler = (inputValue, actionMeta) => {};
 
     closeDialog = () => {
         this.props.history.goBack();
@@ -219,24 +261,22 @@ export default class ContactOverlay extends React.Component {
                                     value={this.state.lastName}
                                 />
                                 <label for="group">Group</label>
-                                <div id="select-box">
-                                    <select
-                                        name="group"
-                                        id="group"
-                                        onChange={this.onGroupSelect}
-                                    >
-                                        {this.state.groups.map((group, id) => {
-                                            return (
-                                                <option
-                                                    key={id}
-                                                    value={group.name}
-                                                >
-                                                    {group.name}
-                                                </option>
-                                            );
-                                        })}
-                                    </select>
-                                </div>
+                                <CreatableSelect
+                                    isClearable
+                                    onChange={this.onGroupSelect}
+                                    onInputChange={this.groupInputChangeHandler}
+                                    options={this.state.groups}
+                                    defaultValue={this.defaultGroup()}
+                                    styles={style}
+                                    theme={(theme) => ({
+                                        ...theme,
+                                        colors: {
+                                            ...theme.colors,
+                                            primary25: "#EEF2FA",
+                                            primary: "#a5a6f6",
+                                        },
+                                    })}
+                                />
                                 <InputField
                                     type="email"
                                     value={this.state.email}
