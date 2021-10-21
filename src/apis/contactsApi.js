@@ -52,6 +52,20 @@ export default class ContactsAPI {
         const response = await fetch(url, requestOptions);
         return response.json();
     };
+
+    static deleteContact = async (url) => {
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    };
 }
 
 // Getting list of ALL contacts

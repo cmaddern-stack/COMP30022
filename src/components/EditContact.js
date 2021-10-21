@@ -26,7 +26,7 @@ export default class EditContact extends React.Component {
             emailValid: true,
             customInput: [],
             group: "",
-            groups: []
+            groups: [],
         };
     }
 
@@ -130,6 +130,11 @@ export default class EditContact extends React.Component {
         });
     };
 
+    deleteContact = async () => {
+        this.goBackAndReload();
+        await ContactsAPI.deleteContact(this.state.url);
+    };
+
     save = async () => {
         await ContactsAPI.editContact(this.state.url, {
             firstName: this.state.firstName,
@@ -137,11 +142,14 @@ export default class EditContact extends React.Component {
             email: this.state.email,
             organisation: this.state.organisation,
             role: this.state.role,
-            phone: this.state.phone
+            phone: this.state.phone,
         });
-        // go back and reload
+        this.goBackAndReload();
+    };
+
+    goBackAndReload = () => {
         var url = this.props.match.url;
-        url = url.substring(0, url.lastIndexOf("/"))
+        url = url.substring(0, url.lastIndexOf("/"));
         url = url.substring(0, url.lastIndexOf("/"));
         this.props.history.push(url);
         window.location.reload();
@@ -149,13 +157,13 @@ export default class EditContact extends React.Component {
 
     onGroupSelect = (event) => {
         this.setState({
-            'group': event.target.value
-        })
+            group: event.target.value,
+        });
         console.log(event.target.value);
-    }
+    };
 
     render() {
-        if (this.state.contact === null) {
+        if (this.state.loading) {
             return (
                 <Modal
                     onClick={() => {
@@ -167,116 +175,131 @@ export default class EditContact extends React.Component {
             );
         }
         return (
-            <Modal>
-                <div className="edit-contact-modal" onClick={() => {}}>
-                    <div className="edit-contact-card">
-                        <div className="form-area">
-                            <div className="edit-contact-row">
-                                <ContactCardStar
-                                    starred={this.state.starred}
-                                    url={this.state.url}
-                                    size={30}
-                                />
-                            </div>
+            <Modal
+                onClick={() => {
+                    this.props.history.goBack();
+                }}
+                children={[
+                    <div className="edit-contact-modal">
+                        <div
+                            className="edit-contact-card"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                            }}
+                        >
+                            <div className="form-area">
+                                <div className="edit-contact-row">
+                                    <ContactCardStar
+                                        starred={this.state.starred}
+                                        url={this.state.url}
+                                        size={30}
+                                    />
+                                </div>
 
-                            <ProfilePhoto
-                                src={this.state.photoURL}
-                                alt="contact profile photo"
-                                firstName={this.state.firstName}
-                                lastName={this.state.lastName}
-                            />
-                            <InputField
-                                type="text"
-                                name="firstName"
-                                label="First Name"
-                                placeholder="e.g. Jane"
-                                onChange={this.changeHandler}
-                                value={this.state.firstName}
-                            />
-                            <InputField
-                                type="text"
-                                name="lastName"
-                                label="Last Name"
-                                placeholder="e.g. Doe"
-                                onChange={this.changeHandler}
-                                value={this.state.lastName}
-                            />
-                            <label for="group">Group</label>
-                            <div id="select-box">
-                                <select name="group" id="group" onChange={this.onGroupSelect}>
-                                    {this.state.groups.map((group, id) => {
-                                        return (
-                                            <option key={id} value={group.name}>
-                                                {group.name}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
+                                <ProfilePhoto
+                                    src={this.state.photoURL}
+                                    alt="contact profile photo"
+                                    firstName={this.state.firstName}
+                                    lastName={this.state.lastName}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="firstName"
+                                    label="First Name"
+                                    placeholder="e.g. Jane"
+                                    onChange={this.changeHandler}
+                                    value={this.state.firstName}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="lastName"
+                                    label="Last Name"
+                                    placeholder="e.g. Doe"
+                                    onChange={this.changeHandler}
+                                    value={this.state.lastName}
+                                />
+                                <label for="group">Group</label>
+                                <div id="select-box">
+                                    <select
+                                        name="group"
+                                        id="group"
+                                        onChange={this.onGroupSelect}
+                                    >
+                                        {this.state.groups.map((group, id) => {
+                                            return (
+                                                <option
+                                                    key={id}
+                                                    value={group.name}
+                                                >
+                                                    {group.name}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
+                                </div>
+                                <InputField
+                                    type="email"
+                                    name="email"
+                                    label="Email Address"
+                                    placeholder="e.g. jane.doe@email.com"
+                                    onChange={this.changeHandler}
+                                    value={this.state.email}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="organisation"
+                                    label="Organisation"
+                                    placeholder="e.g. Hogwarts"
+                                    onChange={this.changeHandler}
+                                    value={this.state.organisation}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="role"
+                                    label="Role"
+                                    placeholder="e.g. Wizard"
+                                    onChange={this.changeHandler}
+                                    value={this.state.role}
+                                />
+                                <InputField
+                                    type="text"
+                                    name="phone"
+                                    label="Phone Number"
+                                    placeholder="e.g. +61 302 203 392"
+                                    onChange={this.changeHandler}
+                                    value={this.state.phone}
+                                />
+                                {this.getCustomFields()}
+                                <div
+                                    className="new-field-button"
+                                    onClick={this.addCustomField}
+                                >
+                                    + New Field
+                                </div>
                             </div>
-                            <InputField
-                                type="email"
-                                name="email"
-                                label="Email Address"
-                                placeholder="e.g. jane.doe@email.com"
-                                onChange={this.changeHandler}
-                                value={this.state.email}
-                            />
-                            <InputField
-                                type="text"
-                                name="organisation"
-                                label="Organisation"
-                                placeholder="e.g. Hogwarts"
-                                onChange={this.changeHandler}
-                                value={this.state.organisation}
-                            />
-                            <InputField
-                                type="text"
-                                name="role"
-                                label="Role"
-                                placeholder="e.g. Wizard"
-                                onChange={this.changeHandler}
-                                value={this.state.role}
-                            />
-                            <InputField
-                                type="text"
-                                name="phone"
-                                label="Phone Number"
-                                placeholder="e.g. +61 302 203 392"
-                                onChange={this.changeHandler}
-                                value={this.state.phone}
-                            />
-                            {this.getCustomFields()}
-                            <div
-                                className="new-field-button"
-                                onClick={this.addCustomField}
-                            >
-                                + New Field
+                            <div className="button-row">
+                                <button
+                                    className="secondary-button button"
+                                    type="button"
+                                    name="cancel"
+                                    onClick={this.deleteContact}
+                                >
+                                    Delete
+                                </button>
+                                <button
+                                    className="primary-button button"
+                                    type="button"
+                                    name="save"
+                                    disabled={!this.proceed()}
+                                    onClick={this.save}
+                                >
+                                    Save
+                                </button>
                             </div>
                         </div>
-                        <div className="button-row">
-                            <button
-                                className="secondary-button button"
-                                type="button"
-                                name="cancel"
-                                onClick={() => {
-                                    this.props.history.goBack();
-                                }}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="primary-button button"
-                                type="button"
-                                name="save"
-                                disabled={!this.proceed()}
-                                onClick={this.save}
-                            >
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </Modal>
+                    </div>,
+                ]}
+            ></Modal>
         );
     }
 }
