@@ -278,9 +278,9 @@ export default class ContactOverlay extends React.Component {
                             </div>
                             <div className="button-row">
                                 <button
-                                    className="secondary-button button"
+                                    className="accent-button button"
                                     type="button"
-                                    name="cancel"
+                                    name="delete"
                                     onClick={this.deleteContact}
                                 >
                                     Delete
