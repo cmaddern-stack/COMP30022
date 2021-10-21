@@ -9,6 +9,7 @@ import ContactCardStar from "./groups/ContactCardStar";
 import { GroupsAPI } from "../apis/groupsApi";
 import Loading from "./Loading";
 import AuthController from "../controllers/AuthController";
+import { Close } from "@material-ui/icons";
 
 export default class ContactOverlay extends React.Component {
     constructor(props) {
@@ -36,7 +37,9 @@ export default class ContactOverlay extends React.Component {
     }
 
     proceed = () => {
-        return this.state.changes && this.state.emailValid && this.state.phoneValid;
+        return (
+            this.state.changes && this.state.emailValid && this.state.phoneValid
+        );
     };
 
     changeHandler = async (event) => {
@@ -50,7 +53,7 @@ export default class ContactOverlay extends React.Component {
         await this.changeHandler(event);
         const emailValidation = await AuthController.emailChangeHandler(
             this.state.email,
-            true  // isEmptyValid
+            true // isEmptyValid
         );
         this.setState({
             emailError: emailValidation.error,
@@ -68,7 +71,7 @@ export default class ContactOverlay extends React.Component {
             phoneError: validation.error,
             phoneValid: validation.valid,
         });
-    }
+    };
 
     customChangeHandler = async (event) => {
         const newCustomInput = this.state.customInput;
@@ -159,23 +162,21 @@ export default class ContactOverlay extends React.Component {
         });
     };
 
+    closeDialog = () => {
+        this.props.history.goBack();
+    };
+
     render() {
         if (this.state.loading) {
             return (
-                <Modal
-                    onClick={() => {
-                        this.props.history.goBack();
-                    }}
-                >
+                <Modal onClick={this.closeDialog}>
                     <Loading />
                 </Modal>
             );
         }
         return (
             <Modal
-                onClick={() => {
-                    this.props.history.goBack();
-                }}
+                onClick={this.closeDialog}
                 children={[
                     <div className="edit-contact-modal">
                         <div
@@ -184,6 +185,9 @@ export default class ContactOverlay extends React.Component {
                                 event.stopPropagation();
                             }}
                         >
+                            <div className="close-button">
+                                <Close onClick={this.closeDialog} />
+                            </div>
                             <div className="form-area">
                                 <div className="edit-contact-row">
                                     <ContactCardStar
@@ -192,7 +196,6 @@ export default class ContactOverlay extends React.Component {
                                         size={30}
                                     />
                                 </div>
-
                                 <ProfilePhoto
                                     src={this.state.photoURL}
                                     alt="contact profile photo"
