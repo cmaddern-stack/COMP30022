@@ -1,16 +1,14 @@
 import React from "react";
 import Modal from "./Modal";
 import "../css/EditContact.css";
-import ContactsAPI from "../apis/contactsApi";
 import InputField from "./InputField";
 import CustomInputField from "./CustomInputField";
 import ProfilePhoto from "./ProfilePhoto";
 import ContactCardStar from "./groups/ContactCardStar";
-import { GroupsAPI } from "../apis/groupsApi";
 import Loading from "./Loading";
 import AuthController from "../controllers/AuthController";
 import { Close } from "@material-ui/icons";
-import CreatableSelect, { makeCreatableSelect } from "react-select/creatable";
+import CreatableSelect from "react-select/creatable";
 import "../css/ReactSelect.css";
 
 const style = {
@@ -44,7 +42,8 @@ export default class ContactOverlay extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
-            group: "",
+            originalGroup: null,
+            group: null,
             groups: [],
         };
     }
@@ -170,17 +169,18 @@ export default class ContactOverlay extends React.Component {
     };
 
     defaultGroup = () => {
-        if (this.state.group === "") return null;
-        return this.state.groups.filter((group) => {
-            return group.label === this.state.group;
-        })[0];
+        if (this.state.group) {
+            return this.state.groups.filter((group) => {
+                return group.label === this.state.group.name;
+            })[0];
+        }
     };
 
     onGroupSelect = (newValue, actionMeta) => {
         switch (actionMeta.action) {
             case "select-option": {
                 this.setState({
-                    group: newValue.label,
+                    group: newValue,
                 });
                 break;
             }
@@ -194,12 +194,15 @@ export default class ContactOverlay extends React.Component {
                 var groups = this.state.groups;
                 groups.push(newValue);
                 this.setState({
-                    group: newValue.label,
+                    group: newValue,
                     groups: groups,
                 });
                 break;
             }
         }
+        this.setState({
+            changes: true,
+        });
     };
 
     groupInputChangeHandler = (inputValue, actionMeta) => {};
@@ -272,7 +275,7 @@ export default class ContactOverlay extends React.Component {
                                         ...theme,
                                         colors: {
                                             ...theme.colors,
-                                            primary25: "#EEF2FA",
+                                            primary25: "#F8F9FC",
                                             primary: "#a5a6f6",
                                         },
                                     })}

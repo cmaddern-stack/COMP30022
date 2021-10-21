@@ -15,6 +15,7 @@ export default class EditContact extends ContactOverlay {
         const endpoint = "https://team-69-backend.herokuapp.com/crm/contacts/";
         const url = endpoint + this.props.match.params.id + "/";
         const contact = await ContactsAPI.getContact(url);
+        const group = await GroupsAPI.getContactGroup(url);
         const groups = await GroupsAPI.getGroupNames();
         this.setState({
             url: url,
@@ -27,7 +28,8 @@ export default class EditContact extends ContactOverlay {
             organisation: this.valOrEmptyString(contact.organisation),
             role: this.valOrEmptyString(contact.role),
             phone: this.valOrEmptyString(contact.phoneNumber),
-            group: this.valOrEmptyString(this.props.location.group),
+            originalGroup: group,
+            group: group,
             groups: groups,
         });
         // TODO: ADD CUSTOM FIELDS
@@ -46,6 +48,11 @@ export default class EditContact extends ContactOverlay {
             role: this.state.role,
             phone: this.state.phone,
         });
+        await GroupsAPI.updateContactGroup(
+            this.state.url,
+            this.state.originalGroup.url,
+            this.state.group.url
+        );
         this.goBackAndReload();
     };
 
