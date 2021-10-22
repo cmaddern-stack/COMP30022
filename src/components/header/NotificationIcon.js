@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesome } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import "../../css/Header.css";
 
@@ -27,7 +26,7 @@ class NotificationIcon extends React.Component {
         try {
             // TODO: Notification API call
             // Set this.state.notifications to list of notifications
-            const notificationAPI = "";
+            // const notificationAPI = "";
             // const res = await fetch(notificationAPI);
         } catch (e) {
             console.log(e);
@@ -48,21 +47,35 @@ class NotificationIcon extends React.Component {
         }
     };
 
+    getDropdown = () => {
+        if (this.state.dropdown === "active") {
+            return (
+                <div className={"dropdown " + this.state.dropdown}>
+                    <ul>
+                        {this.state.notifications.length === 0 ? (
+                            <li>No new notifications</li>
+                        ) : (
+                            this.state.notifications.map(function (notif) {
+                                return <li>{notif}</li>;
+                            })
+                        )}
+                    </ul>
+                </div>
+            );
+        }
+    };
+
     render() {
         return (
             <div className="notification-dropdown">
-                <div className={"icon " + this.state.mode} onClick={this.toggleMenu}>
+                <div
+                    className={"icon " + this.state.mode}
+                    data-testid="notification-icon"
+                    onClick={this.toggleMenu}
+                >
                     <FaBell />
                 </div>
-                <div className={"dropdown " + this.state.dropdown}>
-                    <ul>
-                        {this.state.notifications.length === 0 ?
-                        <li>No new notifications</li> :
-                        this.state.notifications.map(function(notif) {
-                            return (<li>{notif}</li>)
-                        })}
-                    </ul>
-                </div>
+                {this.getDropdown()}
             </div>
         );
     }
