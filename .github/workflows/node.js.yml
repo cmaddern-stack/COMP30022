@@ -8,7 +8,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-test:
+    name: Build and Test React App 
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -23,7 +24,28 @@ jobs:
         run: npm test
         env:
           CI: false
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: tests.xml
       - name: Generate build
         run: npm run build
         env:
           CI: ""
+
+  publish-test-results:
+    name: "Publish Test Results"
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: artifacts/**/*.xml

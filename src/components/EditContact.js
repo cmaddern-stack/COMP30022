@@ -1,11 +1,5 @@
-import React from "react";
-import Modal from "./Modal";
 import "../css/EditContact.css";
 import ContactsAPI from "../apis/contactsApi";
-import InputField from "./InputField";
-import CustomInputField from "./CustomInputField";
-import ProfilePhoto from "./ProfilePhoto";
-import ContactCardStar from "./groups/ContactCardStar";
 import { GroupsAPI } from "../apis/groupsApi";
 import ContactOverlay from "./ContactOverlay";
 
@@ -58,7 +52,7 @@ export default class EditContact extends ContactOverlay {
     };
 
     deleteContact = async () => {
-        // this.goBackAndReload();
+        this.goBackAndReload();
         await ContactsAPI.deleteContact(this.state.url);
     };
 }
