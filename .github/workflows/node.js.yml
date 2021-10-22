@@ -49,7 +49,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: artifacts/**/*.xml
-      - name: "Test Coverage"
+      - name: Test Coverage
           uses: artiomtr/jest-coverage-report-action@v2.0-rc.5
           with: 
             github-token: ${{ secrets.GH_TOKEN }}
