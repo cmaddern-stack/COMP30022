@@ -68,6 +68,7 @@
     "chai-webdriverio": "^1.0.0",
     "chromedriver": "^94.0.0",
     "identity-obj-proxy": "^3.0.0",
+    "jest-cli": "^27.3.1",
     "jest-css-modules-transform": "^4.3.0",
     "local-runner": "^0.1.1-alpha",
     "password-validator": "^5.1.1",
