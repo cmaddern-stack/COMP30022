@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --ci --reporters=default --reporters=jest-junit",
     "eject": "react-scripts eject",
     "wdioTest": "node  ./node_modules/.bin/wdio ./wdio.conf.js"
   },
@@ -70,6 +70,7 @@
     "jest-cli": "^27.3.1",
     "jest-css-modules-transform": "^4.3.0",
     "jest-environment-jsdom": "^27.0.6",
+    "jest-junit": "^13.0.0",
     "local-runner": "^0.1.1-alpha",
     "password-validator": "^5.1.1",
     "react-icons": "^4.2.0",
