@@ -61,6 +61,10 @@ body.dark-theme {
     text-align: right;
 }
 
+.close-button:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 961px){
     .edit-contact-card {
         width: 80%;

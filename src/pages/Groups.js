@@ -33,9 +33,22 @@ export default class Groups extends React.Component {
         });
     };
 
+    contactInQuery = (contact) => {
+        if (this.state.searchTerm === "") return contact;
+        else if (
+            contact.firstName
+                .toLowerCase()
+                .includes(this.state.searchTerm.toLowerCase()) ||
+            contact.lastName
+                .toLowerCase()
+                .includes(this.state.searchTerm.toLowerCase())
+        )
+            return contact;
+    };
+
     render() {
         if (!this.state.isLoaded) {
-            return <Loading/>
+            return <Loading />;
         }
         return (
             <div>
@@ -51,44 +64,40 @@ export default class Groups extends React.Component {
                         placeholder="Search..."
                         onChange={this.setSearchTerm}
                     />
-                    {(this.state.groups.length > 0) && this.state.groups.map((group) => (
-                        <div className="group-area">
-                            <div className="title">{group.name}</div>
-                            <Collapsible
-                                triggerClassName="trigger-text"
-                                trigger="Expand"
-                                triggerOpenedClassName="trigger-text"
-                                triggerWhenOpen="Collapse"
-                                open={true}
-                            >
-                                <div className="contact-card-area">
-                                    {group.contactObjects
-                                        .filter((contact) => {
-                                            if (this.state.searchTerm === "")
-                                                return contact;
-                                            else if (
-                                                contact.firstName
-                                                    .toLowerCase()
-                                                    .includes(
-                                                        this.state.searchTerm.toLowerCase()
-                                                    )
-                                            )
-                                                return contact;
-                                        })
-                                        .map((contact, key) => {
-                                            return (
-                                                <div className="user" key={key}>
-                                                    <ContactCard
-                                                        contact={contact}
-                                                    />
-                                                </div>
-                                            );
-                                        })}
-                                    <AddCard />
-                                </div>
-                            </Collapsible>
-                        </div>
-                    ))}
+                    {this.state.groups.length > 0 &&
+                        this.state.groups.map((group) => (
+                            <div className="group-area">
+                                <div className="title">{group.name}</div>
+                                <Collapsible
+                                    triggerClassName="trigger-text"
+                                    trigger="Expand"
+                                    triggerOpenedClassName="trigger-text"
+                                    triggerWhenOpen="Collapse"
+                                    open={true}
+                                >
+                                    <div className="contact-card-area">
+                                        {group.contactObjects
+                                            .filter((contact) => {
+                                                return this.contactInQuery(contact);
+                                            })
+                                            .map((contact, key) => {
+                                                return (
+                                                    <div
+                                                        className="user"
+                                                        key={key}
+                                                    >
+                                                        <ContactCard
+                                                            contact={contact}
+                                                            group={group.name}
+                                                        />
+                                                    </div>
+                                                );
+                                            })}
+                                        <AddCard />
+                                    </div>
+                                </Collapsible>
+                            </div>
+                        ))}
                 </div>
             </div>
         );

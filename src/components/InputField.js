@@ -1,6 +1,17 @@
 import React from "react";
 import "../css/InputField.css";
 
+/**
+ * Input Field
+ * props: 
+ * - name
+ * - label
+ * - type
+ * - placeholder
+ * - onChange
+ * - value
+ * - error
+ */
 class InputField extends React.Component {
     onChange = (event) => {
         this.props.onChange(event);

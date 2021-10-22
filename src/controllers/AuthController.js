@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import ProfileAPI from "../apis/profileApi";
 
 class AuthController {
-    static emailChangeHandler = async (email) => {
+    static emailChangeHandler = async (email, isEmptyValid=false) => {
         var error, valid;
         // validate email address
         if (validator.isEmail(email)) {
@@ -13,6 +13,13 @@ class AuthController {
         } else {
             error = "Email invalid!";
             valid = false;
+        }
+        // check if empty
+        if (isEmptyValid) {
+            if (email === "") {
+                valid = true;
+                error = "";
+            }
         }
         return { error: error, valid: valid };
     };
@@ -71,13 +78,32 @@ class AuthController {
         return { error: error, valid: valid };
     };
 
+    static phoneChangeHandler = async (phone, isEmptyValid=false) => {
+        var error, valid;
+        if (/^-?\d+$/.test(phone)) {
+            error = "";
+            valid = true;
+        } else {
+            error = "Invalid phone number";
+            valid = false;
+        }
+        // check if empty
+        if (isEmptyValid) {
+            if (phone === "") {
+                valid = true;
+                error = "";
+            }
+        }
+        return { error: error, valid: valid };
+    }
+
     static loginUser = async (response) => {
         sessionStorage.setItem("userId", response.id);
         sessionStorage.setItem("username", response.username);
         sessionStorage.setItem("token", response.token);
         const data = await ProfileAPI.getProfileIcon();
         sessionStorage.setItem("image", data.image);
-    }
+    };
 }
 
 export default AuthController;

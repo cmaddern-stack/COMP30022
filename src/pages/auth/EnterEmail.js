@@ -58,7 +58,7 @@ class EnterEmail extends React.Component {
                         disabled={true}
                     ></button>
                     <button
-                        className="primary-button"
+                        className="button primary-button"
                         type="button"
                         name="next"
                         disabled={!this.state.emailValid}

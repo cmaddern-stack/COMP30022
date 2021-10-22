@@ -22,6 +22,7 @@
     --iris-80: #7879f1;
     --iris-100: #5d5fef;
 
+    --accent-pink-60: #F9A4B5;
     --accent-pink-100: #df5571;
 }
 
@@ -142,6 +143,28 @@ button:disabled {
         background-color: var(--light-blue-100);
     }
 }
+
+.accent-button {
+    background-color: var(--accent-pink-60);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+}
+
+.accent-button:hover:enabled {
+    background-color: var(--accent-pink-100);
+    animation: accentButtonHover 0.5s;
+}
+
+@keyframes accentButtonHover {
+    from {
+        background-color: var(--accent-pink-60);
+    }
+    to {
+        background-color: var(--accent-pink-100);
+    }
+}
+
 
 .button-row {
     margin-top: 60px;

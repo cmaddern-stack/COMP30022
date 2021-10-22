@@ -8,7 +8,8 @@ export default class ContactCardStar extends React.Component {
         super(props);
     }
 
-    toggleStar = async () => {
+    toggleStar = async (event) => {
+        event.stopPropagation();
         await ContactsAPI.toggleStar(this.props.url, !this.props.starred);
         window.location.reload();
     };
