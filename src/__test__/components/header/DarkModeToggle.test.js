@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import { fireEvent } from "@testing-library/dom";
 import DarkModeToggle from "../../../components/header/DarkModeToggle";
 
-test("dark mode toggle changes theme in local storage", () => {
+test("Dark Mode Toggle changes theme in local storage", () => {
     render(<DarkModeToggle />);
     jest.spyOn(window.localStorage.__proto__, "setItem");
     window.localStorage.__proto__.setItem = jest.fn();
@@ -16,7 +16,7 @@ test("dark mode toggle changes theme in local storage", () => {
     expect(localStorage.setItem).toHaveBeenCalled();
 });
 
-test("dark mode toggle only has one icon showing at a time", () => {
+test("Dark Mode Toggle only has one icon showing at a time", () => {
     render(<DarkModeToggle />);
     var darkModeToggleIcon = screen.getAllByTestId(
         "dark-mode-toggle--icon"
