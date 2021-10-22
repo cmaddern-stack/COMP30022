@@ -1,3 +1,5 @@
+import React from "react";
+import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import InputField from "../../components/InputField";
 
@@ -6,7 +8,7 @@ test("render input field component", () => {
     const label = "test-label";
     const value = "test-value";
     render(
-        <InputField 
+        <InputField
             name="test-input"
             label={label}
             type="text"
@@ -16,7 +18,7 @@ test("render input field component", () => {
             error={""}
         />
     );
-    // find elements 
+    // find elements
     const labelElement = screen.getByText(label);
     const inputElement = screen.getByRole("textbox");
     expect(labelElement).toBeInTheDocument();
