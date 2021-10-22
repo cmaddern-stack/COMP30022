@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="13" failures="0" errors="0" time="9.114">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="2.639" tests="3">
-    <testcase classname=" Profile Icon renders an image" name=" Profile Icon renders an image" time="0.155">
+<testsuites name="jest tests" tests="14" failures="0" errors="0" time="13.29">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="3.997" tests="2">
+    <testcase classname=" Dark Mode Toggle changes theme in local storage" name=" Dark Mode Toggle changes theme in local storage" time="0.115">
     </testcase>
-    <testcase classname=" Profile Icon renders Navigation menu when clicked" name=" Profile Icon renders Navigation menu when clicked" time="0.107">
-    </testcase>
-    <testcase classname=" Profile Icon closes Navigation menu when clicked again" name=" Profile Icon closes Navigation menu when clicked again" time="0.055">
+    <testcase classname=" Dark Mode Toggle only has one icon showing at a time" name=" Dark Mode Toggle only has one icon showing at a time" time="0.008">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="2.625" tests="3">
-    <testcase classname=" Notification Icon initially does not show dropdown" name=" Notification Icon initially does not show dropdown" time="0.093">
-    </testcase>
-    <testcase classname=" Notification Icon shows notifications when clicked" name=" Notification Icon shows notifications when clicked" time="0.144">
-    </testcase>
-    <testcase classname=" Notifications are hidden when clicked twice" name=" Notifications are hidden when clicked twice" time="0.04">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.093" tests="1">
+    <testcase classname=" Popularity counter always displays a number" name=" Popularity counter always displays a number" time="0.082">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="2.619" tests="3">
-    <testcase classname=" Contacts View Button has Groups and Contacts buttons" name=" Contacts View Button has Groups and Contacts buttons" time="0.099">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.156" tests="3">
+    <testcase classname=" Contacts View Button has Groups and Contacts buttons" name=" Contacts View Button has Groups and Contacts buttons" time="0.144">
     </testcase>
-    <testcase classname=" Clicking on Contacts button redirects to contacts page" name=" Clicking on Contacts button redirects to contacts page" time="0.042">
+    <testcase classname=" Clicking on Contacts button redirects to contacts page" name=" Clicking on Contacts button redirects to contacts page" time="0.076">
     </testcase>
-    <testcase classname=" Clicking on Groups button redirects to groups page" name=" Clicking on Groups button redirects to groups page" time="0.037">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="2.545" tests="1">
-    <testcase classname=" render input field component" name=" render input field component" time="0.172">
+    <testcase classname=" Clicking on Groups button redirects to groups page" name=" Clicking on Groups button redirects to groups page" time="0.024">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="2.621" tests="2">
-    <testcase classname=" Dark Mode Toggle changes theme in local storage" name=" Dark Mode Toggle changes theme in local storage" time="0.065">
-    </testcase>
-    <testcase classname=" Dark Mode Toggle only has one icon showing at a time" name=" Dark Mode Toggle only has one icon showing at a time" time="0.01">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:56" time="3.902" tests="1">
+    <testcase classname=" render input field component" name=" render input field component" time="0.187">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:26:12" time="7.679" tests="1">
-    <testcase classname=" Renders enter email page upon opening App" name=" Renders enter email page upon opening App" time="0.091">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:56" time="4.037" tests="3">
+    <testcase classname=" Profile Icon renders an image" name=" Profile Icon renders an image" time="0.218">
+    </testcase>
+    <testcase classname=" Profile Icon renders Navigation menu when clicked" name=" Profile Icon renders Navigation menu when clicked" time="0.176">
+    </testcase>
+    <testcase classname=" Profile Icon closes Navigation menu when clicked again" name=" Profile Icon closes Navigation menu when clicked again" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.19" tests="3">
+    <testcase classname=" Notification Icon initially does not show dropdown" name=" Notification Icon initially does not show dropdown" time="0.136">
+    </testcase>
+    <testcase classname=" Notification Icon shows notifications when clicked" name=" Notification Icon shows notifications when clicked" time="0.086">
+    </testcase>
+    <testcase classname=" Notifications are hidden when clicked twice" name=" Notifications are hidden when clicked twice" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="11.358" tests="1">
+    <testcase classname=" Renders enter email page upon opening App" name=" Renders enter email page upon opening App" time="0.076">
     </testcase>
   </testsuite>
 </testsuites>

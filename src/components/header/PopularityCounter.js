@@ -8,17 +8,26 @@ import React from "react";
 class PopularityCounter extends React.Component {
     constructor(props) {
         super(props);
-        // TODO: Retrieve popularity information to be displayed
         this.state = {
             popularity: "0",
         };
     }
 
+    // TODO: Retrieve popularity information to be displayed
+
     render() {
         return (
             <div className="popularity-dropdown">
-                <div className="popularity">{this.state.popularity}</div>
-                <div className="tool-tip">Accumulate points as others download your contact information!</div>
+                <div
+                    className="popularity"
+                    data-testid="popularity-counter--value"
+                >
+                    {this.state.popularity}
+                </div>
+                <div className="tool-tip">
+                    Accumulate points as others download your contact
+                    information!
+                </div>
             </div>
         );
     }
