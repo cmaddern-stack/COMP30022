@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install    
       - name: Test
-        run: npm test > artifacts/tests/tests.xml
+        run: npm test
         env:
           CI: false
       - name: Upload test results
