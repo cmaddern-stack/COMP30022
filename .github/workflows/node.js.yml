@@ -24,6 +24,12 @@ jobs:
         run: npm test
         env:
           CI: false
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: junit.xml
       - name: Generate build
         run: npm run build
         env:
@@ -42,4 +48,4 @@ jobs:
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: *.xml
+          files: junit.xml
