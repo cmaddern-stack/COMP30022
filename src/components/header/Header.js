@@ -21,7 +21,11 @@ class Header extends React.Component {
                     <div className="left-header">
                         {/* <a href="/groups">Logo and App Name</a> */}
                         <a href="/groups">
-                            <img className="logo" src="knotwork-02.png"></img>
+                            <img
+                                className="logo"
+                                src="knotwork-02.png"
+                                alt="knotwork-logo"
+                            ></img>
                         </a>
                     </div>
                     <div className="right-header">

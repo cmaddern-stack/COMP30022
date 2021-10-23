@@ -1,10 +1,9 @@
-import React from "react";
 import validator from "validator";
-import InputField from "../components/InputField";
 import ProfileAPI from "../apis/profileApi";
+import AuthAPI from "../apis/authApi";
 
 class AuthController {
-    static emailChangeHandler = async (email, isEmptyValid=false) => {
+    static emailChangeHandler = async (email, isEmptyValid = false) => {
         var error, valid;
         // validate email address
         if (validator.isEmail(email)) {
@@ -78,7 +77,7 @@ class AuthController {
         return { error: error, valid: valid };
     };
 
-    static phoneChangeHandler = async (phone, isEmptyValid=false) => {
+    static phoneChangeHandler = async (phone, isEmptyValid = false) => {
         var error, valid;
         if (/^-?\d+$/.test(phone)) {
             error = "";
@@ -95,7 +94,22 @@ class AuthController {
             }
         }
         return { error: error, valid: valid };
-    }
+    };
+
+    // Check if email is associated with an existing account 
+    // If yes push to login page, otherwise push to sign up page 
+    static enterEmailNext = async (history, email) => {
+        let data = { email: email };
+        let response = await AuthAPI.checkEmail(email);
+        let exists = response.success;
+        var path = "";
+        if (exists) {
+            path = "/auth/login";
+        } else {
+            path = "/auth/signup";
+        }
+        history.push({ pathname: path, state: data });
+    };
 
     static loginUser = async (response) => {
         sessionStorage.setItem("userId", response.id);

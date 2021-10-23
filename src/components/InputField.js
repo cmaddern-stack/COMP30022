@@ -3,7 +3,7 @@ import "../css/InputField.css";
 
 /**
  * Input Field
- * props: 
+ * props:
  * - name
  * - label
  * - type
@@ -33,7 +33,9 @@ class InputField extends React.Component {
                     onChange={this.onChange}
                     value={this.props.value}
                 />
-                <div className="input-error">{this.props.error}</div>
+                <div className="input-error" data-testid="input-error">
+                    {this.props.error}
+                </div>
             </div>
         );
     }

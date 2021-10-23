@@ -1,45 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="14" failures="0" errors="0" time="13.29">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="3.997" tests="2">
-    <testcase classname=" Dark Mode Toggle changes theme in local storage" name=" Dark Mode Toggle changes theme in local storage" time="0.115">
-    </testcase>
-    <testcase classname=" Dark Mode Toggle only has one icon showing at a time" name=" Dark Mode Toggle only has one icon showing at a time" time="0.008">
+<testsuites name="jest tests" tests="27" failures="0" errors="0" time="9.908">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="2.794" tests="1">
+    <testcase classname=" Popularity counter always displays a number" name=" Popularity counter always displays a number" time="0.065">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.093" tests="1">
-    <testcase classname=" Popularity counter always displays a number" name=" Popularity counter always displays a number" time="0.082">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="2.863" tests="3">
+    <testcase classname=" Notification Icon initially does not show dropdown" name=" Notification Icon initially does not show dropdown" time="0.127">
+    </testcase>
+    <testcase classname=" Notification Icon shows notifications when clicked" name=" Notification Icon shows notifications when clicked" time="0.183">
+    </testcase>
+    <testcase classname=" Notifications are hidden when clicked twice" name=" Notifications are hidden when clicked twice" time="0.054">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.156" tests="3">
-    <testcase classname=" Contacts View Button has Groups and Contacts buttons" name=" Contacts View Button has Groups and Contacts buttons" time="0.144">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="3.112" tests="6">
+    <testcase classname=" Header contains logo image" name=" Header contains logo image" time="0.128">
     </testcase>
-    <testcase classname=" Clicking on Contacts button redirects to contacts page" name=" Clicking on Contacts button redirects to contacts page" time="0.076">
+    <testcase classname=" Header contains profile icon" name=" Header contains profile icon" time="0.032">
     </testcase>
-    <testcase classname=" Clicking on Groups button redirects to groups page" name=" Clicking on Groups button redirects to groups page" time="0.024">
+    <testcase classname=" Header contains popularity counter" name=" Header contains popularity counter" time="0.04">
     </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:56" time="3.902" tests="1">
-    <testcase classname=" render input field component" name=" render input field component" time="0.187">
+    <testcase classname=" Header contains dark mode toggle" name=" Header contains dark mode toggle" time="0.028">
     </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:56" time="4.037" tests="3">
-    <testcase classname=" Profile Icon renders an image" name=" Profile Icon renders an image" time="0.218">
+    <testcase classname=" Clicking on header logo redirects to groups page (not logged in)" name=" Clicking on header logo redirects to groups page (not logged in)" time="0.068">
     </testcase>
-    <testcase classname=" Profile Icon renders Navigation menu when clicked" name=" Profile Icon renders Navigation menu when clicked" time="0.176">
-    </testcase>
-    <testcase classname=" Profile Icon closes Navigation menu when clicked again" name=" Profile Icon closes Navigation menu when clicked again" time="0.02">
+    <testcase classname=" Clicking on header logo redirects to home page" name=" Clicking on header logo redirects to home page" time="0.043">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="4.19" tests="3">
-    <testcase classname=" Notification Icon initially does not show dropdown" name=" Notification Icon initially does not show dropdown" time="0.136">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="3.328" tests="3">
+    <testcase classname=" Contacts View Button has Groups and Contacts buttons" name=" Contacts View Button has Groups and Contacts buttons" time="0.142">
     </testcase>
-    <testcase classname=" Notification Icon shows notifications when clicked" name=" Notification Icon shows notifications when clicked" time="0.086">
+    <testcase classname=" Clicking on Contacts button redirects to contacts page" name=" Clicking on Contacts button redirects to contacts page" time="0.065">
     </testcase>
-    <testcase classname=" Notifications are hidden when clicked twice" name=" Notifications are hidden when clicked twice" time="0.016">
+    <testcase classname=" Clicking on Groups button redirects to groups page" name=" Clicking on Groups button redirects to groups page" time="0.073">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-22T11:33:55" time="11.358" tests="1">
-    <testcase classname=" Renders enter email page upon opening App" name=" Renders enter email page upon opening App" time="0.076">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="3.389" tests="3">
+    <testcase classname=" Profile Icon renders an image" name=" Profile Icon renders an image" time="0.198">
+    </testcase>
+    <testcase classname=" Profile Icon renders Navigation menu when clicked" name=" Profile Icon renders Navigation menu when clicked" time="0.175">
+    </testcase>
+    <testcase classname=" Profile Icon closes Navigation menu when clicked again" name=" Profile Icon closes Navigation menu when clicked again" time="0.037">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:24" time="0.564" tests="2">
+    <testcase classname=" Dark Mode Toggle changes theme in local storage" name=" Dark Mode Toggle changes theme in local storage" time="0.013">
+    </testcase>
+    <testcase classname=" Dark Mode Toggle only has one icon showing at a time" name=" Dark Mode Toggle only has one icon showing at a time" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:24" time="0.79" tests="3">
+    <testcase classname=" Render input field component" name=" Render input field component" time="0.097">
+    </testcase>
+    <testcase classname=" Typing into input field component" name=" Typing into input field component" time="0.111">
+    </testcase>
+    <testcase classname=" Input field component shows errors" name=" Input field component shows errors" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="4.078" tests="5">
+    <testcase classname=" Enter email page has a field for email address and next button" name=" Enter email page has a field for email address and next button" time="0.144">
+    </testcase>
+    <testcase classname=" Enter email page allows users to type emails" name=" Enter email page allows users to type emails" time="0.147">
+    </testcase>
+    <testcase classname=" Enter email page validates against invalid emails" name=" Enter email page validates against invalid emails" time="0.063">
+    </testcase>
+    <testcase classname=" Next button on enter email page is disabled if invalid email" name=" Next button on enter email page is disabled if invalid email" time="0.092">
+    </testcase>
+    <testcase classname=" Next button leads to next page if valid email" name=" Next button leads to next page if valid email" time="0.12">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T05:23:21" time="8.086" tests="1">
+    <testcase classname=" Renders enter email page upon opening App" name=" Renders enter email page upon opening App" time="0.147">
     </testcase>
   </testsuite>
 </testsuites>
