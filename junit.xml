@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="3" failures="0" errors="0" time="4.526">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T07:21:32" time="3.982" tests="3">
-    <testcase classname=" Contact Card Star shows star outline when not starred" name=" Contact Card Star shows star outline when not starred" time="0.04">
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="5.378">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T07:23:13" time="4.782" tests="3">
+    <testcase classname=" Contact Card Star shows star outline when not starred" name=" Contact Card Star shows star outline when not starred" time="0.042">
     </testcase>
-    <testcase classname=" Contact Card Star shows filled star when starred" name=" Contact Card Star shows filled star when starred" time="0.008">
+    <testcase classname=" Contact Card Star shows filled star when starred" name=" Contact Card Star shows filled star when starred" time="0.009">
     </testcase>
-    <testcase classname=" Contact Card Star calls API on click" name=" Contact Card Star calls API on click" time="0.04">
+    <testcase classname=" Contact Card Star calls API on click" name=" Contact Card Star calls API on click" time="0.046">
     </testcase>
   </testsuite>
 </testsuites>
