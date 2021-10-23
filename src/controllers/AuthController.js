@@ -3,7 +3,7 @@ import ProfileAPI from "../apis/profileApi";
 import AuthAPI from "../apis/authApi";
 
 class AuthController {
-    static emailChangeHandler = async (email, isEmptyValid = false) => {
+    static emailChangeHandler = (email, isEmptyValid = false) => {
         var error, valid;
         // validate email address
         if (validator.isEmail(email)) {
@@ -35,7 +35,7 @@ class AuthController {
         return { error: error, valid: valid };
     };
 
-    static passwordChangeHandler = async (password) => {
+    static passwordChangeHandler = (password) => {
         var error, valid;
         var passwordValidator = require("password-validator");
         var schema = new passwordValidator();
@@ -96,8 +96,8 @@ class AuthController {
         return { error: error, valid: valid };
     };
 
-    // Check if email is associated with an existing account 
-    // If yes push to login page, otherwise push to sign up page 
+    // Check if email is associated with an existing account
+    // If yes push to login page, otherwise push to sign up page
     static enterEmailNext = async (history, email) => {
         let data = { email: email };
         let response = await AuthAPI.checkEmail(email);

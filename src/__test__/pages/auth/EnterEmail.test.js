@@ -2,11 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
 import EnterEmail from "../../../pages/auth/EnterEmail";
-import AuthAPI from "../../../apis/AuthAPI";
-import AuthController from "../../../controllers/AuthController";
 
 test("Enter email page has a field for email address and next button", () => {
     render(<EnterEmail />);
@@ -39,12 +35,7 @@ test("Enter email page validates against invalid emails", async () => {
 });
 
 test("Next button on enter email page is disabled if invalid email", () => {
-    const history = createMemoryHistory();
-    render(
-        <Router history={history}>
-            <EnterEmail />
-        </Router>
-    );
+    render(<EnterEmail />);
     const testEmail = "invalid email";
     const emailInput = screen.getByRole("textbox");
     const nextButton = screen.getByText("NEXT");
@@ -54,12 +45,7 @@ test("Next button on enter email page is disabled if invalid email", () => {
 });
 
 test("Next button leads to next page if valid email", async () => {
-    const history = createMemoryHistory();
-    render(
-        <Router history={history}>
-            <EnterEmail />
-        </Router>
-    );
+    render(<EnterEmail />);
     const testEmail = "existing@email.com";
     const emailInput = screen.getByRole("textbox");
     const nextButton = screen.getByText("NEXT");

@@ -50,7 +50,7 @@ class SignUp extends React.Component {
 
     passwordChangeHandler = async (event) => {
         await this.setState({ [event.target.name]: event.target.value });
-        let result = await AuthController.passwordChangeHandler(
+        let result = AuthController.passwordChangeHandler(
             event.target.value
         );
         this.setState({
