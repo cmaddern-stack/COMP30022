@@ -22,7 +22,7 @@ class Login extends React.Component {
 
     emailChangeHandler = async (event) => {
         await this.setState({ [event.target.name]: event.target.value });
-        let result = await AuthController.emailChangeHandler(this.state.email);
+        const result = AuthController.emailChangeHandler(this.state.email);
         this.setState({
             emailError: result.error,
             emailValid: result.valid,

@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --ci --reporters=default --reporters=jest-junit",
+    "test": "jest --ci --reporters=default --reporters=jest-junit --coverage",
     "eject": "react-scripts eject",
     "wdioTest": "node  ./node_modules/.bin/wdio ./wdio.conf.js"
   },
