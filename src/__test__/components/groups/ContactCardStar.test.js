@@ -23,9 +23,13 @@ test("Contact Card Star shows filled star when starred", () => {
 
 test("Contact Card Star calls API on click", () => {
     const mockToggleStar = jest.fn();
+    delete window.location;
+    window.location = {
+        reload: jest.fn(),
+    };
     ContactsAPI.toggleStar = mockToggleStar;
     render(<ContactCardStar starred={true} />);
     const star = screen.getByTestId("contact-card-star");
     userEvent.click(star);
     expect(mockToggleStar).toHaveBeenCalled();
-})
+});
