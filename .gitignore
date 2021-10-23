@@ -35,4 +35,4 @@ typings/
 .yarn-integrity
 
 # Coverage files
-# coverage/
+coverage/
