@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="2.685">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T07:07:12" time="1.849" tests="6">
-    <testcase classname=" Sign Up page has fields for email address, first name, last name, password and confirm password." name=" Sign Up page has fields for email address, first name, last name, password and confirm password." time="0.052">
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="4.526">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T07:21:32" time="3.982" tests="3">
+    <testcase classname=" Contact Card Star shows star outline when not starred" name=" Contact Card Star shows star outline when not starred" time="0.04">
     </testcase>
-    <testcase classname=" Sign Up page has back and sign up buttons" name=" Sign Up page has back and sign up buttons" time="0.018">
+    <testcase classname=" Contact Card Star shows filled star when starred" name=" Contact Card Star shows filled star when starred" time="0.008">
     </testcase>
-    <testcase classname=" Sign Up page email field is initailly passed in via props location" name=" Sign Up page email field is initailly passed in via props location" time="0.015">
-    </testcase>
-    <testcase classname=" Sign Up page sign up button is disabled initially" name=" Sign Up page sign up button is disabled initially" time="0.015">
-    </testcase>
-    <testcase classname=" Sign Up page sign up button is enabled when user types valid inputs" name=" Sign Up page sign up button is enabled when user types valid inputs" time="0.28">
-    </testcase>
-    <testcase classname=" Sign Up page sign up button is disabled when password is too weak" name=" Sign Up page sign up button is disabled when password is too weak" time="0.161">
+    <testcase classname=" Contact Card Star calls API on click" name=" Contact Card Star calls API on click" time="0.04">
     </testcase>
   </testsuite>
 </testsuites>

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/InputField.js</title>
+    <title>Code coverage report for components/ProfilePhoto.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> InputField.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> ProfilePhoto.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -107,7 +107,29 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -126,9 +148,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,55 +194,73 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import "../css/InputField.css";
+import axios from "axios";
+import "../css/Profile.css";
+import { FontAwesome } from "react-icons/fa";
+import { FaCamera } from "react-icons/fa";
 &nbsp;
 /**
- * Input Field
+ * Profile photo icon which can be found on the profile page
+ * - Displayes user's current profile photo
+ * - On click, file selector opens and user can select a new profile photo
  * props:
- * - name
- * - label
- * - type
- * - placeholder
- * - onChange
- * - value
- * - error
+ * - src
+ * - alt
+ * - firstName
+ * - lastName
  */
-class InputField extends React.Component {
-    onChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
+&nbsp;
+class ProfilePhoto extends React.Component {
+<span class="fstat-no" title="function not covered" >    co</span>nstructor(props) {
+<span class="cstat-no" title="statement not covered" >        super(props);</span>
+<span class="cstat-no" title="statement not covered" >        this.hiddenInputRef = React.createRef();</span>
+    }
+&nbsp;
+    onHiddenInputClick = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (event) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        this.props.onChange(event);</span>
+    };
+&nbsp;
+    onFileSelect = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        this.hiddenInputRef.current.click();</span>
+    };
+&nbsp;
+    getInitials = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            (this.props.firstName &amp;&amp; this.props.firstName[0]) +
+            (this.props.lastName &amp;&amp; this.props.lastName[0])
+        );
     };
 &nbsp;
 <span class="fstat-no" title="function not covered" >    re</span>nder() {
 <span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;div className="input-field"&gt;
-                &lt;div&gt;
-                    &lt;label
-                        className="label"
-                        id={this.props.name}
-                        htmlFor={this.props.name}
-                    &gt;
-                        {this.props.label}
-                    &lt;/label&gt;
+            &lt;div className="profile-photo-row"&gt;
+                &lt;div className="profile-photo" onClick={this.onFileSelect}&gt;
+                    {this.props.src === "" ? (
+                        &lt;div className="large-profile-initials"&gt;
+                            &lt;div className="large-initials"&gt;
+                                {this.getInitials()}
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    ) : (
+                        &lt;img src={this.props.src} alt={this.props.alt}&gt;&lt;/img&gt;
+                    )}
+                    &lt;div className="overlay-icon"&gt;
+                        &lt;FaCamera /&gt;
+                    &lt;/div&gt;
                     &lt;input
-                        id={this.props.name}
-                        type={this.props.type}
-                        name={this.props.name}
-                        placeholder={this.props.placeholder}
-                        onChange={this.onChange}
-                        value={this.props.value}
-                        data-testid={this.props.name}
+                        className="invisible-button"
+                        type="file"
+                        accept="image/png, image/jpeg"
+                        onChange={this.onHiddenInputClick}
+                        ref={this.hiddenInputRef}
                     /&gt;
-                &lt;/div&gt;
-&nbsp;
-                &lt;div className="input-error" data-testid="input-error"&gt;
-                    {this.props.error}
                 &lt;/div&gt;
             &lt;/div&gt;
         );
     }
 }
 &nbsp;
-export default InputField;
+export default ProfilePhoto;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
