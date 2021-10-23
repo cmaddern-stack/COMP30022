@@ -1,87 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="32" failures="0" errors="0" time="10.113">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="2.923" tests="1">
-    <testcase classname=" Popularity counter always displays a number" name=" Popularity counter always displays a number" time="0.098">
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="2.685">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T07:07:12" time="1.849" tests="6">
+    <testcase classname=" Sign Up page has fields for email address, first name, last name, password and confirm password." name=" Sign Up page has fields for email address, first name, last name, password and confirm password." time="0.052">
     </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="3.124" tests="3">
-    <testcase classname=" Profile Icon renders an image" name=" Profile Icon renders an image" time="0.179">
+    <testcase classname=" Sign Up page has back and sign up buttons" name=" Sign Up page has back and sign up buttons" time="0.018">
     </testcase>
-    <testcase classname=" Profile Icon renders Navigation menu when clicked" name=" Profile Icon renders Navigation menu when clicked" time="0.228">
+    <testcase classname=" Sign Up page email field is initailly passed in via props location" name=" Sign Up page email field is initailly passed in via props location" time="0.015">
     </testcase>
-    <testcase classname=" Profile Icon closes Navigation menu when clicked again" name=" Profile Icon closes Navigation menu when clicked again" time="0.048">
+    <testcase classname=" Sign Up page sign up button is disabled initially" name=" Sign Up page sign up button is disabled initially" time="0.015">
     </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="3.623" tests="3">
-    <testcase classname=" Notification Icon initially does not show dropdown" name=" Notification Icon initially does not show dropdown" time="0.141">
+    <testcase classname=" Sign Up page sign up button is enabled when user types valid inputs" name=" Sign Up page sign up button is enabled when user types valid inputs" time="0.28">
     </testcase>
-    <testcase classname=" Notification Icon shows notifications when clicked" name=" Notification Icon shows notifications when clicked" time="0.178">
-    </testcase>
-    <testcase classname=" Notifications are hidden when clicked twice" name=" Notifications are hidden when clicked twice" time="0.062">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:52" time="0.94" tests="3">
-    <testcase classname=" Contacts View Button has Groups and Contacts buttons" name=" Contacts View Button has Groups and Contacts buttons" time="0.068">
-    </testcase>
-    <testcase classname=" Clicking on Contacts button redirects to contacts page" name=" Clicking on Contacts button redirects to contacts page" time="0.076">
-    </testcase>
-    <testcase classname=" Clicking on Groups button redirects to groups page" name=" Clicking on Groups button redirects to groups page" time="0.048">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="3.62" tests="6">
-    <testcase classname=" Header contains logo image" name=" Header contains logo image" time="0.113">
-    </testcase>
-    <testcase classname=" Header contains profile icon" name=" Header contains profile icon" time="0.035">
-    </testcase>
-    <testcase classname=" Header contains popularity counter" name=" Header contains popularity counter" time="0.027">
-    </testcase>
-    <testcase classname=" Header contains dark mode toggle" name=" Header contains dark mode toggle" time="0.028">
-    </testcase>
-    <testcase classname=" Clicking on header logo redirects to groups page (not logged in)" name=" Clicking on header logo redirects to groups page (not logged in)" time="0.067">
-    </testcase>
-    <testcase classname=" Clicking on header logo redirects to home page" name=" Clicking on header logo redirects to home page" time="0.049">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:52" time="0.918" tests="3">
-    <testcase classname=" Render input field component" name=" Render input field component" time="0.11">
-    </testcase>
-    <testcase classname=" Typing into input field component" name=" Typing into input field component" time="0.202">
-    </testcase>
-    <testcase classname=" Input field component shows errors" name=" Input field component shows errors" time="0.008">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:52" time="0.537" tests="2">
-    <testcase classname=" Dark Mode Toggle changes theme in local storage" name=" Dark Mode Toggle changes theme in local storage" time="0.014">
-    </testcase>
-    <testcase classname=" Dark Mode Toggle only has one icon showing at a time" name=" Dark Mode Toggle only has one icon showing at a time" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="4.251" tests="5">
-    <testcase classname=" Enter email page has a field for email address and next button" name=" Enter email page has a field for email address and next button" time="0.282">
-    </testcase>
-    <testcase classname=" Enter email page allows users to type emails" name=" Enter email page allows users to type emails" time="0.277">
-    </testcase>
-    <testcase classname=" Enter email page validates against invalid emails" name=" Enter email page validates against invalid emails" time="0.145">
-    </testcase>
-    <testcase classname=" Next button on enter email page is disabled if invalid email" name=" Next button on enter email page is disabled if invalid email" time="0.151">
-    </testcase>
-    <testcase classname=" Next button leads to next page if valid email" name=" Next button leads to next page if valid email" time="0.132">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="4.158" tests="5">
-    <testcase classname=" Login page has fields for email address and password" name=" Login page has fields for email address and password" time="0.144">
-    </testcase>
-    <testcase classname=" Login page has back and login buttons" name=" Login page has back and login buttons" time="0.04">
-    </testcase>
-    <testcase classname=" Login page login button is disabled initially" name=" Login page login button is disabled initially" time="0.024">
-    </testcase>
-    <testcase classname=" Login page next button is enabled when user types valid inputs" name=" Login page next button is enabled when user types valid inputs" time="0.216">
-    </testcase>
-    <testcase classname=" Login page validates against emails" name=" Login page validates against emails" time="0.357">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-23T06:42:49" time="7.912" tests="1">
-    <testcase classname=" Renders enter email page upon opening App" name=" Renders enter email page upon opening App" time="0.097">
+    <testcase classname=" Sign Up page sign up button is disabled when password is too weak" name=" Sign Up page sign up button is disabled when password is too weak" time="0.161">
     </testcase>
   </testsuite>
 </testsuites>

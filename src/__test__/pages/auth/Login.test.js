@@ -38,6 +38,23 @@ test("Login page has back and login buttons", () => {
     expect(backButton).toBeInTheDocument();
 });
 
+
+test("Login page email field is initailly passed in via props location", () => {
+    const email = "test@gmail.com"
+    const routeComponentPropsMock = {
+        history: {},
+        location: {
+            state: {
+                email: email,
+            },
+        },
+        match: {},
+    };
+    render(<Login {...routeComponentPropsMock} />);
+    const emailInput = screen.getByRole("textbox");
+    expect(emailInput.value).toBe(email);
+});
+
 test("Login page login button is disabled initially", () => {
     const routeComponentPropsMock = {
         history: {},
