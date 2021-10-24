@@ -1,0 +1,43 @@
+.quickview {
+    font-size: 14px;
+    color: var(--dark-grey-80);
+}
+
+.quickview--button {
+    background-color: var(--light-blue-40);
+    width: 110px;
+    text-align: center;
+    border: 1px solid var(--light-blue-80);
+    border-radius: 5px;
+    padding: 10px 0px;
+    margin: 5px 0px 0px 15px;
+}
+
+.quickview--button:hover {
+    background-color: var(--deselected-bg);
+    cursor: pointer;
+}
+
+#quickview--dropdown {
+    background-color: white;
+    position: absolute;
+    border-radius: 5px;
+    margin-left: -15px;
+}
+
+#quickview--dropdown ul {
+    margin: 5px 0px;
+}
+
+#quickview--dropdown-selected {
+    background-color: var(--light-blue-100);
+    color: var(--iris-100);
+}
+
+#quickview--dropdown-selected:hover {
+    color: var(--iris-80);
+}
+
+#quickview--dropdown-deselected {
+    background-color: white;
+}

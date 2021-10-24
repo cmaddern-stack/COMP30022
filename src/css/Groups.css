@@ -188,3 +188,8 @@ td {
 .trigger-text:hover {
     text-decoration: underline;
 }
+
+.group-options-row {
+    display: flex;
+    height: 55px;
+}
