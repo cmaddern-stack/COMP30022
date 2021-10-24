@@ -4,13 +4,14 @@
 }
 
 .quickview--button {
-    background-color: var(--light-blue-40);
+    background-color: var(--selected-bg);
     width: 110px;
     text-align: center;
-    border: 1px solid var(--light-blue-80);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 10px 0px;
     margin: 5px 0px 0px 15px;
+    color: var(--two-select-text-color);
 }
 
 .quickview--button:hover {
@@ -19,7 +20,7 @@
 }
 
 #quickview--dropdown {
-    background-color: white;
+    background-color: var(--dropdown-content-bk-color);
     position: absolute;
     border-radius: 5px;
 }
@@ -38,5 +39,5 @@
 }
 
 #quickview--dropdown-deselected {
-    background-color: white;
+    background-color: var(--dropdown-content-bk-color);
 }
