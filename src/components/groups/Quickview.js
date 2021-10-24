@@ -1,9 +1,5 @@
 import React from "react";
 import "../../css/Quickview.css";
-import {
-    CheckBoxOutlineBlankRounded,
-    CheckBoxRounded,
-} from "@material-ui/icons";
 
 export default class Quickview extends React.Component {
     constructor(props) {
@@ -19,7 +15,6 @@ export default class Quickview extends React.Component {
                 id="quickview--dropdown-selected"
                 onClick={() => this.props.removeCallback(option)}
             >
-                <CheckBoxRounded style={{ fontSize: 16 }} />
                 {option.label}
             </li>
         );
@@ -31,7 +26,6 @@ export default class Quickview extends React.Component {
                 id="quickview--dropdown-deselected"
                 onClick={() => this.props.addCallback(option)}
             >
-                <CheckBoxOutlineBlankRounded style={{ fontSize: 16 }} />
                 {option.label}
             </li>
         );
