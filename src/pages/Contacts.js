@@ -10,180 +10,170 @@ import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import EditContact from "../components/EditContact";
-
+import { withRouter } from 'react-router-dom';
+ 
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
-
-var sortUp = false;
-
-export default function Contacts(props) {
-
-    const [organisation, setOrganisation] = useState(true);
-    const [role, setRole] = useState(true);
-    const [email, setEmail] = useState(true);
-    const [phone, setPhone] = useState(true);
-    const [notes, setNotes] = useState(true);
-    const [dropdown, setDropdown] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('')
-    const location = useLocation();
-    const history = useHistory();
-
-    const [contacts, setContacts] = useState([]);
-
-    useEffect(() => {
-        getContacts();
-
-        async function getContacts(user) {
-            const requestOptions = {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                    Authorization:
-                        `Basic ` +
-                        btoa(
-                            sessionStorage.getItem("username") +
-                                ":" +
-                                sessionStorage.getItem("password")
-                        ),
-                },
-                mode: "cors",
-            };
-            const response = await fetch(
-                BASE_URL + "contacts/",
-                requestOptions
-            );
-            const data = await response.json();
-            console.log(data);
-
-            setContacts(data);
+ 
+ 
+class Contacts extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            nameSort: false,
+            orgSort: false,
+            roleSort: false,
+            organisation: true,
+            role: true,
+            email: true,
+            phone: true,
+            notes: true,
+            dropdown: false,
+            searchTerm: '',
+            contacts: []
         }
-    }, []);
-        
-    function showDropdown() {
-        if (dropdown) {
+    }
+
+    routingFunction = (param) => {
+        this.props.history.push({
+            pathname: `${this.props.location.pathname.replace(
+                /\/$/g,
+                ""
+            )}/edit/${param.id}`,
+            url: param.url,
+        });
+    }
+ 
+    sortName = () => {
+        const sortOrder = !this.state.nameSort;
+        if (sortOrder){
+            this.state.contacts.sort((a, b) => (a.firstName < b.firstName ? 1 : -1));
+        }
+        else {
+            this.state.contacts.sort((a, b) => (a.firstName > b.firstName ? 1 : -1));
+        }
+        this.setState({nameSort: sortOrder});
+    }
+ 
+    sortRole = () => {
+        const sortOrder = !this.state.roleSort;
+        if (sortOrder){
+            this.state.contacts.sort((a, b) => (a.role < b.role ? 1 : -1));
+        }
+        else {
+            this.state.contacts.sort((a, b) => (a.role > b.role ? 1 : -1));
+        }
+        this.setState({roleSort: sortOrder});
+    }
+ 
+    sortOrg = () => {
+        const sortOrder = !this.state.orgSort;
+        if (sortOrder){
+            this.state.contacts.sort((a, b) => (a.organisation < b.organisation ? 1 : -1));
+        }
+        else {
+            this.state.contacts.sort((a, b) => (a.organisation > b.organisation ? 1 : -1));
+        }
+        this.setState({orgSort: sortOrder});
+    }
+ 
+    getContacts = async () => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization:
+                    `Basic ` +
+                    btoa(
+                        sessionStorage.getItem("username") +
+                            ":" +
+                            sessionStorage.getItem("password")
+                    ),
+            },
+            mode: "cors",
+        };
+        const response = await fetch(
+            BASE_URL + "contacts/",
+            requestOptions
+        );
+        const data = await response.json();
+        console.log(data);
+ 
+        this.setState({contacts: data});
+    }
+ 
+    componentDidMount(){
+        this.getContacts();
+    }
+ 
+ 
+    showDropdown = () => {
+        if (this.state.dropdown) {
             return (
                 <div className="d-flex">
-                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
-                        
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => this.setState({ searchTerm: event.target.value})}/></div>
+                       
                     <div className="dropdown-box">
-                        <button className="dropbtn" onClick={() => setDropdown(false)}><BsListUl /> Change Columns <IoMdArrowDropdown /></button>
+                        <button className="dropbtn" onClick={() => this.setState({dropdown: false})}><BsListUl /> Change Columns <IoMdArrowDropdown /></button>
                         <div className="dropdown-content">
-                            { organisation ? <button onClick={() => setOrganisation(false)}>&#x2611; Show Organisation </button> : <button onClick={() => setOrganisation(true)}>&#x2610; Show Organisation </button>}
-                            { role ? <button onClick={() => setRole(false)}>&#x2611; Show Role</button> : <button onClick={() => setRole(true)}>&#x2610; Show Role</button>}
-                            { email ? <button onClick={() => setEmail(false)}>&#x2611; Show Email</button> : <button onClick={() => setEmail(true)}>&#x2610; Show Email</button>}
-                            { phone ? <button onClick={() => setPhone(false)}>&#x2611; Show Phone</button> : <button onClick={() => setPhone(true)}>&#x2610; Show Phone</button>}
-                            { notes ? <button onClick={() => setNotes(false)}>&#x2611; Show Notes</button> : <button onClick={() => setNotes(true)}>&#x2610; Show Notes</button>}
+                            { this.state.organisation ? <button onClick={() => this.setState({organisation: false})}>&#x2611; Show Organisation </button> : <button onClick={() => this.setState({organisation: true})}>&#x2610; Show Organisation </button>}
+                            { this.state.role ? <button onClick={() => this.setState({role: false})}>&#x2611; Show Role</button> : <button onClick={() => this.setState({role: true})}>&#x2610; Show Role</button>}
+                            { this.state.email ? <button onClick={() => this.setState({email: false})}>&#x2611; Show Email</button> : <button onClick={() => this.setState({email: true})}>&#x2610; Show Email</button>}
+                            { this.state.phone ? <button onClick={() => this.setState({phone: false})}>&#x2611; Show Phone</button> : <button onClick={() => this.setState({phone: true})}>&#x2610; Show Phone</button>}
+                            { this.state.notes ? <button onClick={() => this.setState({notes: false})}>&#x2611; Show Notes</button> : <button onClick={() => this.setState({notes: true})}>&#x2610; Show Notes</button>}
                         </div>
-                    
+                   
                     </div>
-                    
+                   
                 </div>
             )
         } else {
             return (
                 <div className="d-flex">
-                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
-                    <div className="dropdown-box"><button className="dropbtn" onClick={() => setDropdown(true)}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {this.setState({searchTerm: event.target.value})}}/></div>
+                    <div className="dropdown-box"><button className="dropbtn" onClick={() => this.setState({dropdown: true})}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
                 </div>
-            )
+            );
         }
     }
-
-    function sortBy() {
-        sortUp = !sortUp;
-        if (sortUp)
-            contacts.sort((a, b) => (a.firstName > b.firstName ? 1 : -1));
-        else contacts.sort((a, b) => (a.firstName < b.firstName ? 1 : -1));
-    }
-
-    function renderTableHeader() {
+ 
+    renderTableHeader = () => {
         return (
             <div className="person contacts-header d-flex justify-content-between">
                 <div className="w-5"></div>
                 <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
-                <div className="table-header w-10">Name</div>
+                <div className="table-header w-10"><button onClick={this.sortName}>Name</button></div>
                 {/* <div className="w-10">Groups</div> */}
-                { organisation ? <div className="w-10">Organisation</div> : null}
-                { role ? <div className="w-10">Role</div> : null}
-                { email ? <div className="w-10">Email</div> : null}
-                { phone ? <div className="w-10">Phone</div> : null}
-                { notes ? <div className="w-15">Notes</div> : null}
+                { this.state.organisation ? <div className="w-10"><button onClick={this.sortOrg}>Organisation</button></div> : null}
+                { this.state.role ? <div className="w-10"><button onClick={this.sortRole}>Role</button></div> : null}
+                { this.state.email ? <div className="w-10">Email</div> : null}
+                { this.state.phone ? <div className="w-10">Phone</div> : null}
+                { this.state.notes ? <div className="w-15">Notes</div> : null}
                 <div className="w-5 text-right">Edit</div>
             </div>
         );
     }
-
-    function showInitials(item) {
-        const first = item.firstName[0];
-        const second = item.lastName[0];
-        return (
-            <div class="initials">
-                {first}
-                {second}
-            </div>
-        );
-    }
-
-    function renderItems() {
-        if (contacts.length > 0) {
-            return contacts.map((item, index) => {
+ 
+    renderItems = () => {
+        if (this.state.contacts.length > 0) {
+ 
+            return this.state.contacts.map((item, index) => {
                 let x = index % 2;
                 return (
-                    <div
-                        key={index}
-                        class={"person d-flex white space-around color-" + x}
-                    >
-                        <div class="w-2">{showInitials(item)}</div>
-                        <div class="w-2">
-                            {item.starred ? (
-                                <div class="w-2">
-                                    <IconContext.Provider
-                                        value={{ color: "#df5571" }}
-                                    >
-                                        <AiFillStar />
-                                    </IconContext.Provider>
-                                </div>
-                            ) : (
-                                <div class="w-2">
-                                    <IconContext.Provider
-                                        value={{ color: "a4a6f6" }}
-                                    >
-                                        <AiOutlineStar />
-                                    </IconContext.Provider>
-                                </div>
-                            )}
-                        </div>
-                        <div class="w-10">
-                            {item.firstName} {item.lastName}
-                        </div>
-                        <div class="w-10">Groups</div>
-                        {organisation ? (
-                            <div class="w-10">{item.organisation}</div>
-                        ) : null}
-                        {role ? <div class="w-10">{item.role}</div> : null}
-                        {email ? (
-                            <div class="w-10">
-                                <a href={"mailto:" + item.emailAddress}>
-                                    {item.emailAddress}
-                                </a>
-                            </div>
-                        ) : (
-                            <div></div>
-                        )}
-                        {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
-                        {notes ? <div class="w-15">{item.notes}</div> : null}
-                        {/* // TODO: Connect edit contacts */}
+                    <div className={'person d-flex white justify-content-between color-' + x}>
+                        <div className="w-2">{this.showInitials(item)}</div>
+                        <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
+                        <div className="w-10">{item.firstName} {item.lastName}</div>
+                        {/* <div className="w-10">Groups</div> */}
+                        { this.state.organisation ? <div className="w-10">{item.organisation}</div> : null}
+                        { this.state.role ? <div className="w-10">{item.role}</div> : null}
+                        { this.state.email ? <div className="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
+                        { this.state.phone ? <div className="w-10">{item.phoneNumber}</div> : null}
+                        { this.state.notes ? <div className="w-15">{item.notes}</div> : null}
                         <div
                             class="w-5 text-right"
                             onClick={() => {
-                                console.log(history);
-                                history.push({
-                                    pathname: `${location.pathname.replace(
-                                        /\/$/g,
-                                        ""
-                                    )}/edit/${item.id}`,
-                                    url: item.url,
-                                });
+                                this.routingFunction(item);
                             }}
                         >
                             Edit
@@ -195,7 +185,31 @@ export default function Contacts(props) {
             return null;
         }
     }
-
+ 
+    showInitials = (item) => {
+        const first = item.firstName[0];
+        const second = item.lastName[0];
+        return (
+            <div class="initials">
+                {first}
+                {second}
+            </div>
+        );
+    }
+ 
+    render() {
+ 
+       
+   
+ 
+   
+ 
+   
+ 
+   
+ 
+   
+ 
     return (
         <div>
             <Route
@@ -203,10 +217,12 @@ export default function Contacts(props) {
                 path={`/contacts/edit/:id`}
                 component={EditContact}
             ></Route>
-            {showDropdown()}
-            {renderTableHeader()}
-            {renderItems()}
+            {this.showDropdown()}
+            {this.renderTableHeader()}
+            {this.renderItems()}
         </div>
     );
+    }
 }
-
+ 
+export default withRouter(Contacts);
