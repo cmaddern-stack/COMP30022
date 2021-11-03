@@ -42,6 +42,14 @@ class Contacts extends React.Component {
             url: param.url,
         });
     }
+
+    setSearchTerm = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    
  
     sortName = () => {
         const sortOrder = !this.state.nameSort;
@@ -156,11 +164,30 @@ class Contacts extends React.Component {
  
     renderItems = () => {
         if (this.state.contacts.length > 0) {
- 
-            return this.state.contacts.map((item, index) => {
-                let x = index % 2;
-                return (
-                    <div className={'person d-flex white justify-content-between color-' + x}>
+
+             return this.state.contacts.filter((val) => {
+                    console.log(val);
+                    if (this.state.searchTerm === "") {
+                        return val
+                    } else if (val.firstName.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    } else if (val.lastName.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    } else if (val.organisation != null && val.organisation.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    } else if (val.role != null && val.role.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    } else if (val.emailAddress != null && val.emailAddress.includes(this.state.searchTerm)) {
+                        return val
+                    } else if (val.phoneNumber != null && val.phoneNumber.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    } else if (val.notes != null && val.notes.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                        return val
+                    }
+                }).map((item, index) => {
+                    let x = index % 2;
+                    return (
+                        <div className={'person d-flex white justify-content-between color-' + x}>
                         <div className="w-2">{this.showInitials(item)}</div>
                         <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
                         <div className="w-10">{item.firstName} {item.lastName}</div>
@@ -179,8 +206,8 @@ class Contacts extends React.Component {
                             Edit
                         </div>
                     </div>
-                );
-            });
+                    )
+                });
         } else {
             return null;
         }
