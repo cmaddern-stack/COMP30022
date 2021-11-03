@@ -119,10 +119,12 @@ export default class Groups extends React.Component {
                                                 return contact;
                                         })
                                         .map((contact, key) => {
+                                            const quick = this.state.quickview;
                                             return (
                                                 <div className="user" key={key}>
                                                     <ContactCard
                                                         contact={contact}
+                                                        quickview = {this.state.quickview}
                                                     />
                                                 </div>
                                             );
