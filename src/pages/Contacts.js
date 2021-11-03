@@ -16,19 +16,6 @@ const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 var sortUp = false;
 
 export default function Contacts(props) {
-    // const { loading, items, error } = useContacts();
-
-    // if (loading) {
-    //     return <p>Loading contacts, sit tight...</p>;
-    // }
-    // if (error) {
-    //     return (
-    //         <div>
-    //             <p>Something went wrong!</p>
-    //             <p>{error.message}</p>
-    //         </div>
-    //     );
-    // }
 
     const [organisation, setOrganisation] = useState(true);
     const [role, setRole] = useState(true);
@@ -36,6 +23,7 @@ export default function Contacts(props) {
     const [phone, setPhone] = useState(true);
     const [notes, setNotes] = useState(true);
     const [dropdown, setDropdown] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('')
     const location = useLocation();
     const history = useHistory();
 
@@ -70,93 +58,34 @@ export default function Contacts(props) {
             setContacts(data);
         }
     }, []);
-
+        
     function showDropdown() {
         if (dropdown) {
             return (
-                <div>
-                    <div>
-                        <button class="w-25" onClick={() => setDropdown(false)}>
-                            <BsListUl /> Change Columns <IoMdArrowDropdown />
-                        </button>
+                <div className="d-flex">
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
+                        
+                    <div className="dropdown-box">
+                        <button className="dropbtn" onClick={() => setDropdown(false)}><BsListUl /> Change Columns <IoMdArrowDropdown /></button>
+                        <div className="dropdown-content">
+                            { organisation ? <button onClick={() => setOrganisation(false)}>&#x2611; Show Organisation </button> : <button onClick={() => setOrganisation(true)}>&#x2610; Show Organisation </button>}
+                            { role ? <button onClick={() => setRole(false)}>&#x2611; Show Role</button> : <button onClick={() => setRole(true)}>&#x2610; Show Role</button>}
+                            { email ? <button onClick={() => setEmail(false)}>&#x2611; Show Email</button> : <button onClick={() => setEmail(true)}>&#x2610; Show Email</button>}
+                            { phone ? <button onClick={() => setPhone(false)}>&#x2611; Show Phone</button> : <button onClick={() => setPhone(true)}>&#x2610; Show Phone</button>}
+                            { notes ? <button onClick={() => setNotes(false)}>&#x2611; Show Notes</button> : <button onClick={() => setNotes(true)}>&#x2610; Show Notes</button>}
+                        </div>
+                    
                     </div>
-                    {organisation ? (
-                        <h5>
-                            <button onClick={() => setOrganisation(false)}>
-                                Show Organisation
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setOrganisation(true)}>
-                                Show Organisation
-                            </button>
-                        </h5>
-                    )}
-                    {role ? (
-                        <h5>
-                            <button onClick={() => setRole(false)}>
-                                Show Role
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setRole(true)}>
-                                Show Role
-                            </button>
-                        </h5>
-                    )}
-                    {email ? (
-                        <h5>
-                            <button onClick={() => setEmail(false)}>
-                                Show Email
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setEmail(true)}>
-                                Show Email
-                            </button>
-                        </h5>
-                    )}
-                    {phone ? (
-                        <h5>
-                            <button onClick={() => setPhone(false)}>
-                                Show Phone
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setPhone(true)}>
-                                Show Phone
-                            </button>
-                        </h5>
-                    )}
-                    {notes ? (
-                        <h5>
-                            <button onClick={() => setNotes(false)}>
-                                Show Notes
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setNotes(true)}>
-                                Show Notes
-                            </button>
-                        </h5>
-                    )}
+                    
                 </div>
-            );
+            )
         } else {
             return (
-                <div>
-                    <div>
-                        <button class="w-25" onClick={() => setDropdown(true)}>
-                            <BsListUl /> Change Columns <IoMdArrowDropleft />
-                        </button>
-                    </div>
+                <div className="d-flex">
+                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
+                    <div className="dropdown-box"><button className="dropbtn" onClick={() => setDropdown(true)}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
                 </div>
-            );
+            )
         }
     }
 
@@ -169,27 +98,17 @@ export default function Contacts(props) {
 
     function renderTableHeader() {
         return (
-            <div class="person d-flex">
-                <div class="w-2"></div>
-                <div class="w-2">
-                    <IconContext.Provider value={{ color: "a4a6f6" }}>
-                        <AiFillStar />
-                    </IconContext.Provider>
-                </div>
-                <div class="w-10">
-                    {/* <button onClick={
-                        sortBy()
-                    }>
-                        Name
-                    </button> */}
-                </div>
-                <div class="w-10">Groups</div>
-                {organisation ? <div class="w-10">Organisation</div> : null}
-                {role ? <div class="w-10">Role</div> : null}
-                {email ? <div class="w-10">Email</div> : null}
-                {phone ? <div class="w-10">Phone</div> : null}
-                {notes ? <div class="w-15">Notes</div> : null}
-                <div class="w-5 text-right">Edit</div>
+            <div className="person contacts-header d-flex justify-content-between">
+                <div className="w-5"></div>
+                <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
+                <div className="table-header w-10">Name</div>
+                {/* <div className="w-10">Groups</div> */}
+                { organisation ? <div className="w-10">Organisation</div> : null}
+                { role ? <div className="w-10">Role</div> : null}
+                { email ? <div className="w-10">Email</div> : null}
+                { phone ? <div className="w-10">Phone</div> : null}
+                { notes ? <div className="w-15">Notes</div> : null}
+                <div className="w-5 text-right">Edit</div>
             </div>
         );
     }
@@ -284,9 +203,10 @@ export default function Contacts(props) {
                 path={`/contacts/edit/:id`}
                 component={EditContact}
             ></Route>
-            {/* {showDropdown()} */}
+            {showDropdown()}
             {renderTableHeader()}
             {renderItems()}
         </div>
     );
 }
+

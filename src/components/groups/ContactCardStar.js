@@ -8,22 +8,33 @@ export default class ContactCardStar extends React.Component {
         super(props);
     }
 
-    toggleStar = async () => {
+    toggleStar = async (event) => {
+        event.stopPropagation();
         await ContactsAPI.toggleStar(this.props.url, !this.props.starred);
         window.location.reload();
     };
 
     render() {
         var ICON_SIZE = 23;
-        if (this.props.size !== null ) {
-            ICON_SIZE = this.props.size
+        if (this.props.size !== null) {
+            ICON_SIZE = this.props.size;
         }
         return (
-            <div onClick={this.toggleStar}>
+            <div onClick={this.toggleStar} data-testid="contact-card-star">
                 {this.props.starred ? (
-                    <div className="contact-star starred"><Star style={{ fontSize: ICON_SIZE }} /></div>
+                    <div className="contact-star starred">
+                        <Star
+                            style={{ fontSize: ICON_SIZE }}
+                            data-testid="contact-card-star--starred"
+                        />
+                    </div>
                 ) : (
-                    <div className="contact-star unstarred"><StarOutline style={{ fontSize: ICON_SIZE }} /></div>
+                    <div className="contact-star unstarred">
+                        <StarOutline
+                            style={{ fontSize: ICON_SIZE }}
+                            data-testid="contact-card-star--unstarred"
+                        />
+                    </div>
                 )}
             </div>
         );

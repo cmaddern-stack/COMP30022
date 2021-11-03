@@ -1,28 +1,38 @@
+/* Define Light Theme Colours */
+body {
+    --bkg-color: var(--light-blue-60);
+    --header-bg: white;
+    --header-text: var(--iris-80);
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --bkg-color: #232528;
+    --header-bg: #353a3f;
+    --header-text: #c3d3fa;
+}
+
+/* Define Body Elements */
 header {
     top: 0;
     padding: 15px 15px;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
-    );
 }
 
 .header-content {
     padding-left: 40px;
     display: flex;
-    background-color: white;
+    background-color: var(--header-bg);
     height: 50px;
     padding: 10px 15px;
     border-radius: 25px;
     justify-content: space-between;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+    box-shadow: none;
 }
 
 .left-header a {
     font-size: 26px;
     line-height: 30px;
+    color: var(--header-text);
 }
 
 .right-header {
@@ -54,8 +64,8 @@ header {
     animation: textColorChange 1s;
 }
 
-.icon.off:active,
-.icon.on:active {
+.icon.off:light,
+.icon.on:dark {
     transition: opacity 0.5s, transform 0.5s;
     transform: rotate(-180deg) scale(0.5);
     opacity: 0;
@@ -116,7 +126,17 @@ header {
     width: 200px;
     text-align: left;
     z-index: 1;
-    box-shadow: 0px 0px 10px var(--menu-shadow);
+    animation: growDown 300ms ease-in-out forwards;
+    transform-origin: top center;
+    color: var(--dark-grey-40);
+}
+.dropdown.dark-theme {
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: white;
+    width: 200px;
+    text-align: left;
+    z-index: 1;
     animation: growDown 300ms ease-in-out forwards;
     transform-origin: top center;
     color: var(--dark-grey-40);
@@ -155,6 +175,14 @@ li {
     display: none;
 }
 
+.moon-light {
+    display: none;
+}
+
+.sun-dark {
+    display: none;
+}
+
 li:hover {
     cursor: pointer;
     background-color: var(--light-blue-40);
@@ -171,7 +199,17 @@ li:hover {
     line-height: 30px;
     color: white;
     border-radius: 15px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.popularity.dark-theme {
+    background: var(--light-blue-100);
+    width: 96px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 30px;
+    color: white;
+    border-radius: 15px;
 }
 
 .popularity:hover {
@@ -207,7 +245,19 @@ li:hover {
     padding: 5px 10px;
     color: var(--dark-grey-40);
     border-radius: 5px;
-    box-shadow: 0px 0px 10px var(--menu-shadow);
+    border: 1px solid var(--light-grey-80);
+    position: relative;
+    z-index: 1;
+}
+.tool-tip.dark-theme {
+    display: none;
+    font-size: 12px;
+    width: 200px;
+    text-align: left;
+    background-color: var(--light-blue-40);
+    padding: 5px 10px;
+    color: var(--dark-grey-40);
+    border-radius: 5px;
     border: 1px solid var(--light-grey-80);
     position: relative;
     z-index: 1;

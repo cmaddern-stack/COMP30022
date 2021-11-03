@@ -2,10 +2,13 @@ import React from "react";
 import { Route } from "react-router";
 import Collapsible from "react-collapsible";
 import "../css/Groups.css";
+import "../css/Quickview.css";
 import { GroupsAPI } from "../apis/groupsApi";
 import ContactCard from "../components/groups/ContactCard";
 import AddCard from "../components/groups/AddCard";
 import EditContact from "../components/EditContact";
+import Loading from "../components/Loading";
+import Quickview from "../components/groups/Quickview";
 
 export default class Groups extends React.Component {
     constructor(props) {
@@ -14,6 +17,13 @@ export default class Groups extends React.Component {
             groups: [],
             isLoaded: false,
             searchTerm: "",
+            quickviewOptions: [
+                { label: "Organisation", value: "organisation" },
+                { label: "Role", value: "role" },
+                { label: "Email Address", value: "emailAddress" },
+                { label: "Phone Number", value: "phoneNumber" },
+            ],
+            quickview: [],
         };
     }
 
@@ -29,12 +39,46 @@ export default class Groups extends React.Component {
         this.setState({
             groups: groups,
             isLoaded: true,
+            quickview: [
+                this.state.quickviewOptions[0],
+                this.state.quickviewOptions[3],
+            ],
         });
     };
 
+    addToQuickView = (option) => {
+        var quickview = this.state.quickview;
+        quickview.push(option);
+        this.setState({
+            quickview: quickview,
+        });
+    };
+
+    removeFromQuickView = (option) => {
+        var quickview = this.state.quickview;
+        quickview.splice(quickview.indexOf(option), 1);
+        this.setState({
+            quickview: quickview,
+        });
+    };
+
+    contactInQuery = (contact) => {
+        if (this.state.searchTerm === "") return contact;
+        else if (
+            contact.firstName
+                .toLowerCase()
+                .includes(this.state.searchTerm.toLowerCase()) ||
+            contact.lastName
+                .toLowerCase()
+                .includes(this.state.searchTerm.toLowerCase())
+        )
+            return contact;
+    };
+
     render() {
+        console.log(this.state.quickview);
         if (!this.state.isLoaded) {
-            return <div>Loading...</div>;
+            return <Loading />;
         }
         return (
             <div>

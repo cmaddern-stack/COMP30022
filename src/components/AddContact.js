@@ -10,10 +10,6 @@ import { GroupsAPI } from "../apis/groupsApi";
 import ProfileAPI from "../apis/profileApi";
 
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
-<<<<<<< Updated upstream
-=======
-// const BASE_URL = "http://127.0.0.1:8000/crm/";
->>>>>>> Stashed changes
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -176,11 +172,6 @@ export default class EditContact extends React.Component {
 
 
         if(!found){
-<<<<<<< Updated upstream
-            {
-                const data = await ProfileAPI.getUserProfile();
-=======
->>>>>>> Stashed changes
 
                 const newGroup = JSON.stringify({
                     name: this.state.group,
@@ -218,7 +209,6 @@ export default class EditContact extends React.Component {
                 // enter your logic for when there is an error (ex. error toast)
                 console.log(error)
                 })
-            }
         }
         groups = await GroupsAPI.getGroups();
         console.log(groups.length);
@@ -230,6 +220,7 @@ export default class EditContact extends React.Component {
         }
         console.log(group);
         
+        // debugger 
         group['contacts'].push(contactUrl);
         const requestOptionsGroup = {
             method: "PUT",

@@ -22,17 +22,31 @@
     --iris-80: #7879f1;
     --iris-100: #5d5fef;
 
+    --accent-pink-60: #F9A4B5;
     --accent-pink-100: #df5571;
 }
 
+/* Define Light Theme Colours */
+body {
+    --bkg-color: var(--light-blue-60);
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --bkg-color: rgb(35,37,40);
+}
+
+/* Define Body Elements */
 .body {
-    background-color: var(--light-blue-60);
+    background-color: var(--bkg-color);
     position: absolute;
     width: 100%;
     min-height: 100%;
     font-family: "proxima-nova", sans-serif;
     font-size: 16px;
+    padding-bottom: 20px;
 }
+
 
 nav {
     left: 0;
@@ -76,7 +90,12 @@ button {
     font-size: 14px;
     color: white;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.primary-button.dark-theme {
+    background-color: var(brown);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
 }
 
 .primary-button:hover:enabled {
@@ -103,7 +122,12 @@ button:disabled {
     font-size: 14px;
     color: white;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+}
+.secondary-button.dark-theme {
+    background-color: var(--light-blue-80);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
 }
 
 .secondary-button:hover:enabled {
@@ -120,6 +144,28 @@ button:disabled {
     }
 }
 
+.accent-button {
+    background-color: var(--accent-pink-60);
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+}
+
+.accent-button:hover:enabled {
+    background-color: var(--accent-pink-100);
+    animation: accentButtonHover 0.5s;
+}
+
+@keyframes accentButtonHover {
+    from {
+        background-color: var(--accent-pink-60);
+    }
+    to {
+        background-color: var(--accent-pink-100);
+    }
+}
+
+
 .button-row {
     margin-top: 60px;
     width: 100%;
@@ -133,4 +179,20 @@ h3 {
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     color: var(--dark-grey-80);
     font-weight: bold;
+}
+
+.logo {
+    border-radius: 0;
+    width: auto;
+    height: 40px;
+    border: none;
+    margin-top: -5px;
+    padding-left: 5px;
+}
+
+.auth-logo {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    margin-bottom: 30px;
 }

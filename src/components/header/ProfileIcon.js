@@ -34,17 +34,11 @@ class ProfileIcon extends React.Component {
 
     logout = () => {
         sessionStorage.clear();
-    }
+    };
 
-    render() {
-        return (
-            <div class="profile-dropdown">
-                <img
-                    className={"profile-icon " + this.state.mode}
-                    src={this.state.url}
-                    alt="User profile picture"
-                    onClick={this.toggleMenu}
-                ></img>
+    getNavMenu = () => {
+        if (this.state.dropdown === "active") {
+            return (
                 <div className={"dropdown " + this.state.dropdown}>
                     <ul>
                         <a href="/groups">
@@ -64,6 +58,20 @@ class ProfileIcon extends React.Component {
                         </a>
                     </ul>
                 </div>
+            );
+        }
+    };
+
+    render() {
+        return (
+            <div className="profile-dropdown">
+                <img
+                    className={"profile-icon " + this.state.mode}
+                    src={this.state.url}
+                    alt="User profile picture"
+                    onClick={this.toggleMenu}
+                ></img>
+                {this.getNavMenu()}
             </div>
         );
     }
