@@ -221,6 +221,7 @@ export default class EditContact extends React.Component {
         console.log(group);
         
         // debugger 
+        if(group['contacts'] != null){
         group['contacts'].push(contactUrl);
         const requestOptionsGroup = {
             method: "PUT",
@@ -252,6 +253,7 @@ export default class EditContact extends React.Component {
         // enter your logic for when there is an error (ex. error toast)
         console.log(error)
         })
+        }
 
         console.log(JSON.stringify(groups));
         this.props.history.goBack();

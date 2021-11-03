@@ -29,7 +29,8 @@ class Contacts extends React.Component {
             notes: true,
             dropdown: false,
             searchTerm: '',
-            contacts: []
+            contacts: [],
+            count: 0
         }
     }
 
@@ -105,12 +106,15 @@ class Contacts extends React.Component {
             requestOptions
         );
         const data = await response.json();
-        console.log(data);
- 
-        this.setState({contacts: data});
+        console.log(JSON.stringify(data));
+        if(data.length != this.state.contacts.length) this.setState({contacts: data});
     }
  
     componentDidMount(){
+        this.getContacts();
+    }
+
+    componentDidUpdate(){
         this.getContacts();
     }
  
