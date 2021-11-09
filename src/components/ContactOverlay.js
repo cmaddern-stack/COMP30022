@@ -10,6 +10,7 @@ import AuthController from "../controllers/AuthController";
 import { Close } from "@material-ui/icons";
 import CreatableSelect from "react-select/creatable";
 import "../css/ReactSelect.css";
+import ContactsAPI from "../apis/contactsApi";
 
 const style = {
     control: (base) => ({
@@ -46,6 +47,21 @@ export default class ContactOverlay extends React.Component {
             group: null,
             groups: [],
         };
+    }
+
+    async componentDidMount() {
+        var customInput = [];
+        const questions = await ContactsAPI.customQuestions();
+        for (var i=0; i<questions.length; i++) {
+            customInput.push({
+                "label": questions[i].question,
+                "value": ""
+            })
+        }
+        console.log(customInput);
+        this.setState({
+            customInput: customInput,
+        });
     }
 
     proceed = () => {

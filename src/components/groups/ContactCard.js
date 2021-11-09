@@ -33,7 +33,7 @@ class ContactCard extends React.Component {
         this.setState({
             entries: entries,
         });
-    }
+    };
 
     getProfileIcon = () => {
         // TODO: Incorporate contact profile picture
@@ -80,14 +80,14 @@ class ContactCard extends React.Component {
                 <div className="">
                     <table className="contact-details">
                         <tbody>
-                        {this.state.entries.map((entry, key) => {
-                            return (
-                                <tr key={key}>
-                                    <th>{entry.label}</th>
-                                    <td>{entry.value}</td>
-                                </tr>
-                            );
-                        })}
+                            {this.state.entries.map((entry, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <th>{entry.label}</th>
+                                        <td>{entry.value}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

@@ -5,6 +5,7 @@ import ContactOverlay from "./ContactOverlay";
 
 export default class EditContact extends ContactOverlay {
     componentDidMount = async () => {
+        super.componentDidMount();
         // const contact = await ContactsAPI.getContact(this.props.location.url);
         const endpoint = "https://team-69-backend.herokuapp.com/crm/contacts/";
         const url = endpoint + this.props.match.params.id + "/";
@@ -26,7 +27,6 @@ export default class EditContact extends ContactOverlay {
             group: group,
             groups: groups,
         });
-        // TODO: ADD CUSTOM FIELDS
     };
 
     valOrEmptyString = (val) => {

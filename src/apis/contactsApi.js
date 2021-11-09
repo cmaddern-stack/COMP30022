@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { GroupsAPI } from "./groupsApi";
 
+const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
+
 export default class ContactsAPI {
     static toggleStar = async (url, starred) => {
         const form = new FormData();
@@ -68,6 +70,21 @@ export default class ContactsAPI {
         await GroupsAPI.deleteEmptyGroups();
         return response.json();
     };
+
+    static customQuestions = async () => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        const url = BASE_URL + "question/"
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    }
 }
 
 // Getting list of ALL contacts
