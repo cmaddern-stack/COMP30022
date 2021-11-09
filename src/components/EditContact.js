@@ -5,13 +5,22 @@ import ContactOverlay from "./ContactOverlay";
 
 export default class EditContact extends ContactOverlay {
     componentDidMount = async () => {
-        super.componentDidMount();
+        await super.componentDidMount();
         // const contact = await ContactsAPI.getContact(this.props.location.url);
         const endpoint = "https://team-69-backend.herokuapp.com/crm/contacts/";
         const url = endpoint + this.props.match.params.id + "/";
         const contact = await ContactsAPI.getContact(url);
         const group = await GroupsAPI.getContactGroup(url);
         const groups = await GroupsAPI.getGroupNames();
+        const answers = await ContactsAPI.customAnswers(url);
+        console.log(answers);
+        var customInput = this.state.customInput;
+        console.log(customInput);
+        for (var i = 0; i < answers.length; i++) {
+            if (customInput[i].url === answers[i].question) {
+                customInput[i].value = answers[i].data;
+            }
+        }
         this.setState({
             url: url,
             starred: contact.starred,
@@ -26,6 +35,7 @@ export default class EditContact extends ContactOverlay {
             originalGroup: group,
             group: group,
             groups: groups,
+            customInput: customInput,
         });
     };
 
@@ -50,7 +60,7 @@ export default class EditContact extends ContactOverlay {
             this.state.group && this.state.group.label
         );
         console.log(this.state.customInput);
-        // this.goBackAndReload();
+        this.goBackAndReload();
     };
 
     deleteContact = async () => {

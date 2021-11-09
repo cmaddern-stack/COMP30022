@@ -160,6 +160,20 @@ export default class ContactsAPI {
             }
         }
     };
+
+    static customAnswers = async (url) => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        const response = await fetch(url + "get_answer/", requestOptions);
+        return response.json();
+    }
 }
 
 // Getting list of ALL contacts
