@@ -52,13 +52,13 @@ export default class ContactOverlay extends React.Component {
     async componentDidMount() {
         var customInput = [];
         const questions = await ContactsAPI.customQuestions();
-        for (var i=0; i<questions.length; i++) {
+        for (var i = 0; i < questions.length; i++) {
             customInput.push({
-                "label": questions[i].question,
-                "value": ""
-            })
+                label: questions[i].question,
+                value: "",
+                url: questions[i].url,
+            });
         }
-        console.log(customInput);
         this.setState({
             customInput: customInput,
         });
@@ -174,7 +174,9 @@ export default class ContactOverlay extends React.Component {
 
     deleteContact = async () => {};
 
-    save = async () => {};
+    async save() {
+        await ContactsAPI.saveCustomQuestions(this.state.customInput);
+    }
 
     goBackAndReload = () => {
         var url = this.props.match.url;

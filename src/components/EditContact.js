@@ -34,6 +34,7 @@ export default class EditContact extends ContactOverlay {
     };
 
     save = async () => {
+        super.save();
         await ContactsAPI.editContact(this.state.url, {
             firstName: this.state.firstName,
             lastName: this.state.lastName,

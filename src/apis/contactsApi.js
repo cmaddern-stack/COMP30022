@@ -81,10 +81,85 @@ export default class ContactsAPI {
             },
             mode: "cors",
         };
-        const url = BASE_URL + "question/"
+        const url = BASE_URL + "question/";
         const response = await fetch(url, requestOptions);
         return response.json();
+    };
+
+    static postQuestion = async (question) => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                question: question,
+            }),
+        };
+        const url = BASE_URL + "question/";
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    };
+
+    static putQuestion = async (url, question) => {
+        const requestOptions = {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                question: question,
+            }),
+        };
+        await fetch(url, requestOptions);
     }
+
+    static deleteQuestion = async (url) => {
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+        };
+        await fetch(url, requestOptions);
+    };
+
+    static saveCustomQuestions = async (customInput) => {
+        const questions = await ContactsAPI.customQuestions();
+        const questionsURL = questions.map((question) => question.url);
+        const customURL = customInput.map((input) => input.url);
+        for (var i = 0; i < customInput.length; i++) {
+            // post new question
+            if (!questionsURL.includes(customURL[i])) {
+                await ContactsAPI.postQuestion(customInput[i].label);
+            }
+            // edit existing question label
+            else {
+                var index = questionsURL.indexOf(customInput[i].url);
+                if (questions[index].question !== customInput[i].question) {
+                    ContactsAPI.putQuestion(
+                        customInput[i].url,
+                        customInput[i].question
+                    );
+                }
+            }
+        }
+        for (var i = 0; i < questions.length; i++) {
+            // delete old questions
+            if (!customURL.includes(questionsURL[i])) {
+                await ContactsAPI.deleteQuestion(questionsURL[i]);
+            }
+        }
+    };
 }
 
 // Getting list of ALL contacts
