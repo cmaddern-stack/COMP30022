@@ -9,8 +9,8 @@ class AuthAPI {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // "Access-Control-Allow-Credentials": true,
-                // "Access-Control-Allow-Origin": '*'
+                "Access-Control-Allow-Origin": "*",
+                // "Access-Control-Allow-Headers": 'Accept',
             },
             mode: "cors",
             body: JSON.stringify({ email: email }),
