@@ -13,7 +13,6 @@ import AddContact from "./AddContact";
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 // const BASE_URL = "http://127.0.0.1:8000/crm/";
 
-
 /*
     Contacts Options Bar 
     refers to the bar on top of the contacts views below the Nav bar
@@ -37,6 +36,12 @@ class ContactsOptionsBar extends React.Component {
         this.props.history.push("/contacts/add");
     }
 
+    newContactOnclick = () => {
+        this.props.history.push(
+            `${this.props.match.url.replace(/\/$/g, "")}/add/`
+        );
+    };
+
     render() {
         return (
             <div>
@@ -54,9 +59,7 @@ class ContactsOptionsBar extends React.Component {
                         <button
                             className="button primary-button"
                             id="add-contact-button"
-                            onClick={async () => {
-                                this.props.history.push(`${this.props.match.url.replace(/\/$/g, "")}/add/`);
-                            }}
+                            onClick={this.newContactOnclick}
                         >
                             NEW CONTACT
                         </button>
