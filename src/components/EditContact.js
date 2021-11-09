@@ -48,7 +48,8 @@ export default class EditContact extends ContactOverlay {
             this.state.group && this.state.group.url,
             this.state.group && this.state.group.label
         );
-        this.goBackAndReload();
+        console.log(this.state.customInput);
+        // this.goBackAndReload();
     };
 
     deleteContact = async () => {

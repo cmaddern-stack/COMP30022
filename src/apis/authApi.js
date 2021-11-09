@@ -1,16 +1,19 @@
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 // const BASE_URL = "http://127.0.0.1:8000/crm/";
 
-
 class AuthAPI {
     static checkEmail = async (email) => {
         const endpoint = BASE_URL + "api-auth/checkemail/";
         const requestOptions = {
             method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
+            // headers: {
+            //     Accept: "application/json",
+            //     "Content-Type": "application/json",
+            //     "Access-Control-Allow-Credentials": true,
+            //     "Access-Control-Allow-Origin": "*",
+            //     "Access-Control-Allow-Methods":
+            //         "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            // },
             mode: "cors",
             body: JSON.stringify({ email: email }),
         };
