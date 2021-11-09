@@ -6,14 +6,12 @@ class AuthAPI {
         const endpoint = BASE_URL + "api-auth/checkemail/";
         const requestOptions = {
             method: "POST",
-            // headers: {
-            //     Accept: "application/json",
-            //     "Content-Type": "application/json",
-            //     "Access-Control-Allow-Credentials": true,
-            //     "Access-Control-Allow-Origin": "*",
-            //     "Access-Control-Allow-Methods":
-            //         "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            // },
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                // "Access-Control-Allow-Credentials": true,
+                // "Access-Control-Allow-Origin": '*'
+            },
             mode: "cors",
             body: JSON.stringify({ email: email }),
         };
