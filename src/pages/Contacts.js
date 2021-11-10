@@ -81,41 +81,41 @@ export default function Contacts(props) {
                         <div className="dropdown-content">
                             {organisation ? (
                                 <button onClick={() => setOrganisation(false)}>
-                                    &#x2611; Show Organisation{" "}
+                                    &#x2611; Organisation{" "}
                                 </button>
                             ) : (
                                 <button onClick={() => setOrganisation(true)}>
-                                    &#x2610; Show Organisation{" "}
+                                    &#x2610; Organisation{" "}
                                 </button>
                             )}
                             {role ? (
                                 <button onClick={() => setRole(false)}>
-                                    &#x2611; Show Role
+                                    &#x2611; Role
                                 </button>
                             ) : (
                                 <button onClick={() => setRole(true)}>
-                                    &#x2610; Show Role
+                                    &#x2610; Role
                                 </button>
                             )}
                             {email ? (
                                 <button onClick={() => setEmail(false)}>
-                                    &#x2611; Show Email
+                                    &#x2611; Email
                                 </button>
                             ) : (
                                 <button onClick={() => setEmail(true)}>
-                                    &#x2610; Show Email
+                                    &#x2610; Email
                                 </button>
                             )}
                             {phone ? (
                                 <button onClick={() => setPhone(false)}>
-                                    &#x2611; Show Phone
+                                    &#x2611; Phone
                                 </button>
                             ) : (
                                 <button onClick={() => setPhone(true)}>
-                                    &#x2610; Show Phone
+                                    &#x2610; Phone
                                 </button>
                             )}
-                            {notes ? (
+                            {/* {notes ? (
                                 <button onClick={() => setNotes(false)}>
                                     &#x2611; Show Notes
                                 </button>
@@ -123,7 +123,7 @@ export default function Contacts(props) {
                                 <button onClick={() => setNotes(true)}>
                                     &#x2610; Show Notes
                                 </button>
-                            )}
+                            )} */}
                         </div>
                     </div>
                 </div>
@@ -205,61 +205,73 @@ export default function Contacts(props) {
 
     function renderItems() {
         if (contacts.length > 0) {
-            return contacts.map((item, index) => {
-                let x = index % 2;
-                return (
-                    <div
-                        className={
-                            "person d-flex white justify-content-between color-" +
-                            x
-                        }
-                    >
-                        <div className="w-5">{showInitials(item)}</div>
-                        <div className="w-5">
-                            {item.starred ? (
-                                <div className="w-5">
-                                    <IconContext.Provider
-                                        value={{ color: "#df5571" }}
-                                    >
-                                        <AiFillStar />
-                                    </IconContext.Provider>
+            return contacts
+                .filter((contact) => {
+                    const search = searchTerm.toLowerCase();
+                    return (
+                        contact.firstName.toLowerCase().includes(search) ||
+                        contact.lastName.toLowerCase().includes(search)
+                    );
+                })
+                .map((item, index) => {
+                    let x = index % 2;
+                    return (
+                        <div
+                            className={
+                                "person d-flex white justify-content-between color-" +
+                                x
+                            }
+                        >
+                            <div className="w-5">{showInitials(item)}</div>
+                            <div className="w-5">
+                                {item.starred ? (
+                                    <div className="w-5">
+                                        <IconContext.Provider
+                                            value={{ color: "#df5571" }}
+                                        >
+                                            <AiFillStar />
+                                        </IconContext.Provider>
+                                    </div>
+                                ) : (
+                                    <div className="w-5">
+                                        <IconContext.Provider
+                                            value={{ color: "a4a6f6" }}
+                                        >
+                                            <AiOutlineStar />
+                                        </IconContext.Provider>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="w-name">
+                                {item.firstName} {item.lastName}
+                            </div>
+                            {organisation ? (
+                                <div className="w-15">{item.organisation}</div>
+                            ) : null}
+                            {role ? (
+                                <div className="w-10">{item.role}</div>
+                            ) : null}
+                            {email ? (
+                                <div className="w-15">
+                                    <a href={"mailto:" + item.emailAddress}>
+                                        {item.emailAddress}
+                                    </a>
                                 </div>
                             ) : (
-                                <div className="w-5">
-                                    <IconContext.Provider
-                                        value={{ color: "a4a6f6" }}
-                                    >
-                                        <AiOutlineStar />
-                                    </IconContext.Provider>
-                                </div>
+                                <div></div>
                             )}
-                        </div>
-                        <div className="w-name">
-                            {item.firstName} {item.lastName}
-                        </div>
-                        {organisation ? (
-                            <div className="w-15">{item.organisation}</div>
-                        ) : null}
-                        {role ? <div className="w-10">{item.role}</div> : null}
-                        {email ? (
-                            <div className="w-15">
-                                <a href={"mailto:" + item.emailAddress}>
-                                    {item.emailAddress}
-                                </a>
-                            </div>
-                        ) : (
-                            <div></div>
-                        )}
-                        {phone ? (
-                            <div className="w-phone">{item.phoneNumber}</div>
-                        ) : null}
-                        {/* {notes ? (
+                            {phone ? (
+                                <div className="w-phone">
+                                    {item.phoneNumber}
+                                </div>
+                            ) : null}
+                            {/* {notes ? (
                             <div className="w-15">{item.notes}</div>
                         ) : null} */}
-                        <div className="w-edit text-right">Edit</div>
-                    </div>
-                );
-            });
+                            <div className="w-edit text-right">Edit</div>
+                        </div>
+                    );
+                });
 
             // return contacts.filter((val) => {
             //         if (searchTerm === "") {
