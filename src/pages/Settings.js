@@ -1,4 +1,5 @@
 import React from "react";
+import AuthAPI from "../apis/authApi";
 import InputField from "../components/InputField";
 import AuthController from "../controllers/AuthController";
 import "../css/Settings.css";
@@ -14,6 +15,7 @@ class Settings extends React.Component {
             passwordValid: false,
             confirmPasswordError: "",
             confirmPasswordValid: false,
+            message: "",
         };
     }
 
@@ -53,6 +55,31 @@ class Settings extends React.Component {
         });
     };
 
+    resetPassword = async () => {
+        const response = await AuthAPI.resetPassword({
+            username: sessionStorage.getItem("username"),
+            oldPassword: this.state.oldPassword,
+            newPassword: this.state.newPassword,
+        });
+        var message = "";
+        if (response.success === true) {
+            message = "Password saved successfully.";
+        } else {
+            message =
+                "Reset password could not be completed at this time. Please try again later";
+        }
+        this.setState({
+            message: message,
+            oldPassword: "",
+            newPassword: "",
+            confirmNewPassword: "",
+            passwordError: "",
+            passwordValid: false,
+            confirmPasswordError: "",
+            confirmPasswordValid: false,
+        });
+    };
+
     render() {
         return (
             <div className="settings-page">
@@ -83,6 +110,7 @@ class Settings extends React.Component {
                         value={this.state.confirmNewPassword}
                         error={this.state.confirmPasswordError}
                     ></InputField>
+                    <div className="message">{this.state.message}</div>
                     <div className="button-row">
                         <button
                             className="button invisible-button"
@@ -96,7 +124,7 @@ class Settings extends React.Component {
                             className="button primary-button"
                             type="button"
                             name="next"
-                            onClick={this.nextHandler}
+                            onClick={this.resetPassword}
                             disabled={
                                 !(
                                     this.state.passwordValid &&
