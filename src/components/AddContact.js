@@ -209,7 +209,7 @@ export default class EditContact extends React.Component {
         }
         
         // debugger 
-        group['contacts'].push(contactUrl);
+        // group['contacts'].push(contactUrl);
         const requestOptionsGroup = {
             method: "PUT",
             headers: {

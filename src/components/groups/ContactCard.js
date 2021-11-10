@@ -36,7 +36,16 @@ class ContactCard extends React.Component {
     };
 
     getProfileIcon = () => {
-        // TODO: Incorporate contact profile picture
+        if (this.props.contact.image !== null) {
+            return (
+                <img
+                    alt="contact profile icon"
+                    src={this.props.contact.image}
+                    id="profile-icon"
+                />
+            );
+        }
+
         return (
             (this.props.contact.firstName && this.props.contact.firstName[0]) +
             (this.props.contact.lastName && this.props.contact.lastName[0])
