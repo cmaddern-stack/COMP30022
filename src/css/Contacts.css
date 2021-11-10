@@ -16,12 +16,13 @@ body.dark-theme {
 
 /* Person page styling */
 .person {
-    justify-content: space-between;
+    justify-content: space-between; 
     width: 97%;
-    padding: 0.5em 2em;
-    border-radius: 90px;
+    padding: 0.5em 0em;
+    border-radius: 23px;
     margin: 10px 20px;
     color: var(--text-color);
+    height: 46px;
 }
 
 .person div {
@@ -35,14 +36,26 @@ body.dark-theme {
     background-color: var(--colour-1-colour);
 }
 
+.w-name {
+    width: 130px;
+}
+
+.w-phone {
+    width: 100px;
+}
+
+.w-edit {
+    width: 50px;
+}
+
 .w-15 {
-    width: 15%;
+    width: 20%;
 }
 .w-10 {
     width: 10%;
 }
 .w-5 {
-    width: 30px;
+    width: 16px;
 }
 .w-2 {
     width: 30px;
