@@ -164,21 +164,25 @@ export default function Contacts(props) {
 
     function renderTableHeader() {
         return (
-            <div className="person contacts-header d-flex justify-content-between">
-                <div className="w-5"></div>
-                <div className="w-5">
-                    <IconContext.Provider value={{ color: "a4a6f6" }}>
-                        <AiFillStar />
-                    </IconContext.Provider>
+            <div className="person contacts-header">
+                <div className="w-5 row-item"></div>
+                <div className="w-5 row-item">
+                    <div className="w-5 row-item">
+                        <IconContext.Provider value={{ color: "a4a6f6" }}>
+                            <AiFillStar />
+                        </IconContext.Provider>
+                    </div>
                 </div>
-                <div className="table-header w-name">Name</div>
+                <div className="table-header w-name row-item">Name</div>
                 {/* <div className="w-10">Groups</div> */}
-                {organisation ? <div className="w-15">Organisation</div> : null}
-                {role ? <div className="w-10">Role</div> : null}
-                {email ? <div className="w-15">Email</div> : null}
-                {phone ? <div className="w-phone">Phone</div> : null}
+                {organisation ? (
+                    <div className="w-15 row-item">Organisation</div>
+                ) : null}
+                {role ? <div className="w-10 row-item">Role</div> : null}
+                {email ? <div className="w-15 row-item">Email</div> : null}
+                {phone ? <div className="w-phone row-item">Phone</div> : null}
                 {/* {notes ? <div className="w-15">Notes</div> : null} */}
-                <div className="w-edit text-right">Edit</div>
+                <div className="w-edit row-item">Edit</div>
             </div>
         );
     }
@@ -186,11 +190,11 @@ export default function Contacts(props) {
     function showInitials(item) {
         if (item.image !== null) {
             return (
-                <div>
+                <div className="initials">
                     <img
                         alt="contact profile icon"
                         src={item.image}
-                        id="profile-icon"
+                        id="row-profile-icon"
                     ></img>
                 </div>
             );
@@ -198,7 +202,7 @@ export default function Contacts(props) {
         const first = item.firstName[0];
         const second = item.lastName[0];
         return (
-            <div class="initials">
+            <div className="initials">
                 {first}
                 {second}
             </div>
@@ -220,16 +224,13 @@ export default function Contacts(props) {
                 .map((item, index) => {
                     let x = index % 2;
                     return (
-                        <div
-                            className={
-                                "person d-flex white justify-content-between color-" +
-                                x
-                            }
-                        >
-                            <div className="w-5">{showInitials(item)}</div>
-                            <div className="w-5">
+                        <div className={"person color-" + x}>
+                            <div className="w-5 row-item">
+                                {showInitials(item)}
+                            </div>
+                            <div className="w-5 row-item">
                                 {item.starred ? (
-                                    <div className="w-5">
+                                    <div className="w-5 row-item">
                                         <IconContext.Provider
                                             value={{ color: "#df5571" }}
                                         >
@@ -237,7 +238,7 @@ export default function Contacts(props) {
                                         </IconContext.Provider>
                                     </div>
                                 ) : (
-                                    <div className="w-5">
+                                    <div className="w-5 row-item">
                                         <IconContext.Provider
                                             value={{ color: "a4a6f6" }}
                                         >
@@ -246,17 +247,19 @@ export default function Contacts(props) {
                                     </div>
                                 )}
                             </div>
-                            <div className="w-name">
+                            <div className="w-name row-item">
                                 {item.firstName} {item.lastName}
                             </div>
                             {organisation ? (
-                                <div className="w-15">{item.organisation}</div>
+                                <div className="w-15 row-item">
+                                    {item.organisation}
+                                </div>
                             ) : null}
                             {role ? (
-                                <div className="w-10">{item.role}</div>
+                                <div className="w-10 row-item">{item.role}</div>
                             ) : null}
                             {email ? (
-                                <div className="w-15">
+                                <div className="w-15 row-item">
                                     <a href={"mailto:" + item.emailAddress}>
                                         {item.emailAddress}
                                     </a>
@@ -265,14 +268,14 @@ export default function Contacts(props) {
                                 <div></div>
                             )}
                             {phone ? (
-                                <div className="w-phone">
+                                <div className="w-phone row-item">
                                     {item.phoneNumber}
                                 </div>
                             ) : null}
                             {/* {notes ? (
                             <div className="w-15">{item.notes}</div>
                         ) : null} */}
-                            <div className="w-edit text-right">Edit</div>
+                            <div className="w-edit row-item">Edit</div>
                         </div>
                     );
                 });
@@ -323,8 +326,10 @@ export default function Contacts(props) {
                 component={EditContact}
             ></Route>
             {showDropdown()}
-            {renderTableHeader()}
-            <div className="contacts-table">{renderItems()}</div>
+            <div className="contacts-table">
+                {renderTableHeader()}
+                {renderItems()}
+            </div>
         </div>
     );
 }
