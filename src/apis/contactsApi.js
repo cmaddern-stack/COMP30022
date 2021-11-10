@@ -188,6 +188,12 @@ export default class ContactsAPI {
         return customInput;
     };
 
+    static deleteCustomQuestions = async (deletedInput) => {
+        for (var i=0; i<deletedInput.length; i++) {
+            await ContactsAPI.deleteQuestion(deletedInput[i].url);
+        }
+    }
+
     static customAnswers = async (url) => {
         const requestOptions = {
             method: "GET",

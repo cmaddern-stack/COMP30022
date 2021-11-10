@@ -45,6 +45,7 @@ export default class ContactOverlay extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
+            deletedInput: [],
             originalGroup: null,
             group: null,
             groups: [],
@@ -177,10 +178,14 @@ export default class ContactOverlay extends React.Component {
 
     deleteCustomField = (id) => {
         var newCustomInputs = this.state.customInput;
+        var deletedInput = this.state.deletedInput;
+        const deleted = this.state.customInput[id];
+        deletedInput.push(deleted);
         newCustomInputs.splice(id, 1);
         this.setState({
             customInput: newCustomInputs,
             changes: true,
+            deletedInput: deletedInput
         });
     };
 
