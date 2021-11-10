@@ -42,7 +42,6 @@ class AuthAPI {
 
     static login = async (user) => {
         const endpoint = BASE_URL + "api-auth/alt-login/";
-        console.log(user);
         const requestOptions = {
             method: "POST",
             headers: {
@@ -56,6 +55,25 @@ class AuthAPI {
             }),
         };
         let response = await fetch(endpoint, requestOptions);
+        return response.json();
+    };
+
+    static resetPassword = async (user) => {
+        const endpoint = BASE_URL + "api-auth/changepassword/";
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                Accept: "*/*",
+                "Content-Type": "application/json",
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                username: user.username,
+                oldPassword: user.oldPassword,
+                newPassword: user.newPassword,
+            }),
+        };
+        const response = await fetch(endpoint, requestOptions);
         return response.json();
     };
 }

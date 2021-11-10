@@ -10,6 +10,8 @@ import AuthController from "../controllers/AuthController";
 import { Close } from "@material-ui/icons";
 import CreatableSelect from "react-select/creatable";
 import "../css/ReactSelect.css";
+import ContactsAPI from "../apis/contactsApi";
+import { GroupsAPI } from "../apis/groupsApi";
 
 const style = {
     control: (base) => ({
@@ -31,6 +33,7 @@ export default class ContactOverlay extends React.Component {
             starred: false,
             changes: false,
             photoURL: "",
+            image: null,
             firstName: "",
             lastName: "",
             email: "",
@@ -42,10 +45,30 @@ export default class ContactOverlay extends React.Component {
             emailError: "",
             emailValid: true,
             customInput: [],
+            deletedInput: [],
             originalGroup: null,
             group: null,
             groups: [],
         };
+    }
+
+    async componentDidMount() {
+        // load custom questions
+        var customInput = [];
+        const questions = await ContactsAPI.customQuestions();
+        for (var i = 0; i < questions.length; i++) {
+            customInput.push({
+                label: questions[i].question,
+                value: "",
+                url: questions[i].url,
+            });
+        }
+        // load groups
+        const groups = await GroupsAPI.getGroupNames();
+        this.setState({
+            customInput: customInput,
+            groups: groups,
+        });
     }
 
     proceed = () => {
@@ -91,6 +114,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInput[id] = {
             label: this.state.customInput[id].label,
             value: event.target.value,
+            url: this.state.customInput[id].url,
+            answerurl: this.state.customInput[id].answerurl,
         };
         this.setState({
             customInput: newCustomInput,
@@ -105,6 +130,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInput[id] = {
             label: event.target.value,
             value: this.state.customInput[id].value,
+            url: this.state.customInput[id].url,
+            answerurl: this.state.customInput[id].answerurl,
         };
         // labels must not be blank
         this.setState({
@@ -140,6 +167,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInputs.push({
             label: "Label",
             value: "",
+            url: "",
+            answerurl: "",
         });
         this.setState({
             customInput: newCustomInputs,
@@ -149,16 +178,20 @@ export default class ContactOverlay extends React.Component {
 
     deleteCustomField = (id) => {
         var newCustomInputs = this.state.customInput;
+        var deletedInput = this.state.deletedInput;
+        const deleted = this.state.customInput[id];
+        deletedInput.push(deleted);
         newCustomInputs.splice(id, 1);
         this.setState({
             customInput: newCustomInputs,
             changes: true,
+            deletedInput: deletedInput
         });
     };
 
     deleteContact = async () => {};
 
-    save = async () => {};
+    async save() {}
 
     goBackAndReload = () => {
         var url = this.props.match.url;
@@ -207,6 +240,16 @@ export default class ContactOverlay extends React.Component {
 
     groupInputChangeHandler = (inputValue, actionMeta) => {};
 
+    photoChangeHandler = async (event) => {
+        // creates temporary URL for selected photo file object
+        const selected = URL.createObjectURL(event.target.files[0]);
+        this.setState({
+            photoURL: selected,
+            image: event.target.files[0],
+            changes: true,
+        });
+    };
+
     closeDialog = () => {
         this.props.history.goBack();
     };
@@ -246,6 +289,7 @@ export default class ContactOverlay extends React.Component {
                                     alt="contact profile photo"
                                     firstName={this.state.firstName}
                                     lastName={this.state.lastName}
+                                    onChange={this.photoChangeHandler}
                                 />
                                 <InputField
                                     type="text"

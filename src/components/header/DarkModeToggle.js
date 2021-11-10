@@ -15,24 +15,24 @@ class DarkModeToggle extends React.Component {
             mode: "off",
             light: "active",
             dark: "inactive",
-            currentTheme: localStorage.getItem("theme"),
+            currentTheme: sessionStorage.getItem("theme"),
         };
-        if (localStorage.getItem("theme") === "dark") {
+        if (sessionStorage.getItem("theme") === "dark") {
             document.body.classList.add("dark-theme");
         }
     }
 
     onClick = () => {
-        if (localStorage.getItem("theme") === "light") {
-            localStorage.setItem("theme", "dark");
+        if (sessionStorage.getItem("theme") === "light") {
+            sessionStorage.setItem("theme", "dark");
             document.body.classList.add("dark-theme");
             this.setState({
                 mode: "on",
                 light: "inactive",
                 dark: "active",
             });
-        } else if (localStorage.getItem("theme") === "dark") {
-            localStorage.setItem("theme", "light");
+        } else if (sessionStorage.getItem("theme") === "dark") {
+            sessionStorage.setItem("theme", "light");
             document.body.classList.remove("dark-theme");
             this.setState({
                 mode: "off",
@@ -40,37 +40,38 @@ class DarkModeToggle extends React.Component {
                 dark: "inactive",
             });
         } else {
-            localStorage.setItem("theme", "light");
+            sessionStorage.setItem("theme", "light");
         }
     };
 
     getIcon = () => {
-        if (this.state.mode === "off") return (
-            <FaSun
-                className={
-                    "sun-" +
-                    localStorage.getItem("theme") +
-                    " {this.state.light}"
-                }
-                data-testid="dark-mode-toggle--icon"
-            />
-        );
+        if (sessionStorage.getItem("theme") === "light")
+            return (
+                <FaSun
+                    className={
+                        "sun-" +
+                        sessionStorage.getItem("theme") +
+                        " {this.state.light}"
+                    }
+                    data-testid="dark-mode-toggle--icon"
+                />
+            );
         return (
             <FaMoon
                 className={
                     "moon-" +
-                    localStorage.getItem("theme") +
+                    sessionStorage.getItem("theme") +
                     " {this.state.dark}"
                 }
                 data-testid="dark-mode-toggle--icon"
             />
         );
-    }
+    };
 
     render() {
         return (
             <div
-                className={"icon " + localStorage.getItem("theme")}
+                className={"icon " + sessionStorage.getItem("theme")}
                 onClick={this.onClick}
                 data-testid="dark-mode-toggle"
             >

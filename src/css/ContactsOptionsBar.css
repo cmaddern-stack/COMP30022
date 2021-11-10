@@ -26,5 +26,6 @@
 @media (max-width: 481px) {
     .button {
         width: 50px;
+        height: 42px;
     }
 }

@@ -13,7 +13,9 @@ To run the app on your local browser - from your terminal run:
 class App extends React.Component {
     constructor(props) {
         super(props);
-        localStorage.setItem("theme", "light");
+        if (sessionStorage.getItem("theme") === null) {
+            sessionStorage.setItem("theme", "light");
+        }
     }
 
     render() {

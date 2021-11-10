@@ -16,14 +16,13 @@ const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 var sortUp = false;
 
 export default function Contacts(props) {
-
     const [organisation, setOrganisation] = useState(true);
     const [role, setRole] = useState(true);
     const [email, setEmail] = useState(true);
     const [phone, setPhone] = useState(true);
     const [notes, setNotes] = useState(true);
     const [dropdown, setDropdown] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = useState("");
     const location = useLocation();
     const history = useHistory();
 
@@ -53,39 +52,97 @@ export default function Contacts(props) {
                 requestOptions
             );
             const data = await response.json();
-            console.log(data);
 
             setContacts(data);
         }
     }, []);
-        
+
     function showDropdown() {
         if (dropdown) {
             return (
                 <div className="d-flex">
-                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
-                        
-                    <div className="dropdown-box">
-                        <button className="dropbtn" onClick={() => setDropdown(false)}><BsListUl /> Change Columns <IoMdArrowDropdown /></button>
-                        <div className="dropdown-content">
-                            { organisation ? <button onClick={() => setOrganisation(false)}>&#x2611; Show Organisation </button> : <button onClick={() => setOrganisation(true)}>&#x2610; Show Organisation </button>}
-                            { role ? <button onClick={() => setRole(false)}>&#x2611; Show Role</button> : <button onClick={() => setRole(true)}>&#x2610; Show Role</button>}
-                            { email ? <button onClick={() => setEmail(false)}>&#x2611; Show Email</button> : <button onClick={() => setEmail(true)}>&#x2610; Show Email</button>}
-                            { phone ? <button onClick={() => setPhone(false)}>&#x2611; Show Phone</button> : <button onClick={() => setPhone(true)}>&#x2610; Show Phone</button>}
-                            { notes ? <button onClick={() => setNotes(false)}>&#x2611; Show Notes</button> : <button onClick={() => setNotes(true)}>&#x2610; Show Notes</button>}
-                        </div>
-                    
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) => {
+                                setSearchTerm(event.target.value);
+                            }}
+                        />
                     </div>
-                    
+
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => setDropdown(false)}
+                        >
+                            Columns
+                            <IoMdArrowDropdown />
+                        </button>
+                        <div className="dropdown-content">
+                            {organisation ? (
+                                <button onClick={() => setOrganisation(false)}>
+                                    &#x2611; Organisation{" "}
+                                </button>
+                            ) : (
+                                <button onClick={() => setOrganisation(true)}>
+                                    &#x2610; Organisation{" "}
+                                </button>
+                            )}
+                            {role ? (
+                                <button onClick={() => setRole(false)}>
+                                    &#x2611; Role
+                                </button>
+                            ) : (
+                                <button onClick={() => setRole(true)}>
+                                    &#x2610; Role
+                                </button>
+                            )}
+                            {email ? (
+                                <button onClick={() => setEmail(false)}>
+                                    &#x2611; Email
+                                </button>
+                            ) : (
+                                <button onClick={() => setEmail(true)}>
+                                    &#x2610; Email
+                                </button>
+                            )}
+                            {phone ? (
+                                <button onClick={() => setPhone(false)}>
+                                    &#x2611; Phone
+                                </button>
+                            ) : (
+                                <button onClick={() => setPhone(true)}>
+                                    &#x2610; Phone
+                                </button>
+                            )}
+                        </div>
+                    </div>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="d-flex">
-                    <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {setSearchTerm(event.target.value)}}/></div>
-                    <div className="dropdown-box"><button className="dropbtn" onClick={() => setDropdown(true)}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) => {
+                                setSearchTerm(event.target.value);
+                            }}
+                        />
+                    </div>
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => setDropdown(true)}
+                        >
+                            Columns
+                            <IoMdArrowDropleft />
+                        </button>
+                    </div>
                 </div>
-            )
+            );
         }
     }
 
@@ -98,26 +155,52 @@ export default function Contacts(props) {
 
     function renderTableHeader() {
         return (
-            <div className="person contacts-header d-flex justify-content-between">
-                <div className="w-5"></div>
-                <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
-                <div className="table-header w-10">Name</div>
-                {/* <div className="w-10">Groups</div> */}
-                { organisation ? <div className="w-10">Organisation</div> : null}
-                { role ? <div className="w-10">Role</div> : null}
-                { email ? <div className="w-10">Email</div> : null}
-                { phone ? <div className="w-10">Phone</div> : null}
-                { notes ? <div className="w-15">Notes</div> : null}
-                <div className="w-5 text-right">Edit</div>
+            <div className="person contacts-header">
+                <div className="row-left">
+                    <div className="w-5 row-item"></div>
+                    <div className="w-5 row-item">
+                        <div className="w-5 row-item">
+                            <IconContext.Provider value={{ color: "a4a6f6" }}>
+                                <AiFillStar />
+                            </IconContext.Provider>
+                        </div>
+                    </div>
+                    <div className="w-name row-item">Name</div>
+                    {/* <div className="w-10">Groups</div> */}
+                    {organisation ? (
+                        <div className="w-15 row-item">Organisation</div>
+                    ) : null}
+                    {role ? <div className="w-10 row-item">Role</div> : null}
+                    {email ? <div className="w-15 row-item">Email</div> : null}
+                    {phone ? (
+                        <div className="w-phone row-item">Phone</div>
+                    ) : null}
+                </div>
+                <div className="row-right">
+                    <div className="w-edit row-item button invisible-button edit-button">
+                        Edit
+                    </div>
+                </div>
             </div>
         );
     }
 
     function showInitials(item) {
+        if (item.image !== null) {
+            return (
+                <div className="initials">
+                    <img
+                        alt="contact profile icon"
+                        src={item.image}
+                        id="row-profile-icon"
+                    ></img>
+                </div>
+            );
+        }
         const first = item.firstName[0];
         const second = item.lastName[0];
         return (
-            <div class="initials">
+            <div className="initials">
                 {first}
                 {second}
             </div>
@@ -126,60 +209,95 @@ export default function Contacts(props) {
 
     function renderItems() {
         if (contacts.length > 0) {
-
-            return contacts.map((item, index) => {
-                let x = index % 2;
-                return (
-                    <div className={'person d-flex white justify-content-between color-' + x}>
-                        <div className="w-2">{showInitials(item)}</div>
-                        <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
-                        <div className="w-10">{item.firstName} {item.lastName}</div>
-                        {/* <div className="w-10">Groups</div> */}
-                        { organisation ? <div className="w-10">{item.organisation}</div> : null}
-                        { role ? <div className="w-10">{item.role}</div> : null}
-                        { email ? <div className="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
-                        { phone ? <div className="w-10">{item.phoneNumber}</div> : null}
-                        { notes ? <div className="w-15">{item.notes}</div> : null}
-                        <div className="w-5 text-right">Edit</div>
-                    </div>
-                )
-            });
-
-            // return contacts.filter((val) => {
-            //         if (searchTerm === "") {
-            //             return val
-            //         } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.organisation.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.role.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.emailAddress.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.notes.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         }
-            //     }).map((item, index) => {
-            //         let x = index % 2;
-            //         return (
-            //             <div className={'person d-flex white justify-content-between color-' + x}>
-            //                 <div className="w-2">{showInitials(item)}</div>
-            //                 <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
-            //                 <div className="w-10">{item.firstName} {item.lastName}</div>
-            //                 {/* <div className="w-10">Groups</div> */}
-            //                 { organisation ? <div className="w-10">{item.organisation}</div> : null}
-            //                 { role ? <div className="w-10">{item.role}</div> : null}
-            //                 { email ? <div className="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
-            //                 { phone ? <div className="w-10">{item.phoneNumber}</div> : null}
-            //                 { notes ? <div className="w-15">{item.notes}</div> : null}
-            //                 <div className="w-5 text-right">Edit</div>
-            //             </div>
-            //         )
-            //     });
+            return contacts
+                .filter((contact) => {
+                    const search = searchTerm.toLowerCase();
+                    return (
+                        (contact.firstName &&
+                            contact.firstName.toLowerCase().includes(search)) ||
+                        (contact.lastName &&
+                            contact.lastName.toLowerCase().includes(search)) ||
+                        (organisation &&
+                            contact.organisation &&
+                            contact.organisation
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (role &&
+                            contact.role &&
+                            contact.role.toLowerCase().includes(search)) ||
+                        (email &&
+                            contact.emailAddress &&
+                            contact.emailAddress
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (phone &&
+                            contact.phoneNumber &&
+                            contact.phoneNumber.toLowerCase().includes(search))
+                    );
+                })
+                .map((item, index) => {
+                    let x = index % 2;
+                    return (
+                        <div className={"person color-" + x}>
+                            <div className="row-left">
+                                <div className="w-5 row-item">
+                                    {showInitials(item)}
+                                </div>
+                                <div className="w-5 row-item">
+                                    {item.starred ? (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "#df5571" }}
+                                            >
+                                                <AiFillStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    ) : (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "a4a6f6" }}
+                                            >
+                                                <AiOutlineStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="w-name row-item">
+                                    {item.firstName} {item.lastName}
+                                </div>
+                                {organisation ? (
+                                    <div className="w-15 row-item">
+                                        {item.organisation}
+                                    </div>
+                                ) : null}
+                                {role ? (
+                                    <div className="w-10 row-item">
+                                        {item.role}
+                                    </div>
+                                ) : null}
+                                {email ? (
+                                    <div className="w-15 row-item">
+                                        <a href={"mailto:" + item.emailAddress}>
+                                            {item.emailAddress}
+                                        </a>
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )}
+                                {phone ? (
+                                    <div className="w-phone row-item">
+                                        {item.phoneNumber}
+                                    </div>
+                                ) : null}
+                            </div>
+                            <div className="row-right">
+                                <div className="w-edit row-item edit-button">
+                                    Edit
+                                </div>
+                            </div>
+                        </div>
+                    );
+                });
         } else return null;
     }
 
@@ -191,9 +309,10 @@ export default function Contacts(props) {
                 component={EditContact}
             ></Route>
             {showDropdown()}
-            {renderTableHeader()}
-            {renderItems()}
+            <div className="contacts-table">
+                {renderTableHeader()}
+                {renderItems()}
+            </div>
         </div>
     );
 }
-

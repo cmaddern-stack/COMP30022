@@ -13,7 +13,7 @@ import SignUp from "../pages/auth/SignUp";
 import Login from "../pages/auth/Login";
 import Profile from "../pages/Profile";
 import ContactsOptionsBar from "./ContactsOptionsBar";
-import EditContact from "./EditContact";
+import Settings from "../pages/Settings";
 
 /**
  * App Router
@@ -73,6 +73,11 @@ class AppRouter extends React.Component {
                             exact
                             path="/profile"
                             component={Profile}
+                        ></Route>
+                        <Route
+                            exact
+                            path="/settings"
+                            component={Settings}
                         ></Route>
                         <Route
                             path="/groups"

@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.55% </span>
+                <span class="strong">57.89% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/18</span>
+                <span class='fraction'>11/19</span>
             </div>
         
             
@@ -140,7 +140,8 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,16 +189,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,24 +242,24 @@ class DarkModeToggle extends React.Component {
             mode: "off",
             light: "active",
             dark: "inactive",
-            currentTheme: localStorage.getItem("theme"),
+            currentTheme: sessionStorage.getItem("theme"),
         };
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem("theme") === "dark") {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (sessionStorage.getItem("theme") === "dark") {
 <span class="cstat-no" title="statement not covered" >            document.body.classList.add("dark-theme");</span>
         }
     }
 &nbsp;
     onClick = () =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem("theme") === "light") {
-<span class="cstat-no" title="statement not covered" >            localStorage.setItem("theme", "dark");</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (sessionStorage.getItem("theme") === "light") {
+<span class="cstat-no" title="statement not covered" >            sessionStorage.setItem("theme", "dark");</span>
 <span class="cstat-no" title="statement not covered" >            document.body.classList.add("dark-theme");</span>
 <span class="cstat-no" title="statement not covered" >            this.setState({</span>
                 mode: "on",
                 light: "inactive",
                 dark: "active",
             });
-        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem("theme") === "dark") {
-<span class="cstat-no" title="statement not covered" >            localStorage.setItem("theme", "light");</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (sessionStorage.getItem("theme") === "dark") {
+<span class="cstat-no" title="statement not covered" >            sessionStorage.setItem("theme", "light");</span>
 <span class="cstat-no" title="statement not covered" >            document.body.classList.remove("dark-theme");</span>
 <span class="cstat-no" title="statement not covered" >            this.setState({</span>
                 mode: "off",
@@ -265,37 +267,38 @@ class DarkModeToggle extends React.Component {
                 dark: "inactive",
             });
         } else {
-            localStorage.setItem("theme", "light");
+            sessionStorage.setItem("theme", "light");
         }
     };
 &nbsp;
     getIcon = () =&gt; {
-        if (this.state.mode === "off") return (
-            &lt;FaSun
-                className={
-                    "sun-" +
-                    localStorage.getItem("theme") +
-                    " {this.state.light}"
-                }
-                data-testid="dark-mode-toggle--icon"
-            /&gt;
-        );
-<span class="cstat-no" title="statement not covered" >        return (</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (sessionStorage.getItem("theme") === "light")
+<span class="cstat-no" title="statement not covered" >            return (</span>
+                &lt;FaSun
+                    className={
+                        "sun-" +
+                        sessionStorage.getItem("theme") +
+                        " {this.state.light}"
+                    }
+                    data-testid="dark-mode-toggle--icon"
+                /&gt;
+            );
+        return (
             &lt;FaMoon
                 className={
                     "moon-" +
-                    localStorage.getItem("theme") +
+                    sessionStorage.getItem("theme") +
                     " {this.state.dark}"
                 }
                 data-testid="dark-mode-toggle--icon"
             /&gt;
         );
-    }
+    };
 &nbsp;
     render() {
         return (
             &lt;div
-                className={"icon " + localStorage.getItem("theme")}
+                className={"icon " + sessionStorage.getItem("theme")}
                 onClick={this.onClick}
                 data-testid="dark-mode-toggle"
             &gt;
@@ -313,7 +316,7 @@ export default DarkModeToggle;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Oct 23 2021 18:35:37 GMT+1100 (Australian Eastern Daylight Time)
+                at Wed Nov 10 2021 20:04:26 GMT+1100 (Australian Eastern Daylight Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

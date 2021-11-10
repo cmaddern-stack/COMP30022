@@ -47,9 +47,9 @@ class ProfileIcon extends React.Component {
                         <a href="/profile">
                             <li>Profile</li>
                         </a>
-                        <a href="/events">
+                        {/* <a href="/events">
                             <li>Events</li>
-                        </a>
+                        </a> */}
                         <a href="/settings">
                             <li>Settings</li>
                         </a>
