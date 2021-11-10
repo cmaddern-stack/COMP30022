@@ -40,7 +40,7 @@ export default class Groups extends React.Component {
             isLoaded: true,
             quickview: [
                 this.state.quickviewOptions[0],
-                this.state.quickviewOptions[3],
+                this.state.quickviewOptions[1],
             ],
         });
     };
