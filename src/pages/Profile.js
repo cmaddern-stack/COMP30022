@@ -36,7 +36,6 @@ class Profile extends React.Component {
         };
     }
 
-    // TODO: ADD user account fields
     // request user profile data
     async componentDidMount() {
         const data = await ProfileAPI.getUserProfile();
