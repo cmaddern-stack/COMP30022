@@ -59,17 +59,40 @@ export default class Groups extends React.Component {
         this.setState({
             quickview: quickview,
         });
+        console.log(this.state.quickview);
     };
 
     contactInQuery = (contact) => {
         if (this.state.searchTerm === "") return contact;
         else if (
-            contact.firstName
-                .toLowerCase()
-                .includes(this.state.searchTerm.toLowerCase()) ||
-            contact.lastName
-                .toLowerCase()
-                .includes(this.state.searchTerm.toLowerCase())
+            (contact.firstName &&
+                contact.firstName
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())) ||
+            (contact.lastName &&
+                contact.lastName
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())) ||
+            (this.state.quickview.includes(this.state.quickviewOptions[0]) &&
+                contact.organisation &&
+                contact.organisation
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())) ||
+            (this.state.quickview.includes(this.state.quickviewOptions[1]) &&
+                contact.role &&
+                contact.role
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())) ||
+            (this.state.quickview.includes(this.state.quickviewOptions[2]) &&
+                contact.emailAddress &&
+                contact.emailAddress
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase())) ||
+            (this.state.quickview.includes(this.state.quickviewOptions[3]) &&
+                contact.phoneNumber &&
+                contact.phoneNumber
+                    .toLowerCase()
+                    .includes(this.state.searchTerm.toLowerCase()))
         )
             return contact;
     };
@@ -135,7 +158,7 @@ export default class Groups extends React.Component {
                                                     </div>
                                                 );
                                             })}
-                                        <AddCard group={group}/>
+                                        <AddCard group={group} />
                                     </div>
                                 </Collapsible>
                             </div>
