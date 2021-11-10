@@ -26,6 +26,13 @@ body.dark-theme {
     
 }
 
+@media (max-width: 481px) {
+    .two-select-button {
+        width: 200px;
+    }
+}
+
+
 .text-color {
     color: var(--two-select-text-color);
 }
