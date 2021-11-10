@@ -45,7 +45,7 @@ class DarkModeToggle extends React.Component {
     };
 
     getIcon = () => {
-        if (this.state.mode === "off")
+        if (sessionStorage.getItem("theme") === "light")
             return (
                 <FaSun
                     className={
