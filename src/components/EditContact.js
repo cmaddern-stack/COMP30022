@@ -20,7 +20,6 @@ export default class EditContact extends ContactOverlay {
                 customInput[i].answerurl = answers[i].url;
             }
         }
-        console.log(group);
 
         this.setState({
             url: url,

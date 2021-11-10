@@ -10,7 +10,6 @@ export default class AddContact extends ContactOverlay {
         this.setState({
             loading: false,
             group: group,
-            originalGroup: group,
         });
     };
 
