@@ -6,7 +6,7 @@ body {
 
 /* Define Dark Theme Colours */
 body.dark-theme {
-    --contact-card-bg: gray;
+    --contact-card-bg: var(--dark-grey-60);
     --contact-card-text: red;
 }
 
