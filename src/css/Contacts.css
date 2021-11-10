@@ -28,14 +28,25 @@ body.dark-theme {
     margin: auto;
 }
 
-.color-0 { background-color: var(--colour-0-colour); }
-.color-1 { background-color: var(--colour-1-colour); }
+.color-0 {
+    background-color: var(--colour-0-colour);
+}
+.color-1 {
+    background-color: var(--colour-1-colour);
+}
 
-.w-15 { width: 15%; }
-.w-10 { width: 10%; }
-.w-5 { width: 30px; }
-.w-2 { width: 30px; }
-
+.w-15 {
+    width: 15%;
+}
+.w-10 {
+    width: 10%;
+}
+.w-5 {
+    width: 30px;
+}
+.w-2 {
+    width: 30px;
+}
 
 .contacts-header {
     color: var(--text-color);
@@ -57,6 +68,9 @@ body.dark-theme {
     padding: 5px;
     border-radius: 90%;
     text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 22px;
 }
 
 .searchbar {
@@ -82,7 +96,7 @@ body.dark-theme {
 .dropdown-content {
     position: absolute;
     text-align: center;
-    padding: .5rem;
+    padding: 0.5rem;
     width: 85%;
 }
 
