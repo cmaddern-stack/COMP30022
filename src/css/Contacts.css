@@ -83,6 +83,12 @@ a:hover {
     background: gray;
 }
 
+@media (max-width: 481px) {
+    .medium-screen-disappear {
+        display: none;
+    }
+}
+
 .initials {
     background-color: #c3d3fa;
     color: #5d5fef;
@@ -96,12 +102,12 @@ a:hover {
 
 .searchbar {
     padding: 0em 10px 0px 20px;
-    width: 85%;
+    width: 100%;
 }
 
 .dropdown-box {
     padding: 0em 20px 0px 10px;
-    width: 15%;
+    width: 150px;
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
@@ -122,7 +128,6 @@ a:hover {
     background-color: var(--deselected-bg);
     cursor: pointer;
 }
-
 
 .dropdown-content {
     position: absolute;

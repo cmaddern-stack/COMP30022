@@ -76,7 +76,8 @@ export default function Contacts(props) {
                             className="dropbtn"
                             onClick={() => setDropdown(false)}
                         >
-                            <BsListUl /> Change Columns <IoMdArrowDropdown />
+                            Columns
+                            <IoMdArrowDropdown />
                         </button>
                         <div className="dropdown-content">
                             {organisation ? (
@@ -145,7 +146,8 @@ export default function Contacts(props) {
                             className="dropbtn"
                             onClick={() => setDropdown(true)}
                         >
-                            <BsListUl /> Change Columns <IoMdArrowDropleft />
+                            Columns
+                            <IoMdArrowDropleft />
                         </button>
                     </div>
                 </div>
@@ -322,7 +324,7 @@ export default function Contacts(props) {
             ></Route>
             {showDropdown()}
             {renderTableHeader()}
-            {renderItems()}
+            <div className="contacts-table">{renderItems()}</div>
         </div>
     );
 }
