@@ -116,15 +116,6 @@ export default function Contacts(props) {
                                     &#x2610; Phone
                                 </button>
                             )}
-                            {/* {notes ? (
-                                <button onClick={() => setNotes(false)}>
-                                    &#x2611; Show Notes
-                                </button>
-                            ) : (
-                                <button onClick={() => setNotes(true)}>
-                                    &#x2610; Show Notes
-                                </button>
-                            )} */}
                         </div>
                     </div>
                 </div>

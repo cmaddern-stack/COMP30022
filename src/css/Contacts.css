@@ -163,14 +163,18 @@ a:hover {
 .dropdown-content {
     position: absolute;
     text-align: center;
-    padding: 0.5rem;
-    width: 85%;
+    padding: 0.5rem 0;
+    width: 150px;
+    margin-left: -45px;
+    border-radius: 5px;
+    background-color: var(--dropdown-content-bk-color);
 }
 
 .dropdown-content button {
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    padding: 10px 20px;
+    font-size: 14px;
     background-color: var(--dropdown-content-bk-color);
 }
 
@@ -185,11 +189,12 @@ a:hover {
     margin: auto;
     font-size: 14px;
     padding: 3px 0px;
-    background-color: var(--bkg-color);
+    background-color: var(--selected-bg);
     color: var(--two-select-text-color);
+    border: 1px solid var(--border-color);
 }
 
 .edit-button:hover {
     cursor: pointer;
-    background-color: var(--selected-bg);
+    background-color: var(--deselected-hover-bg);
 }
