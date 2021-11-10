@@ -209,8 +209,10 @@ export default function Contacts(props) {
                 .filter((contact) => {
                     const search = searchTerm.toLowerCase();
                     return (
-                        contact.firstName.toLowerCase().includes(search) ||
-                        contact.lastName.toLowerCase().includes(search)
+                        (contact.firstName &&
+                            contact.firstName.toLowerCase().includes(search)) ||
+                        (contact.lastName &&
+                            contact.lastName.toLowerCase().includes(search))
                     );
                 })
                 .map((item, index) => {

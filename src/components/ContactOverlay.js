@@ -11,6 +11,7 @@ import { Close } from "@material-ui/icons";
 import CreatableSelect from "react-select/creatable";
 import "../css/ReactSelect.css";
 import ContactsAPI from "../apis/contactsApi";
+import { GroupsAPI } from "../apis/groupsApi";
 
 const style = {
     control: (base) => ({
@@ -51,6 +52,7 @@ export default class ContactOverlay extends React.Component {
     }
 
     async componentDidMount() {
+        // load custom questions
         var customInput = [];
         const questions = await ContactsAPI.customQuestions();
         for (var i = 0; i < questions.length; i++) {
@@ -60,8 +62,11 @@ export default class ContactOverlay extends React.Component {
                 url: questions[i].url,
             });
         }
+        // load groups
+        const groups = await GroupsAPI.getGroupNames();
         this.setState({
             customInput: customInput,
+            groups: groups,
         });
     }
 
@@ -108,6 +113,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInput[id] = {
             label: this.state.customInput[id].label,
             value: event.target.value,
+            url: this.state.customInput[id].url,
+            answerurl: this.state.customInput[id].answerurl,
         };
         this.setState({
             customInput: newCustomInput,
@@ -122,6 +129,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInput[id] = {
             label: event.target.value,
             value: this.state.customInput[id].value,
+            url: this.state.customInput[id].url,
+            answerurl: this.state.customInput[id].answerurl,
         };
         // labels must not be blank
         this.setState({
@@ -157,6 +166,8 @@ export default class ContactOverlay extends React.Component {
         newCustomInputs.push({
             label: "Label",
             value: "",
+            url: "",
+            answerurl: "",
         });
         this.setState({
             customInput: newCustomInputs,

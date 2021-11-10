@@ -17,8 +17,10 @@ export default class EditContact extends ContactOverlay {
         for (var i = 0; i < answers.length; i++) {
             if (customInput[i].url === answers[i].question) {
                 customInput[i].value = answers[i].data;
+                customInput[i].answerurl = answers[i].url;
             }
         }
+        
         this.setState({
             url: url,
             starred: contact.starred,
@@ -57,11 +59,16 @@ export default class EditContact extends ContactOverlay {
             this.state.group && this.state.group.url,
             this.state.group && this.state.group.label
         );
-        await ContactsAPI.saveCustomQuestions(this.state.customInput);
+        const customInput = await ContactsAPI.saveCustomQuestions(this.state.customInput);
+        this.setState({
+            customInput: customInput
+        })
+
         await ContactsAPI.saveCustomAnswers(
             this.state.url,
             this.state.customInput
         );
+
         await ContactsAPI.saveContactPhoto(this.state.url, this.state.image);
         // this.goBackAndReload();
     };

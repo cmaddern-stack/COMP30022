@@ -34,6 +34,29 @@ export default class ContactsAPI {
         return response.json();
     };
 
+    static createContact = async (contact) => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                firstName: contact.firstName,
+                lastName: contact.lastName,
+                emailAddress: contact.email,
+                organisation: contact.organisation,
+                role: contact.role,
+                phoneNumber: contact.phone,
+            }),
+        };
+        const url = BASE_URL + "contacts/";
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    };
+
     static editContact = async (url, contact) => {
         const requestOptions = {
             method: "PATCH",
@@ -118,6 +141,23 @@ export default class ContactsAPI {
         return response.json();
     };
 
+    static patchQuestion = async (url, question) => {
+        const requestOptions = {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                question: question,
+            }),
+        };
+        const response = await fetch(url, requestOptions);
+        return response.json();
+    };
+
     static deleteQuestion = async (url) => {
         const requestOptions = {
             method: "DELETE",
@@ -132,13 +172,20 @@ export default class ContactsAPI {
     };
 
     static saveCustomQuestions = async (customInput) => {
-        const questions = await ContactsAPI.customQuestions();
-        for (var i = 0; i < questions.length; i++) {
-            await ContactsAPI.deleteQuestion(questions[i].url);
-        }
         for (var i = 0; i < customInput.length; i++) {
-            await ContactsAPI.postQuestion(customInput[i].label);
+            if (customInput[i].url !== "") {
+                ContactsAPI.patchQuestion(
+                    customInput[i].url,
+                    customInput[i].label
+                );
+            } else {
+                const response = await ContactsAPI.postQuestion(
+                    customInput[i].label
+                );
+                customInput[i].url = response.url;
+            }
         }
+        return customInput;
     };
 
     static customAnswers = async (url) => {
@@ -174,18 +221,36 @@ export default class ContactsAPI {
         await fetch(url, requestOptions);
     };
 
+    static patchCustomAnswer = async (url, data) => {
+        const requestOptions = {
+            method: "PATCH",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                data: data,
+            }),
+        };
+        await fetch(url, requestOptions);
+    };
+
     static saveCustomAnswers = async (contactURL, customInput) => {
-        const url = BASE_URL + "answer";
-        const questions = await ContactsAPI.customQuestions();
-        for (var i = 0; i < questions.length; i++) {
-            var index = customInput.findIndex((val) => {
-                return val.label === questions[i].question;
-            });
-            await ContactsAPI.saveCustomAnswer(
-                questions[i].url,
-                contactURL,
-                customInput[index].value
-            );
+        for (var i = 0; i < customInput.length; i++) {
+            if (customInput[i].answerurl !== "") {
+                ContactsAPI.patchCustomAnswer(
+                    customInput[i].answerurl,
+                    customInput[i].value
+                );
+            } else {
+                ContactsAPI.saveCustomAnswer(
+                    customInput[i].url,
+                    contactURL,
+                    customInput[i].value
+                );
+            }
         }
     };
 }
