@@ -264,7 +264,7 @@ class Profile extends React.Component {
         return (
             <div className="profile-content">
                 <div className="title-row">
-                    <h3>Public Information</h3>
+                    <div className="title">Public Information</div>
                     <div className="info-dropdown">
                         <div className="info">What's this?</div>
                         <div className="tool-tip">
