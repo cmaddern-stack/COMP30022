@@ -19,7 +19,6 @@ export default class EditContact extends ContactOverlay {
                 customInput[i].value = answers[i].data;
             }
         }
-        console.log(contact);
         this.setState({
             url: url,
             starred: contact.starred,
@@ -63,6 +62,7 @@ export default class EditContact extends ContactOverlay {
             this.state.url,
             this.state.customInput
         );
+        await ContactsAPI.saveContactPhoto(this.state.url, this.state.image);
         // this.goBackAndReload();
     };
 

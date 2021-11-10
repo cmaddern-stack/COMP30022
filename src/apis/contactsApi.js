@@ -56,6 +56,20 @@ export default class ContactsAPI {
         return response.json();
     };
 
+    static saveContactPhoto = async (url, image) => {
+        const form = new FormData();
+        if (image !== null) form.append("image", image);
+        const requestOptions = {
+            method: "PATCH",
+            headers: {
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: form,
+        };
+        await fetch(url, requestOptions);
+    };
+
     static deleteContact = async (url) => {
         const requestOptions = {
             method: "DELETE",

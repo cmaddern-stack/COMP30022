@@ -49,9 +49,9 @@ class ProfilePhoto extends React.Component {
                     ) : (
                         <img src={this.props.src} alt={this.props.alt}></img>
                     )}
-                    <div className="overlay-icon">
+                    {/* <div className="overlay-icon">
                         <FaCamera />
-                    </div>
+                    </div> */}
                     <input
                         className="invisible-button"
                         type="file"
