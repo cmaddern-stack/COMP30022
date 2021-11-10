@@ -104,22 +104,6 @@ export default class ContactsAPI {
         return response.json();
     };
 
-    static putQuestion = async (url, question) => {
-        const requestOptions = {
-            method: "PUT",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: `token ${sessionStorage.getItem("token")}`,
-            },
-            mode: "cors",
-            body: JSON.stringify({
-                question: question,
-            }),
-        };
-        await fetch(url, requestOptions);
-    }
-
     static deleteQuestion = async (url) => {
         const requestOptions = {
             method: "DELETE",
@@ -135,29 +119,11 @@ export default class ContactsAPI {
 
     static saveCustomQuestions = async (customInput) => {
         const questions = await ContactsAPI.customQuestions();
-        const questionsURL = questions.map((question) => question.url);
-        const customURL = customInput.map((input) => input.url);
-        for (var i = 0; i < customInput.length; i++) {
-            // post new question
-            if (!questionsURL.includes(customURL[i])) {
-                await ContactsAPI.postQuestion(customInput[i].label);
-            }
-            // edit existing question label
-            else {
-                var index = questionsURL.indexOf(customInput[i].url);
-                if (questions[index].question !== customInput[i].question) {
-                    ContactsAPI.putQuestion(
-                        customInput[i].url,
-                        customInput[i].question
-                    );
-                }
-            }
-        }
         for (var i = 0; i < questions.length; i++) {
-            // delete old questions
-            if (!customURL.includes(questionsURL[i])) {
-                await ContactsAPI.deleteQuestion(questionsURL[i]);
-            }
+            await ContactsAPI.deleteQuestion(questions[i].url);
+        }
+        for (var i = 0; i < customInput.length; i++) {
+            await ContactsAPI.postQuestion(customInput[i].label);
         }
     };
 
@@ -173,7 +139,41 @@ export default class ContactsAPI {
         };
         const response = await fetch(url + "get_answer/", requestOptions);
         return response.json();
-    }
+    };
+
+    static saveCustomAnswer = async (question, contact, data) => {
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `token ${sessionStorage.getItem("token")}`,
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                question: question,
+                contact: contact,
+                data: data,
+            }),
+        };
+        const url = BASE_URL + "answer/";
+        await fetch(url, requestOptions);
+    };
+
+    static saveCustomAnswers = async (contactURL, customInput) => {
+        const url = BASE_URL + "answer";
+        const questions = await ContactsAPI.customQuestions();
+        for (var i = 0; i < questions.length; i++) {
+            var index = customInput.findIndex((val) => {
+                return val.label === questions[i].question;
+            });
+            await ContactsAPI.saveCustomAnswer(
+                questions[i].url,
+                contactURL,
+                customInput[index].value
+            );
+        }
+    };
 }
 
 // Getting list of ALL contacts

@@ -175,7 +175,7 @@ export default class ContactOverlay extends React.Component {
     deleteContact = async () => {};
 
     async save() {
-        await ContactsAPI.saveCustomQuestions(this.state.customInput);
+        
     }
 
     goBackAndReload = () => {

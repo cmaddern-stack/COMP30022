@@ -13,9 +13,7 @@ export default class EditContact extends ContactOverlay {
         const group = await GroupsAPI.getContactGroup(url);
         const groups = await GroupsAPI.getGroupNames();
         const answers = await ContactsAPI.customAnswers(url);
-        console.log(answers);
         var customInput = this.state.customInput;
-        console.log(customInput);
         for (var i = 0; i < answers.length; i++) {
             if (customInput[i].url === answers[i].question) {
                 customInput[i].value = answers[i].data;
@@ -44,7 +42,7 @@ export default class EditContact extends ContactOverlay {
     };
 
     save = async () => {
-        super.save();
+        await super.save();
         await ContactsAPI.editContact(this.state.url, {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -59,8 +57,12 @@ export default class EditContact extends ContactOverlay {
             this.state.group && this.state.group.url,
             this.state.group && this.state.group.label
         );
-        console.log(this.state.customInput);
-        this.goBackAndReload();
+        await ContactsAPI.saveCustomQuestions(this.state.customInput);
+        await ContactsAPI.saveCustomAnswers(
+            this.state.url,
+            this.state.customInput
+        );
+        // this.goBackAndReload();
     };
 
     deleteContact = async () => {
