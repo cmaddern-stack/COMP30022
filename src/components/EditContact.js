@@ -19,11 +19,12 @@ export default class EditContact extends ContactOverlay {
                 customInput[i].value = answers[i].data;
             }
         }
+        console.log(contact);
         this.setState({
             url: url,
             starred: contact.starred,
             loading: false,
-            photoURL: "",
+            photoURL: contact.image === null ? "" : contact.image,
             firstName: this.valOrEmptyString(contact.firstName),
             lastName: this.valOrEmptyString(contact.lastName),
             email: this.valOrEmptyString(contact.emailAddress),

@@ -32,6 +32,7 @@ export default class ContactOverlay extends React.Component {
             starred: false,
             changes: false,
             photoURL: "",
+            image: null,
             firstName: "",
             lastName: "",
             email: "",
@@ -174,9 +175,7 @@ export default class ContactOverlay extends React.Component {
 
     deleteContact = async () => {};
 
-    async save() {
-        
-    }
+    async save() {}
 
     goBackAndReload = () => {
         var url = this.props.match.url;
@@ -225,6 +224,15 @@ export default class ContactOverlay extends React.Component {
 
     groupInputChangeHandler = (inputValue, actionMeta) => {};
 
+    photoChangeHandler = async (event) => {
+        // creates temporary URL for selected photo file object
+        const selected = URL.createObjectURL(event.target.files[0]);
+        this.setState({
+            photoURL: selected,
+            image: event.target.files[0],
+        });
+    };
+
     closeDialog = () => {
         this.props.history.goBack();
     };
@@ -264,6 +272,7 @@ export default class ContactOverlay extends React.Component {
                                     alt="contact profile photo"
                                     firstName={this.state.firstName}
                                     lastName={this.state.lastName}
+                                    onChange={this.photoChangeHandler}
                                 />
                                 <InputField
                                     type="text"
