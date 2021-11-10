@@ -23,8 +23,7 @@ body.dark-theme {
     height: 46px;
     display: flex;
     min-width: 100%;
-    width: 1700px;
-    max-width: auto;
+    width: fit-content;
     justify-content: flex-start;
 }
 
