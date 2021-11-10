@@ -49,11 +49,17 @@ export default class AddContact extends ContactOverlay {
         await ContactsAPI.saveContactPhoto(this.state.url, this.state.image);
 
         // save contact custom answers and questions
-        await ContactsAPI.saveCustomQuestions(this.state.customInput);
+        const customInput = await ContactsAPI.saveCustomQuestions(
+            this.state.customInput
+        );
+        this.setState({
+            customInput: customInput,
+        });
         await ContactsAPI.saveCustomAnswers(
             this.state.url,
             this.state.customInput
         );
+        await ContactsAPI.deleteCustomQuestions(this.state.deletedInput);
 
         this.goBackAndReload();
     };
