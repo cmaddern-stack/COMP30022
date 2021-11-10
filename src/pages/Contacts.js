@@ -216,7 +216,23 @@ export default function Contacts(props) {
                         (contact.firstName &&
                             contact.firstName.toLowerCase().includes(search)) ||
                         (contact.lastName &&
-                            contact.lastName.toLowerCase().includes(search))
+                            contact.lastName.toLowerCase().includes(search)) ||
+                        (organisation &&
+                            contact.organisation &&
+                            contact.organisation
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (role &&
+                            contact.role &&
+                            contact.role.toLowerCase().includes(search)) ||
+                        (email &&
+                            contact.emailAddress &&
+                            contact.emailAddress
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (phone &&
+                            contact.phoneNumber &&
+                            contact.phoneNumber.toLowerCase().includes(search))
                     );
                 })
                 .map((item, index) => {
@@ -282,42 +298,6 @@ export default function Contacts(props) {
                         </div>
                     );
                 });
-
-            // return contacts.filter((val) => {
-            //         if (searchTerm === "") {
-            //             return val
-            //         } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.lastName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.organisation.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.role.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.emailAddress.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         } else if (val.notes.toLowerCase().includes(searchTerm.toLowerCase())) {
-            //             return val
-            //         }
-            //     }).map((item, index) => {
-            //         let x = index % 2;
-            //         return (
-            //             <div className={'person d-flex white justify-content-between color-' + x}>
-            //                 <div className="w-2">{showInitials(item)}</div>
-            //                 <div className="w-2">{ item.starred ? <div className="w-2"><IconContext.Provider value={{ color: '#df5571' }}><AiFillStar /></IconContext.Provider></div> : <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiOutlineStar /></IconContext.Provider></div>}</div>
-            //                 <div className="w-10">{item.firstName} {item.lastName}</div>
-            //                 {/* <div className="w-10">Groups</div> */}
-            //                 { organisation ? <div className="w-10">{item.organisation}</div> : null}
-            //                 { role ? <div className="w-10">{item.role}</div> : null}
-            //                 { email ? <div className="w-10"><a href={'mailto:' + item.emailAddress} >{item.emailAddress}</a></div> : <div></div>}
-            //                 { phone ? <div className="w-10">{item.phoneNumber}</div> : null}
-            //                 { notes ? <div className="w-15">{item.notes}</div> : null}
-            //                 <div className="w-5 text-right">Edit</div>
-            //             </div>
-            //         )
-            //     });
         } else return null;
     }
 
