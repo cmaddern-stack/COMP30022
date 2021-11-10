@@ -59,7 +59,9 @@ export default function CustomizedDialogs() {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
-        setOpen(true);
+        this.props.history.push(
+            `${this.props.match.url.replace(/\/$/g, "")}/add/`
+        );
     };
     const handleClose = () => {
         setOpen(false);

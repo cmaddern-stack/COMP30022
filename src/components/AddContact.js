@@ -3,12 +3,14 @@ import ContactsAPI from "../apis/contactsApi";
 import { GroupsAPI } from "../apis/groupsApi";
 import ContactOverlay from "./ContactOverlay";
 
-
 export default class AddContact extends ContactOverlay {
     componentDidMount = async () => {
         await super.componentDidMount();
+        const group = this.props.location.group ? this.props.location.group : null;
         this.setState({
             loading: false,
+            group: group,
+            originalGroup: group,
         });
     };
 

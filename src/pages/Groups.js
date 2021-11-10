@@ -135,7 +135,7 @@ export default class Groups extends React.Component {
                                                     </div>
                                                 );
                                             })}
-                                        <AddCard />
+                                        <AddCard group={group}/>
                                     </div>
                                 </Collapsible>
                             </div>
