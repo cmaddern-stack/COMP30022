@@ -173,7 +173,7 @@ export default function Contacts(props) {
                         </IconContext.Provider>
                     </div>
                 </div>
-                <div className="table-header w-name row-item">Name</div>
+                <div className="w-name row-item">Name</div>
                 {/* <div className="w-10">Groups</div> */}
                 {organisation ? (
                     <div className="w-15 row-item">Organisation</div>
@@ -181,8 +181,7 @@ export default function Contacts(props) {
                 {role ? <div className="w-10 row-item">Role</div> : null}
                 {email ? <div className="w-15 row-item">Email</div> : null}
                 {phone ? <div className="w-phone row-item">Phone</div> : null}
-                {/* {notes ? <div className="w-15">Notes</div> : null} */}
-                <div className="w-edit row-item">Edit</div>
+                {/* <div className="w-edit row-item">Edit</div> */}
             </div>
         );
     }
@@ -275,7 +274,9 @@ export default function Contacts(props) {
                             {/* {notes ? (
                             <div className="w-15">{item.notes}</div>
                         ) : null} */}
-                            <div className="w-edit row-item">Edit</div>
+                            <div className="w-edit row-item button edit-button">
+                                Edit
+                            </div>
                         </div>
                     );
                 });
