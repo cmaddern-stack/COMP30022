@@ -66,7 +66,7 @@ class Settings extends React.Component {
             message = "Password saved successfully.";
         } else {
             message =
-                "Reset password could not be completed at this time. Please try again later";
+                "Reset password could not be completed at this time. Please try again later.";
         }
         this.setState({
             message: message,

@@ -16,7 +16,7 @@ class AddCard extends React.Component {
                 <div className="center iris60">
                     <div className="group-add-contact-button">
                         <Button color="primary" onClick={this.handleClickOpen}>
-                            + Add Contact
+                            <div className="message">+ Add Contact</div>
                         </Button>
                     </div>
                 </div>
