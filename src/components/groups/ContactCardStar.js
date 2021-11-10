@@ -28,7 +28,7 @@ export default class ContactCardStar extends React.Component {
                         <IconContext.Provider
                             value={{ color: "#df5571", size: ICON_SIZE }}
                         >
-                            <AiFillStar />
+                            <AiFillStar data-testid="contact-card-star--starred" />
                         </IconContext.Provider>
                     </div>
                 ) : (
@@ -36,7 +36,7 @@ export default class ContactCardStar extends React.Component {
                         <IconContext.Provider
                             value={{ color: "a4a6f6", size: ICON_SIZE }}
                         >
-                            <AiOutlineStar />
+                            <AiOutlineStar data-testid="contact-card-star--unstarred" />
                         </IconContext.Provider>
                     </div>
                 )}

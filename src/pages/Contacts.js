@@ -291,7 +291,7 @@ export default function Contacts(props) {
                                 ) : null}
                             </div>
                             <div className="row-right">
-                                <div className="w-edit row-item button edit-button">
+                                <div className="w-edit row-item edit-button">
                                     Edit
                                 </div>
                             </div>
