@@ -165,23 +165,31 @@ export default function Contacts(props) {
     function renderTableHeader() {
         return (
             <div className="person contacts-header">
-                <div className="w-5 row-item"></div>
-                <div className="w-5 row-item">
+                <div className="row-left">
+                    <div className="w-5 row-item"></div>
                     <div className="w-5 row-item">
-                        <IconContext.Provider value={{ color: "a4a6f6" }}>
-                            <AiFillStar />
-                        </IconContext.Provider>
+                        <div className="w-5 row-item">
+                            <IconContext.Provider value={{ color: "a4a6f6" }}>
+                                <AiFillStar />
+                            </IconContext.Provider>
+                        </div>
+                    </div>
+                    <div className="w-name row-item">Name</div>
+                    {/* <div className="w-10">Groups</div> */}
+                    {organisation ? (
+                        <div className="w-15 row-item">Organisation</div>
+                    ) : null}
+                    {role ? <div className="w-10 row-item">Role</div> : null}
+                    {email ? <div className="w-15 row-item">Email</div> : null}
+                    {phone ? (
+                        <div className="w-phone row-item">Phone</div>
+                    ) : null}
+                </div>
+                <div className="row-right">
+                    <div className="w-edit row-item button invisible-button edit-button">
+                        Edit
                     </div>
                 </div>
-                <div className="w-name row-item">Name</div>
-                {/* <div className="w-10">Groups</div> */}
-                {organisation ? (
-                    <div className="w-15 row-item">Organisation</div>
-                ) : null}
-                {role ? <div className="w-10 row-item">Role</div> : null}
-                {email ? <div className="w-15 row-item">Email</div> : null}
-                {phone ? <div className="w-phone row-item">Phone</div> : null}
-                {/* <div className="w-edit row-item">Edit</div> */}
             </div>
         );
     }
@@ -224,58 +232,61 @@ export default function Contacts(props) {
                     let x = index % 2;
                     return (
                         <div className={"person color-" + x}>
-                            <div className="w-5 row-item">
-                                {showInitials(item)}
-                            </div>
-                            <div className="w-5 row-item">
-                                {item.starred ? (
-                                    <div className="w-5 row-item">
-                                        <IconContext.Provider
-                                            value={{ color: "#df5571" }}
-                                        >
-                                            <AiFillStar />
-                                        </IconContext.Provider>
+                            <div className="row-left">
+                                <div className="w-5 row-item">
+                                    {showInitials(item)}
+                                </div>
+                                <div className="w-5 row-item">
+                                    {item.starred ? (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "#df5571" }}
+                                            >
+                                                <AiFillStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    ) : (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "a4a6f6" }}
+                                            >
+                                                <AiOutlineStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="w-name row-item">
+                                    {item.firstName} {item.lastName}
+                                </div>
+                                {organisation ? (
+                                    <div className="w-15 row-item">
+                                        {item.organisation}
+                                    </div>
+                                ) : null}
+                                {role ? (
+                                    <div className="w-10 row-item">
+                                        {item.role}
+                                    </div>
+                                ) : null}
+                                {email ? (
+                                    <div className="w-15 row-item">
+                                        <a href={"mailto:" + item.emailAddress}>
+                                            {item.emailAddress}
+                                        </a>
                                     </div>
                                 ) : (
-                                    <div className="w-5 row-item">
-                                        <IconContext.Provider
-                                            value={{ color: "a4a6f6" }}
-                                        >
-                                            <AiOutlineStar />
-                                        </IconContext.Provider>
-                                    </div>
+                                    <div></div>
                                 )}
+                                {phone ? (
+                                    <div className="w-phone row-item">
+                                        {item.phoneNumber}
+                                    </div>
+                                ) : null}
                             </div>
-                            <div className="w-name row-item">
-                                {item.firstName} {item.lastName}
-                            </div>
-                            {organisation ? (
-                                <div className="w-15 row-item">
-                                    {item.organisation}
+                            <div className="row-right">
+                                <div className="w-edit row-item button edit-button">
+                                    Edit
                                 </div>
-                            ) : null}
-                            {role ? (
-                                <div className="w-10 row-item">{item.role}</div>
-                            ) : null}
-                            {email ? (
-                                <div className="w-15 row-item">
-                                    <a href={"mailto:" + item.emailAddress}>
-                                        {item.emailAddress}
-                                    </a>
-                                </div>
-                            ) : (
-                                <div></div>
-                            )}
-                            {phone ? (
-                                <div className="w-phone row-item">
-                                    {item.phoneNumber}
-                                </div>
-                            ) : null}
-                            {/* {notes ? (
-                            <div className="w-15">{item.notes}</div>
-                        ) : null} */}
-                            <div className="w-edit row-item button edit-button">
-                                Edit
                             </div>
                         </div>
                     );
