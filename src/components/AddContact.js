@@ -241,7 +241,6 @@ export default class EditContact extends React.Component {
         console.log(error)
         })
 
-        console.log(JSON.stringify(groups));
         this.props.history.goBack();
 
     };

@@ -35,7 +35,6 @@ export default class Groups extends React.Component {
 
     componentDidMount = async () => {
         const groups = await GroupsAPI.getGroups();
-        console.log(groups);
         this.setState({
             groups: groups,
             isLoaded: true,
@@ -76,7 +75,6 @@ export default class Groups extends React.Component {
     };
 
     render() {
-        console.log(this.state.quickview);
         if (!this.state.isLoaded) {
             return <Loading />;
         }

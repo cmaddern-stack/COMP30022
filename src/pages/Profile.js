@@ -260,7 +260,7 @@ class Profile extends React.Component {
     };
 
     render() {
-        if (this.state.loading) return <Loading/>
+        if (this.state.loading) return <Loading />;
         return (
             <div className="profile-content">
                 <div className="title-row">

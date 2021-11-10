@@ -32,7 +32,6 @@ class ContactsOptionsBar extends React.Component {
     }
 
     nextPath(item) {
-        console.log(this.props.location.pathname);
         this.props.history.push("/contacts/add");
     }
 

@@ -53,7 +53,6 @@ export default function Contacts(props) {
                 requestOptions
             );
             const data = await response.json();
-            console.log(data);
 
             setContacts(data);
         }

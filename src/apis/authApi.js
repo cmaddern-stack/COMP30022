@@ -42,7 +42,6 @@ class AuthAPI {
 
     static login = async (user) => {
         const endpoint = BASE_URL + "api-auth/alt-login/";
-        console.log(user);
         const requestOptions = {
             method: "POST",
             headers: {
