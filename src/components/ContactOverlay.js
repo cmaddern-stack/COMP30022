@@ -230,6 +230,7 @@ export default class ContactOverlay extends React.Component {
         this.setState({
             photoURL: selected,
             image: event.target.files[0],
+            changes: true,
         });
     };
 
