@@ -22,24 +22,13 @@ class EnterEmail extends React.Component {
         });
     };
 
-    // CHECK IF EMAIL IS ASSOCIATED WITH AN EXISTING ACCOUNT
-    // IF YES, PUSH LOGIN PAGE, ELSE PUSH SIGNUP PAGE
-    nextHandler = async (event) => {
-        let data = { email: this.state.email };
-        let response = await AuthAPI.checkEmail(this.state.email);
-        let exists = response.success;
-        var path = "";
-        if (exists) {
-            path = "/auth/login";
-        } else {
-            path = "/auth/signup";
-        }
-        this.props.history.push({ pathname: path, state: data });
-    };
-
     render() {
         return (
             <div className="auth-form">
+                <img
+                    className="logo auth-logo"
+                    src="knotwork-textonly.png"
+                ></img>
                 <InputField
                     name="email"
                     value={this.state.email}
@@ -57,11 +46,16 @@ class EnterEmail extends React.Component {
                         disabled={true}
                     ></button>
                     <button
-                        className="primary-button"
+                        className="button primary-button"
                         type="button"
                         name="next"
                         disabled={!this.state.emailValid}
-                        onClick={this.nextHandler}
+                        onClick={() =>
+                            AuthController.enterEmailNext(
+                                this.props.history,
+                                this.state.email
+                            )
+                        }
                     >
                         NEXT
                     </button>

@@ -11,21 +11,41 @@ class ContactCard extends React.Component {
     }
 
     componentDidMount() {
-        // TODO: Get QuickView fields from user settings
-        const quickview = ["organisation", "role"];
+        this.updateQuickView();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps != this.props) {
+            this.updateQuickView();
+        }
+    }
+
+    updateQuickView = () => {
+        const quickview = this.props.quickview;
+        const values = quickview.map((quickview) => quickview.value);
         var entries = [];
         for (const [label, value] of Object.entries(this.props.contact)) {
-            if (quickview.includes(label)) {
-                entries.push({ label: label, value: value });
+            if (values.includes(label)) {
+                var i = values.indexOf(label);
+                entries.push({ label: quickview[i].label, value: value });
             }
         }
         this.setState({
             entries: entries,
         });
-    }
+    };
 
     getProfileIcon = () => {
-        // TODO: Incorporate contact profile picture
+        if (this.props.contact.image !== null) {
+            return (
+                <img
+                    alt="contact profile icon"
+                    src={this.props.contact.image}
+                    id="profile-icon"
+                />
+            );
+        }
+
         return (
             (this.props.contact.firstName && this.props.contact.firstName[0]) +
             (this.props.contact.lastName && this.props.contact.lastName[0])
@@ -37,7 +57,7 @@ class ContactCard extends React.Component {
             pathname: `${this.props.match.url.replace(/\/$/g, "")}/edit/${
                 this.props.contact.id
             }`,
-            url: this.props.contact.url,
+            group: this.props.group,
         });
     };
 
@@ -68,14 +88,16 @@ class ContactCard extends React.Component {
                 </div>
                 <div className="">
                     <table className="contact-details">
-                        {this.state.entries.map((entry) => {
-                            return (
-                                <tr>
-                                    <th>{entry.label}</th>
-                                    <td>{entry.value}</td>
-                                </tr>
-                            );
-                        })}
+                        <tbody>
+                            {this.state.entries.map((entry, key) => {
+                                return (
+                                    <tr key={key}>
+                                        <th>{entry.label}</th>
+                                        <td>{entry.value}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
                     </table>
                 </div>
             </div>

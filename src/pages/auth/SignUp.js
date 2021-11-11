@@ -50,9 +50,7 @@ class SignUp extends React.Component {
 
     passwordChangeHandler = async (event) => {
         await this.setState({ [event.target.name]: event.target.value });
-        let result = await AuthController.passwordChangeHandler(
-            event.target.value
-        );
+        let result = AuthController.passwordChangeHandler(event.target.value);
         this.setState({
             passwordError: result.error,
             passwordValid: result.valid,
@@ -173,7 +171,7 @@ class SignUp extends React.Component {
                 <div className="input-error">{this.state.failed}</div>
                 <div className="button-row">
                     <button
-                        className="secondary-button"
+                        className="button secondary-button"
                         type="button"
                         name="next"
                         onClick={this.backHandler}
@@ -181,7 +179,7 @@ class SignUp extends React.Component {
                         BACK
                     </button>
                     <button
-                        className="primary-button"
+                        className="button primary-button"
                         type="button"
                         name="next"
                         disabled={!this.proceed()}

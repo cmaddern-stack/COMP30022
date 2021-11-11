@@ -10,283 +10,459 @@ import { IoMdArrowDropdown, IoMdArrowDropleft } from "react-icons/io";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import EditContact from "../components/EditContact";
+import { withRouter } from "react-router-dom";
 
 const BASE_URL = "https://team-69-backend.herokuapp.com/crm/";
 
-var sortUp = false;
+class Contacts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nameSort: false,
+            orgSort: false,
+            roleSort: false,
+            organisation: true,
+            role: true,
+            email: true,
+            phone: true,
+            notes: true,
+            dropdown: false,
+            searchTerm: "",
+            contacts: [],
+            count: 0,
+        };
+    }
 
-export default function Contacts(props) {
-    // const { loading, items, error } = useContacts();
+    routingFunction = (param) => {
+        this.props.history.push({
+            pathname: `${this.props.location.pathname.replace(
+                /\/$/g,
+                ""
+            )}/edit/${param.id}`,
+            url: param.url,
+        });
+    };
 
-    // if (loading) {
-    //     return <p>Loading contacts, sit tight...</p>;
-    // }
-    // if (error) {
-    //     return (
-    //         <div>
-    //             <p>Something went wrong!</p>
-    //             <p>{error.message}</p>
-    //         </div>
-    //     );
-    // }
+    setSearchTerm = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
 
-    const [organisation, setOrganisation] = useState(true);
-    const [role, setRole] = useState(true);
-    const [email, setEmail] = useState(true);
-    const [phone, setPhone] = useState(true);
-    const [notes, setNotes] = useState(true);
-    const [dropdown, setDropdown] = useState(false);
-    const location = useLocation();
-    const history = useHistory();
-
-    const [contacts, setContacts] = useState([]);
-
-    useEffect(() => {
-        getContacts();
-
-        async function getContacts(user) {
-            const requestOptions = {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                    Authorization:
-                        `Basic ` +
-                        btoa(
-                            sessionStorage.getItem("username") +
-                                ":" +
-                                sessionStorage.getItem("password")
-                        ),
-                },
-                mode: "cors",
-            };
-            const response = await fetch(
-                BASE_URL + "contacts/",
-                requestOptions
+    sortName = () => {
+        const sortOrder = !this.state.nameSort;
+        if (sortOrder) {
+            this.state.contacts.sort((a, b) =>
+                a.firstName < b.firstName ? 1 : -1
             );
-            const data = await response.json();
-            console.log(data);
-
-            setContacts(data);
+        } else {
+            this.state.contacts.sort((a, b) =>
+                a.firstName > b.firstName ? 1 : -1
+            );
         }
-    }, []);
+        this.setState({ nameSort: sortOrder });
+    };
 
-    function showDropdown() {
-        if (dropdown) {
+    sortRole = () => {
+        const sortOrder = !this.state.roleSort;
+        if (sortOrder) {
+            this.state.contacts.sort((a, b) => (a.role < b.role ? 1 : -1));
+        } else {
+            this.state.contacts.sort((a, b) => (a.role > b.role ? 1 : -1));
+        }
+        this.setState({ roleSort: sortOrder });
+    };
+
+    sortOrg = () => {
+        const sortOrder = !this.state.orgSort;
+        if (sortOrder) {
+            this.state.contacts.sort((a, b) =>
+                a.organisation < b.organisation ? 1 : -1
+            );
+        } else {
+            this.state.contacts.sort((a, b) =>
+                a.organisation > b.organisation ? 1 : -1
+            );
+        }
+        this.setState({ orgSort: sortOrder });
+    };
+
+    getContacts = async () => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization:
+                    `Basic ` +
+                    btoa(
+                        sessionStorage.getItem("username") +
+                            ":" +
+                            sessionStorage.getItem("password")
+                    ),
+            },
+            mode: "cors",
+        };
+        const response = await fetch(BASE_URL + "contacts/", requestOptions);
+        const data = await response.json();
+        console.log(JSON.stringify(data));
+        if (data.length != this.state.contacts.length)
+            this.setState({ contacts: data });
+    };
+
+    componentDidMount() {
+        this.getContacts();
+    }
+
+    componentDidUpdate() {
+        this.getContacts();
+    }
+
+    showDropdown = () => {
+        if (this.state.dropdown) {
             return (
-                <div>
-                    <div>
-                        <button class="w-25" onClick={() => setDropdown(false)}>
-                            <BsListUl /> Change Columns <IoMdArrowDropdown />
-                        </button>
+                <div className="d-flex">
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) =>
+                                this.setState({
+                                    searchTerm: event.target.value,
+                                })
+                            }
+                        />
                     </div>
-                    {organisation ? (
-                        <h5>
-                            <button onClick={() => setOrganisation(false)}>
-                                Show Organisation
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setOrganisation(true)}>
-                                Show Organisation
-                            </button>
-                        </h5>
-                    )}
-                    {role ? (
-                        <h5>
-                            <button onClick={() => setRole(false)}>
-                                Show Role
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setRole(true)}>
-                                Show Role
-                            </button>
-                        </h5>
-                    )}
-                    {email ? (
-                        <h5>
-                            <button onClick={() => setEmail(false)}>
-                                Show Email
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setEmail(true)}>
-                                Show Email
-                            </button>
-                        </h5>
-                    )}
-                    {phone ? (
-                        <h5>
-                            <button onClick={() => setPhone(false)}>
-                                Show Phone
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setPhone(true)}>
-                                Show Phone
-                            </button>
-                        </h5>
-                    )}
-                    {notes ? (
-                        <h5>
-                            <button onClick={() => setNotes(false)}>
-                                Show Notes
-                            </button>
-                        </h5>
-                    ) : (
-                        <h5>
-                            <button onClick={() => setNotes(true)}>
-                                Show Notes
-                            </button>
-                        </h5>
-                    )}
+
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => this.setState({ dropdown: false })}
+                        >
+                            Columns <IoMdArrowDropdown />
+                        </button>
+                        <div className="dropdown-content">
+                            {this.state.organisation ? (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ organisation: false })
+                                    }
+                                >
+                                    &#x2611; Organisation{" "}
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ organisation: true })
+                                    }
+                                >
+                                    &#x2610; Organisation{" "}
+                                </button>
+                            )}
+                            {this.state.role ? (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ role: false })
+                                    }
+                                >
+                                    &#x2611; Role
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ role: true })
+                                    }
+                                >
+                                    &#x2610; Show Role
+                                </button>
+                            )}
+                            {this.state.email ? (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ email: false })
+                                    }
+                                >
+                                    &#x2611; Email
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ email: true })
+                                    }
+                                >
+                                    &#x2610; Show Email
+                                </button>
+                            )}
+                            {this.state.phone ? (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ phone: false })
+                                    }
+                                >
+                                    &#x2611; Phone
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() =>
+                                        this.setState({ phone: true })
+                                    }
+                                >
+                                    &#x2610; Show Phone
+                                </button>
+                            )}
+                        </div>
+                    </div>
                 </div>
             );
         } else {
             return (
-                <div>
-                    <div>
-                        <button class="w-25" onClick={() => setDropdown(true)}>
-                            <BsListUl /> Change Columns <IoMdArrowDropleft />
+                <div className="d-flex">
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) => {
+                                this.setState({
+                                    searchTerm: event.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => this.setState({ dropdown: true })}
+                        >
+                            {" "}
+                            Columns <IoMdArrowDropleft />
                         </button>
                     </div>
                 </div>
             );
         }
-    }
+    };
 
-    function sortBy() {
-        sortUp = !sortUp;
-        if (sortUp)
-            contacts.sort((a, b) => (a.firstName > b.firstName ? 1 : -1));
-        else contacts.sort((a, b) => (a.firstName < b.firstName ? 1 : -1));
-    }
+    sortIcon = (sort) => {
+        return sort ? <span>▲</span> : <span>▼</span>;
+    };
 
-    function renderTableHeader() {
+    renderTableHeader = () => {
         return (
-            <div class="person d-flex">
-                <div class="w-2"></div>
-                <div class="w-2">
-                    <IconContext.Provider value={{ color: "a4a6f6" }}>
-                        <AiFillStar />
-                    </IconContext.Provider>
+            <div className="person contacts-header">
+                <div className="row-left">
+                    <div className="w-5 row-item"></div>
+                    <div className="w-5 row-item">
+                        <div className="w-5 row-item">
+                            <IconContext.Provider value={{ color: "a4a6f6" }}>
+                                <AiFillStar />
+                            </IconContext.Provider>
+                        </div>
+                    </div>
+                    <div
+                        className="w-name row-item sortable"
+                        onClick={this.sortName}
+                    >
+                        {this.sortIcon(this.state.nameSort)} Name
+                    </div>
+                    {/* <div className="w-10">Groups</div> */}
+                    {this.state.organisation ? (
+                        <div
+                            className="w-15 row-item sortable"
+                            onClick={this.sortOrg}
+                        >
+                            {this.sortIcon(this.state.orgSort)}{" "}
+                            Organisation
+                        </div>
+                    ) : null}
+                    {this.state.role ? (
+                        <div
+                            className="w-10 row-item sortable"
+                            onClick={this.sortRole}
+                        >
+                            {this.sortIcon(this.state.roleSort)} Role
+                        </div>
+                    ) : null}
+                    {this.state.email ? (
+                        <div className="w-15 row-item">Email</div>
+                    ) : null}
+                    {this.state.phone ? (
+                        <div className="w-phone row-item">Phone</div>
+                    ) : null}
                 </div>
-                <div class="w-10">
-                    {/* <button onClick={
-                        sortBy()
-                    }>
-                        Name
-                    </button> */}
+                <div className="row-right">
+                    <div className="w-edit row-item button invisible-button edit-button">
+                        Edit
+                    </div>
                 </div>
-                <div class="w-10">Groups</div>
-                {organisation ? <div class="w-10">Organisation</div> : null}
-                {role ? <div class="w-10">Role</div> : null}
-                {email ? <div class="w-10">Email</div> : null}
-                {phone ? <div class="w-10">Phone</div> : null}
-                {notes ? <div class="w-15">Notes</div> : null}
-                <div class="w-5 text-right">Edit</div>
             </div>
         );
-    }
+    };
 
-    function showInitials(item) {
+    renderItems = () => {
+        if (this.state.contacts.length > 0) {
+            return this.state.contacts
+                .filter((val) => {
+                    console.log(val);
+                    if (this.state.searchTerm === "") {
+                        return val;
+                    } else if (
+                        val.firstName
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    } else if (
+                        val.lastName
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    } else if (
+                        val.organisation != null &&
+                        val.organisation
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    } else if (
+                        val.role != null &&
+                        val.role
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    } else if (
+                        val.emailAddress != null &&
+                        val.emailAddress.includes(this.state.searchTerm)
+                    ) {
+                        return val;
+                    } else if (
+                        val.phoneNumber != null &&
+                        val.phoneNumber
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    } else if (
+                        val.notes != null &&
+                        val.notes
+                            .toLowerCase()
+                            .includes(this.state.searchTerm.toLowerCase())
+                    ) {
+                        return val;
+                    }
+                })
+                .map((item, index) => {
+                    let x = index % 2;
+                    return (
+                        <div className={"person color-" + x}>
+                            <div className="row-left">
+                                <div className="w-5 row-item">
+                                    {this.showInitials(item)}
+                                </div>
+                                <div className="w-5 row-item">
+                                    {item.starred ? (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "#df5571" }}
+                                            >
+                                                <AiFillStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    ) : (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "a4a6f6" }}
+                                            >
+                                                <AiOutlineStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="w-name row-item">
+                                    {item.firstName} {item.lastName}
+                                </div>
+                                {this.state.organisation ? (
+                                    <div className="w-15 row-item">
+                                        {item.organisation}
+                                    </div>
+                                ) : null}
+                                {this.state.role ? (
+                                    <div className="w-10 row-item">
+                                        {item.role}
+                                    </div>
+                                ) : null}
+                                {this.state.email ? (
+                                    <div className="w-15 row-item">
+                                        <a href={"mailto:" + item.emailAddress}>
+                                            {item.emailAddress}
+                                        </a>
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )}
+                                {this.state.phone ? (
+                                    <div className="w-phone row-item">
+                                        {item.phoneNumber}
+                                    </div>
+                                ) : null}
+                            </div>
+                            <div
+                                className="row-right"
+                                onClick={() => {
+                                    this.routingFunction(item);
+                                }}
+                            >
+                                <div className="w-edit row-item edit-button">
+                                    Edit
+                                </div>
+                            </div>
+                        </div>
+                    );
+                });
+        } else {
+            return null;
+        }
+    };
+
+    showInitials = (item) => {
+        if (item.image !== null) {
+            return (
+                <div className="initials">
+                    <img
+                        alt="contact profile icon"
+                        src={item.image}
+                        id="row-profile-icon"
+                    ></img>
+                </div>
+            );
+        }
         const first = item.firstName[0];
         const second = item.lastName[0];
         return (
-            <div class="initials">
+            <div className="initials">
                 {first}
                 {second}
             </div>
         );
-    }
+    };
 
-    function renderItems() {
-        if (contacts.length > 0) {
-            return contacts.map((item, index) => {
-                let x = index % 2;
-                return (
-                    <div
-                        key={index}
-                        class={"person d-flex white space-around color-" + x}
-                    >
-                        <div class="w-2">{showInitials(item)}</div>
-                        <div class="w-2">
-                            {item.starred ? (
-                                <div class="w-2">
-                                    <IconContext.Provider
-                                        value={{ color: "#df5571" }}
-                                    >
-                                        <AiFillStar />
-                                    </IconContext.Provider>
-                                </div>
-                            ) : (
-                                <div class="w-2">
-                                    <IconContext.Provider
-                                        value={{ color: "a4a6f6" }}
-                                    >
-                                        <AiOutlineStar />
-                                    </IconContext.Provider>
-                                </div>
-                            )}
-                        </div>
-                        <div class="w-10">
-                            {item.firstName} {item.lastName}
-                        </div>
-                        <div class="w-10">Groups</div>
-                        {organisation ? (
-                            <div class="w-10">{item.organisation}</div>
-                        ) : null}
-                        {role ? <div class="w-10">{item.role}</div> : null}
-                        {email ? (
-                            <div class="w-10">
-                                <a href={"mailto:" + item.emailAddress}>
-                                    {item.emailAddress}
-                                </a>
-                            </div>
-                        ) : (
-                            <div></div>
-                        )}
-                        {phone ? <div class="w-10">{item.phoneNumber}</div> : null}
-                        {notes ? <div class="w-15">{item.notes}</div> : null}
-                        {/* // TODO: Connect edit contacts */}
-                        <div
-                            class="w-5 text-right"
-                            onClick={() => {
-                                console.log(history);
-                                history.push({
-                                    pathname: `${location.pathname.replace(
-                                        /\/$/g,
-                                        ""
-                                    )}/edit/${item.id}`,
-                                    url: item.url,
-                                });
-                            }}
-                        >
-                            Edit
-                        </div>
-                    </div>
-                );
-            });
-        } else {
-            return null;
-        }
+    render() {
+        return (
+            <div>
+                <Route
+                    exact
+                    path={`/contacts/edit/:id`}
+                    component={EditContact}
+                ></Route>
+                {this.showDropdown()}
+                <div className="contacts-table">
+                    {this.renderTableHeader()}
+                    {this.renderItems()}
+                </div>
+            </div>
+        );
     }
-
-    return (
-        <div>
-            <Route
-                exact
-                path={`/contacts/edit/:id`}
-                component={EditContact}
-            ></Route>
-            {/* {showDropdown()} */}
-            {renderTableHeader()}
-            {renderItems()}
-        </div>
-    );
 }
+
+export default withRouter(Contacts);

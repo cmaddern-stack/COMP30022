@@ -1,3 +1,16 @@
+/* Define Light Theme Colours */
+body {
+    --contact-card-bg: var(--light-blue-60);
+    --contact-card-text: var(--bkg-color);
+} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --contact-card-bg: var(--dark-grey-60);
+    --contact-card-text: red;
+}
+
+/* Define Elements */
 .edit-contact-modal {
     display: flex;
     align-items: center;
@@ -6,11 +19,24 @@
 }
 
 .edit-contact-card {
+    background-color: var(--contact-card-bg);
+    
+    padding: 20px;
+    width: 60%;
+    border-radius: 5px;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.edit-contact-card text {
+    color: var(--contact-card-tex);
+}
+
+.edit-contact-card.dark-theme {
     background-color: var(--light-blue-60);
     padding: 20px;
     width: 60%;
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--dark-shadow);
     max-height: 80vh;
     overflow-y: scroll;
 }
@@ -35,6 +61,10 @@
     text-align: right;
 }
 
+.close-button:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 961px){
     .edit-contact-card {
         width: 80%;
@@ -45,4 +75,21 @@
     .edit-contact-card {
         width: 90%;
     }
+}
+
+select, option {
+    width: 100%;
+    padding: 10px 16px;
+    margin: 0px 0;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+#select-box {
+    background-color: white;
+    padding-right: 10px;
+    margin: 5px 0;
+    border-radius: 5px; 
+    border: 1px solid var(--light-blue-60);
 }

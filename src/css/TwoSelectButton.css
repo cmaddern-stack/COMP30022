@@ -1,16 +1,45 @@
+/* Define Light Theme Colours */
+body {
+    --selected-bg: white;
+    --deselected-bg: var(--light-grey-60);
+    --deselected-hover-bg: var(--light-grey-80);
+    --border-color: var(--light-grey-80);
+    --two-select-text-color:  var(--dark-grey-80);} 
+
+/* Define Dark Theme Colours */
+body.dark-theme {
+    --selected-bg:  var(--dark-grey-40);
+    --deselected-bg: var(--dark-grey-80);
+    --deselected-hover-bg: var(--dark-grey-100);
+    --border-color: var(--dark-grey-40);
+    --two-select-text-color:  white;
+}
+
+/* Define Body Elements */
 .two-select-button {
     display: flex;
     width: 220px;
     text-align: center;
     font-size: 14px;
-    border: 1px solid var(--light-grey-80);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    box-shadow: 5px 5px 25px var(--light-shadow);
+    
+}
+
+@media (max-width: 481px) {
+    .two-select-button {
+        width: 200px;
+    }
+}
+
+
+.text-color {
+    color: var(--two-select-text-color);
 }
 
 .two-select-button a {
     text-decoration: none;
-    color: var(--dark-grey-100);
+    color: var(--two-select-text-color);
 }
 
 .left {
@@ -26,15 +55,15 @@
 }
 
 .selected {
-    background-color: white;
+    background-color: var(--selected-bg);
     cursor: default;
 }
 
 .deselected {
-    background-color: var(--light-grey-60);
+    background-color: var(--deselected-bg);
 }
 
 .deselected:hover {
-    background-color: var(--light-grey-80);
+    background-color: var(--deselected-hover-bg);
     cursor: pointer;
 }
