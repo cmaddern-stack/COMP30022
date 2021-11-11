@@ -34,6 +34,7 @@ class Contacts extends React.Component {
         }
     }
 
+<<<<<<< HEAD
     routingFunction = (param) => {
         this.props.history.push({
             pathname: `${this.props.location.pathname.replace(
@@ -49,6 +50,47 @@ class Contacts extends React.Component {
             [event.target.name]: event.target.value,
         });
     };
+=======
+var sortUp = false;
+
+export default function Contacts(props) {
+    const [organisation, setOrganisation] = useState(true);
+    const [role, setRole] = useState(true);
+    const [email, setEmail] = useState(true);
+    const [phone, setPhone] = useState(true);
+    const [notes, setNotes] = useState(true);
+    const [dropdown, setDropdown] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const location = useLocation();
+    const history = useHistory();
+
+    const [contacts, setContacts] = useState([]);
+
+    useEffect(() => {
+        getContacts();
+
+        async function getContacts(user) {
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization:
+                        `Basic ` +
+                        btoa(
+                            sessionStorage.getItem("username") +
+                                ":" +
+                                sessionStorage.getItem("password")
+                        ),
+                },
+                mode: "cors",
+            };
+            const response = await fetch(
+                BASE_URL + "contacts/",
+                requestOptions
+            );
+            const data = await response.json();
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
 
     
  
@@ -68,6 +110,7 @@ class Contacts extends React.Component {
         if (sortOrder){
             this.state.contacts.sort((a, b) => (a.role < b.role ? 1 : -1));
         }
+<<<<<<< HEAD
         else {
             this.state.contacts.sort((a, b) => (a.role > b.role ? 1 : -1));
         }
@@ -137,13 +180,99 @@ class Contacts extends React.Component {
                    
                     </div>
                    
+=======
+    }, []);
+
+    function showDropdown() {
+        if (dropdown) {
+            return (
+                <div className="d-flex">
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) => {
+                                setSearchTerm(event.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => setDropdown(false)}
+                        >
+                            Columns
+                            <IoMdArrowDropdown />
+                        </button>
+                        <div className="dropdown-content">
+                            {organisation ? (
+                                <button onClick={() => setOrganisation(false)}>
+                                    &#x2611; Organisation{" "}
+                                </button>
+                            ) : (
+                                <button onClick={() => setOrganisation(true)}>
+                                    &#x2610; Organisation{" "}
+                                </button>
+                            )}
+                            {role ? (
+                                <button onClick={() => setRole(false)}>
+                                    &#x2611; Role
+                                </button>
+                            ) : (
+                                <button onClick={() => setRole(true)}>
+                                    &#x2610; Role
+                                </button>
+                            )}
+                            {email ? (
+                                <button onClick={() => setEmail(false)}>
+                                    &#x2611; Email
+                                </button>
+                            ) : (
+                                <button onClick={() => setEmail(true)}>
+                                    &#x2610; Email
+                                </button>
+                            )}
+                            {phone ? (
+                                <button onClick={() => setPhone(false)}>
+                                    &#x2611; Phone
+                                </button>
+                            ) : (
+                                <button onClick={() => setPhone(true)}>
+                                    &#x2610; Phone
+                                </button>
+                            )}
+                        </div>
+                    </div>
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="d-flex">
+<<<<<<< HEAD
                     <div className="searchbar"><input type="text" placeholder="Search..." onChange={event => {this.setState({searchTerm: event.target.value})}}/></div>
                     <div className="dropdown-box"><button className="dropbtn" onClick={() => this.setState({dropdown: true})}><BsListUl /> Change Columns <IoMdArrowDropleft /></button></div>
+=======
+                    <div className="searchbar">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={(event) => {
+                                setSearchTerm(event.target.value);
+                            }}
+                        />
+                    </div>
+                    <div className="dropdown-box">
+                        <button
+                            className="dropbtn"
+                            onClick={() => setDropdown(true)}
+                        >
+                            Columns
+                            <IoMdArrowDropleft />
+                        </button>
+                    </div>
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
                 </div>
             );
         }
@@ -151,6 +280,7 @@ class Contacts extends React.Component {
  
     renderTableHeader = () => {
         return (
+<<<<<<< HEAD
             <div className="person contacts-header d-flex justify-content-between">
                 <div className="w-5"></div>
                 <div className="w-2"><IconContext.Provider value={{ color: 'a4a6f6' }}><AiFillStar /></IconContext.Provider></div>
@@ -162,6 +292,34 @@ class Contacts extends React.Component {
                 { this.state.phone ? <div className="w-10">Phone</div> : null}
                 { this.state.notes ? <div className="w-15">Notes</div> : null}
                 <div className="w-5 text-right">Edit</div>
+=======
+            <div className="person contacts-header">
+                <div className="row-left">
+                    <div className="w-5 row-item"></div>
+                    <div className="w-5 row-item">
+                        <div className="w-5 row-item">
+                            <IconContext.Provider value={{ color: "a4a6f6" }}>
+                                <AiFillStar />
+                            </IconContext.Provider>
+                        </div>
+                    </div>
+                    <div className="w-name row-item">Name</div>
+                    {/* <div className="w-10">Groups</div> */}
+                    {organisation ? (
+                        <div className="w-15 row-item">Organisation</div>
+                    ) : null}
+                    {role ? <div className="w-10 row-item">Role</div> : null}
+                    {email ? <div className="w-15 row-item">Email</div> : null}
+                    {phone ? (
+                        <div className="w-phone row-item">Phone</div>
+                    ) : null}
+                </div>
+                <div className="row-right">
+                    <div className="w-edit row-item button invisible-button edit-button">
+                        Edit
+                    </div>
+                </div>
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
             </div>
         );
     }
@@ -169,6 +327,7 @@ class Contacts extends React.Component {
     renderItems = () => {
         if (this.state.contacts.length > 0) {
 
+<<<<<<< HEAD
              return this.state.contacts.filter((val) => {
                     console.log(val);
                     if (this.state.searchTerm === "") {
@@ -218,15 +377,30 @@ class Contacts extends React.Component {
     }
  
     showInitials = (item) => {
+=======
+    function showInitials(item) {
+        if (item.image !== null) {
+            return (
+                <div className="initials">
+                    <img
+                        alt="contact profile icon"
+                        src={item.image}
+                        id="row-profile-icon"
+                    ></img>
+                </div>
+            );
+        }
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
         const first = item.firstName[0];
         const second = item.lastName[0];
         return (
-            <div class="initials">
+            <div className="initials">
                 {first}
                 {second}
             </div>
         );
     }
+<<<<<<< HEAD
  
     render() {
  
@@ -241,6 +415,103 @@ class Contacts extends React.Component {
  
    
  
+=======
+
+    function renderItems() {
+        if (contacts.length > 0) {
+            return contacts
+                .filter((contact) => {
+                    const search = searchTerm.toLowerCase();
+                    return (
+                        (contact.firstName &&
+                            contact.firstName.toLowerCase().includes(search)) ||
+                        (contact.lastName &&
+                            contact.lastName.toLowerCase().includes(search)) ||
+                        (organisation &&
+                            contact.organisation &&
+                            contact.organisation
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (role &&
+                            contact.role &&
+                            contact.role.toLowerCase().includes(search)) ||
+                        (email &&
+                            contact.emailAddress &&
+                            contact.emailAddress
+                                .toLowerCase()
+                                .includes(search)) ||
+                        (phone &&
+                            contact.phoneNumber &&
+                            contact.phoneNumber.toLowerCase().includes(search))
+                    );
+                })
+                .map((item, index) => {
+                    let x = index % 2;
+                    return (
+                        <div className={"person color-" + x}>
+                            <div className="row-left">
+                                <div className="w-5 row-item">
+                                    {showInitials(item)}
+                                </div>
+                                <div className="w-5 row-item">
+                                    {item.starred ? (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "#df5571" }}
+                                            >
+                                                <AiFillStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    ) : (
+                                        <div className="w-5 row-item">
+                                            <IconContext.Provider
+                                                value={{ color: "a4a6f6" }}
+                                            >
+                                                <AiOutlineStar />
+                                            </IconContext.Provider>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="w-name row-item">
+                                    {item.firstName} {item.lastName}
+                                </div>
+                                {organisation ? (
+                                    <div className="w-15 row-item">
+                                        {item.organisation}
+                                    </div>
+                                ) : null}
+                                {role ? (
+                                    <div className="w-10 row-item">
+                                        {item.role}
+                                    </div>
+                                ) : null}
+                                {email ? (
+                                    <div className="w-15 row-item">
+                                        <a href={"mailto:" + item.emailAddress}>
+                                            {item.emailAddress}
+                                        </a>
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )}
+                                {phone ? (
+                                    <div className="w-phone row-item">
+                                        {item.phoneNumber}
+                                    </div>
+                                ) : null}
+                            </div>
+                            <div className="row-right">
+                                <div className="w-edit row-item edit-button">
+                                    Edit
+                                </div>
+                            </div>
+                        </div>
+                    );
+                });
+        } else return null;
+    }
+
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
     return (
         <div>
             <Route
@@ -248,12 +519,23 @@ class Contacts extends React.Component {
                 path={`/contacts/edit/:id`}
                 component={EditContact}
             ></Route>
+<<<<<<< HEAD
             {this.showDropdown()}
             {this.renderTableHeader()}
             {this.renderItems()}
+=======
+            {showDropdown()}
+            <div className="contacts-table">
+                {renderTableHeader()}
+                {renderItems()}
+            </div>
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796
         </div>
     );
     }
 }
+<<<<<<< HEAD
  
 export default withRouter(Contacts);
+=======
+>>>>>>> 353f7284273237bdf1a25973f4e1171c2fc3c796

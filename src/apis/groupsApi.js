@@ -38,14 +38,14 @@ export class GroupsAPI {
             mode: "cors",
             body: JSON.stringify({
                 name: groupName,
-                contacts: contacts
-            })
+                contacts: contacts,
+            }),
         };
         const response = await fetch(BASE_URL + "groups/", requestOptions);
         var groups = await response.json();
-    }
+    };
 
-    static deleteGroup = async(url) => {
+    static deleteGroup = async (url) => {
         const requestOptions = {
             method: "DELETE",
             headers: {
@@ -57,7 +57,7 @@ export class GroupsAPI {
         };
         const response = await fetch(url, requestOptions);
         return response.json();
-    }
+    };
 
     static deleteEmptyGroups = async () => {
         const groups = await GroupsAPI.getGroups();
@@ -66,7 +66,7 @@ export class GroupsAPI {
                 GroupsAPI.deleteGroup(groups[i].url);
             }
         }
-    }
+    };
 
     static getGroup = async (url) => {
         const requestOptions = {
@@ -122,7 +122,12 @@ export class GroupsAPI {
         return group;
     };
 
-    static updateContactGroup = async (contactURL, oldURL, newURL, newGroupName) => {
+    static updateContactGroup = async (
+        contactURL,
+        oldURL,
+        newURL,
+        newGroupName
+    ) => {
         function requestOptions(contacts) {
             return {
                 method: "PATCH",

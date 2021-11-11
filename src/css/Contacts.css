@@ -16,26 +16,86 @@ body.dark-theme {
 
 /* Person page styling */
 .person {
-    justify-content: space-between;
-    width: 97%;
-    padding: 0.5em 2em;
-    border-radius: 90px;
+    padding: 0em 0em;
+    border-radius: 23px;
     margin: 10px 20px;
+    color: var(--text-color);
+    height: 46px;
+    display: flex;
+    min-width: 100%;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.row-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+a {
+    color: var(--text-color);
+}
+
+a:hover {
     color: var(--text-color);
 }
 
 .person div {
     margin: auto;
+    margin-right: 15px;
+    margin-left: 5px;
 }
 
-.color-0 { background-color: var(--colour-0-colour); }
-.color-1 { background-color: var(--colour-1-colour); }
+.color-0 {
+    background-color: var(--colour-0-colour);
+}
+.color-1 {
+    background-color: var(--colour-1-colour);
+}
 
-.w-15 { width: 15%; }
-.w-10 { width: 10%; }
-.w-5 { width: 30px; }
-.w-2 { width: 30px; }
+.contacts-table {
+    overflow-x: scroll;
+    margin-right: 20px;
+}
 
+.row-item {
+    flex-wrap: nowrap;
+    padding: 0;
+    backgorund: orange;
+}
+
+.w-name {
+    min-width: 250px;
+    width: 250px;
+}
+
+.w-phone {
+    min-width: 200px;
+    width: 200px;
+}
+
+.w-edit {
+    min-width: 50px;
+    width: 50px;
+}
+
+.w-15 {
+    min-width: 350px;
+    width: 350px;
+}
+.w-10 {
+    min-width: 250px;
+    width: 250px;
+}
+.w-5 {
+    min-width: 50px;
+    width: 50px;
+    margin: 0;
+}
+.w-2 {
+    min-width: 50px;
+    width: 50px;
+}
 
 .contacts-header {
     color: var(--text-color);
@@ -57,16 +117,28 @@ body.dark-theme {
     padding: 5px;
     border-radius: 90%;
     text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 22px;
+    font-size: 14px;
+}
+
+#row-profile-icon {
+    width: 30px;
+    height: 30px;
+    border: none;
+    margin-left: -5px;
+    margin-top: -5px;
 }
 
 .searchbar {
-    padding: 0em 2em;
-    width: 75%;
+    padding: 0em 10px 0px 20px;
+    width: 100%;
 }
 
 .dropdown-box {
-    padding: 0em 2em;
-    width: 25%;
+    padding: 0em 20px 0px 10px;
+    width: 150px;
     margin-top: auto;
     margin-bottom: auto;
     display: inline-block;
@@ -74,25 +146,55 @@ body.dark-theme {
 }
 
 .dropbtn {
-    background-color: #c3d3fa;
+    background-color: var(--selected-bg);
     width: 100%;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
+    padding: 10px 0px;
+    color: var(--two-select-text-color);
+    font-size: 14px;
+}
+
+.dropbtn:hover {
+    background-color: var(--deselected-bg);
+    cursor: pointer;
 }
 
 .dropdown-content {
     position: absolute;
     text-align: center;
-    padding: .5rem;
-    width: 85%;
+    padding: 0.5rem 0;
+    width: 150px;
+    margin-left: -40px;
+    border-radius: 5px;
+    background-color: var(--dropdown-content-bk-color);
 }
 
 .dropdown-content button {
     width: 100%;
     text-align: left;
-    padding: 1rem;
+    padding: 10px 20px;
+    font-size: 14px;
     background-color: var(--dropdown-content-bk-color);
 }
 
 .dropdown-content button:hover {
-    background-color: lightgray;
+    background-color: var(--light-blue-100);
+    color: var(--iris-100);
+}
+
+.edit-button {
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    font-size: 14px;
+    padding: 3px 0px;
+    background-color: var(--selected-bg);
+    color: var(--two-select-text-color);
+    border: 1px solid var(--border-color);
+}
+
+.edit-button:hover {
+    cursor: pointer;
+    background-color: var(--deselected-hover-bg);
 }

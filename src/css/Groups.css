@@ -193,3 +193,10 @@ td {
     display: flex;
     height: 55px;
 }
+
+#profile-icon {
+    height: 30px;
+    width: 30px;
+    margin-top: -2.5px;
+    border: none;
+}

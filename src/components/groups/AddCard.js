@@ -1,14 +1,28 @@
 import React from "react";
-import CustomizedDialogs from "../Dialog";
+import Button from "@material-ui/core/Button";
+import { withRouter } from "react-router-dom";
 
-export default class AddCard extends React.Component {
+class AddCard extends React.Component {
+    handleClickOpen = () => {
+        this.props.history.push({
+            pathname: `${this.props.match.url.replace(/\/$/g, "")}/add/`,
+            group: this.props.group
+        });
+    };
+
     render() {
         return (
             <div className="add-contact-card">
                 <div className="center iris60">
-                    <CustomizedDialogs />
+                    <div className="group-add-contact-button">
+                        <Button color="primary" onClick={this.handleClickOpen}>
+                            <div className="message">+ Add Contact</div>
+                        </Button>
+                    </div>
                 </div>
             </div>
         );
     }
 }
+
+export default withRouter(AddCard);
