@@ -242,6 +242,10 @@ class Contacts extends React.Component {
         }
     };
 
+    sortIcon = (sort) => {
+        return sort ? <span>▲</span> : <span>▼</span>;
+    };
+
     renderTableHeader = () => {
         return (
             <div className="person contacts-header">
@@ -254,18 +258,28 @@ class Contacts extends React.Component {
                             </IconContext.Provider>
                         </div>
                     </div>
-                    <div className="w-name row-item" onClick={this.sortName}>
-                        Name
+                    <div
+                        className="w-name row-item sortable"
+                        onClick={this.sortName}
+                    >
+                        {this.sortIcon(this.state.nameSort)} Name
                     </div>
                     {/* <div className="w-10">Groups</div> */}
                     {this.state.organisation ? (
-                        <div className="w-15 row-item" onClick={this.sortOrg}>
+                        <div
+                            className="w-15 row-item sortable"
+                            onClick={this.sortOrg}
+                        >
+                            {this.sortIcon(this.state.orgSort)}{" "}
                             Organisation
                         </div>
                     ) : null}
                     {this.state.role ? (
-                        <div className="w-10 row-item" onClick={this.sortRole}>
-                            Role
+                        <div
+                            className="w-10 row-item sortable"
+                            onClick={this.sortRole}
+                        >
+                            {this.sortIcon(this.state.roleSort)} Role
                         </div>
                     ) : null}
                     {this.state.email ? (

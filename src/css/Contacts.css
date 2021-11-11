@@ -198,3 +198,7 @@ a:hover {
     cursor: pointer;
     background-color: var(--deselected-hover-bg);
 }
+
+.sortable:hover {
+    cursor: pointer;
+}
